@@ -1,7 +1,3 @@
-Patch 1.2.0.14
-
-Fixed technical edge case that could cause errors in enemy spawning (might solve the Thorium + DLC spawns issue)
-Used new variable for tracking desert scourge's passive timer instead of AI variable, which caused issues with other mods
-Fixed both Rogue weapons being able to stealth strike at once with Apprentice Support
-Fixed certain conflicting balance changes not being handled correctly
-Russian localization changes/cleanups
+Patch 1.2.0.15
+- Abominationn boss health x0.9
+- Permafrost boss now forces time to night
