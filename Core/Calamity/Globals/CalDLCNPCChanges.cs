@@ -379,7 +379,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             //abom
             if (npc.type == ModContent.NPCType<AbomBoss>())
             {
-                npc.lifeMax = (int)(npc.lifeMax * 3f);
+                npc.lifeMax = (int)(npc.lifeMax * 2.7f);
                 npc.damage = (int)(npc.damage * 1.25f);
 
                 calNPC.VulnerableToCold = false;
