@@ -1,3 +1,2 @@
-Patch 1.2.0.15
-- Abominationn boss health x0.9
-- Permafrost boss now forces time to night
+Patch 1.2.0.16
+- Fixed Abominationn health nerf not working
