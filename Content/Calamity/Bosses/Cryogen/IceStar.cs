@@ -34,7 +34,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
             Projectile.friendly = false;
             Projectile.timeLeft = 60 * 4 + 30;
 
-            Projectile.light = 0.5f;
+            //Projectile.light = 0.5f;
             Projectile.tileCollide = false;
             //Projectile.coldDamage = true;
         }
@@ -57,7 +57,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
             {
                 Main.EntitySpriteDraw(t.Value, Projectile.oldPos[i] + Projectile.Size/2 - Main.screenPosition, null, lightColor * (1- (float)i/Projectile.oldPos.Length), Projectile.oldRot[i], t.Size() / 2, Projectile.scale, SpriteEffects.None);
             }
-            Main.EntitySpriteDraw(t.Value, Projectile.Center - Main.screenPosition, null, lightColor, Projectile.rotation, t.Size() / 2, Projectile.scale, SpriteEffects.None);
+            Main.EntitySpriteDraw(t.Value, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation, t.Size() / 2, Projectile.scale, SpriteEffects.None);
             return false;
         }
         ref float OwnerID => ref Projectile.ai[0];
