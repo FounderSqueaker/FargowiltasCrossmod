@@ -32,7 +32,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
             Projectile.friendly = false;
             Projectile.timeLeft = 200;
 
-            Projectile.light = 0.5f;
+            //Projectile.light = 0.5f;
             Projectile.tileCollide = false;
 
             //Projectile.coldDamage = true;
@@ -48,7 +48,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
         public override bool PreDraw(ref Color lightColor)
         {
             Asset<Texture2D> t = TextureAssets.Projectile[Type];
-            Main.EntitySpriteDraw(t.Value, Projectile.Center - Main.screenPosition, null, lightColor, Projectile.rotation, new Vector2(8.5f, 40.5f), Projectile.scale, SpriteEffects.None);
+            Main.EntitySpriteDraw(t.Value, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation, new Vector2(8.5f, 40.5f), Projectile.scale, SpriteEffects.None);
             return false;
         }
         public override void AI()
