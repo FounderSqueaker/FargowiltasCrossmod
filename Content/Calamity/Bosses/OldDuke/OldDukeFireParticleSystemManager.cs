@@ -1,5 +1,5 @@
 ﻿using FargowiltasCrossmod.Assets;
-using FargowiltasCrossmod.Core.Common.Graphics.FastParticleSystems;
+using FargowiltasSouls.Common.Graphics.FastParticleSystems;
 using Luminance.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -105,6 +105,7 @@ using FargowiltasSouls.Core.Globals;
 using FargowiltasSouls.Content.NPCs.EternityModeNPCs.VanillaEnemies.LunarEvents;
 using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.LunaticCultist;
 using FargowiltasSouls.Content.NPCs.EternityModeNPCs.VanillaEnemies.LunarEvents.Solar;
+using FargowiltasSouls.Content.NPCs.EternityModeNPCs.BossMinions;
 
 namespace FargowiltasCrossmod.Core.Calamity.Globals
 {
