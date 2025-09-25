@@ -37,7 +37,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
             Projectile.friendly = false;
             Projectile.timeLeft = MaxTime;
 
-            Projectile.light = 0.5f;
+            //Projectile.light = 0.5f;
 
             Projectile.tileCollide = false;
             Projectile.coldDamage = true;
@@ -59,7 +59,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
         public override bool PreDraw(ref Color lightColor)
         {
             Asset<Texture2D> t = TextureAssets.Projectile[Type];
-            Main.EntitySpriteDraw(t.Value, Projectile.Center - Main.screenPosition, null, lightColor, Projectile.rotation, t.Size() / 2, Projectile.scale, SpriteEffects.None);
+            Main.EntitySpriteDraw(t.Value, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation, t.Size() / 2, Projectile.scale, SpriteEffects.None);
             return false;
         }
         public override void AI()
@@ -73,7 +73,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
                 Projectile.rotation = Projectile.velocity.ToRotation();
 
             Vector2 vel = (Projectile.rotation + MathHelper.PiOver2).ToRotationVector2();
-            
+
             /*
             if (Projectile.timeLeft < 180f && Projectile.timeLeft <= 120)
             {
@@ -106,10 +106,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
                         Main.projectile[p].timeLeft = 60;
                     }
                 }
-                    /*
-                    for (int i = -1; i < 2; i += 2)
-                        Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, (vel * Main.rand.NextFloat(30, 40) * i).RotatedByRandom(MathHelper.PiOver2 / 20f), ModContent.ProjectileType<FrostShard>(), Projectile.damage, 0);
-                    */
+                /*
+                for (int i = -1; i < 2; i += 2)
+                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, (vel * Main.rand.NextFloat(30, 40) * i).RotatedByRandom(MathHelper.PiOver2 / 20f), ModContent.ProjectileType<FrostShard>(), Projectile.damage, 0);
+                */
             }
         }
     }
