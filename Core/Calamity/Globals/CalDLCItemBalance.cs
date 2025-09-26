@@ -187,7 +187,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (item.type is ItemID.CobaltSword or ItemID.PalladiumSword or ItemID.OrichalcumSword or ItemID.MythrilSword)
                 NerfTooltip("HardmodeSwords");
             if (item.type == ItemID.ReaverShark)
+            {
                 tooltips.Add(new TooltipLine(Mod, "PPDown", $"{BalanceDownLine}" + Language.GetText($"Mods.FargowiltasCrossmod.EModeBalance.PickPowerDownGeneric").Format(41)));
+                tooltips.Add(new TooltipLine(Mod, "PSUp", $"{BalanceUpLine}" + Language.GetText($"Mods.FargowiltasCrossmod.EModeBalance.PickSpeedUpGeneric").Format(23)));
+            }
 
             CalamityGlobalItem calItem = item.GetGlobalItem<CalamityGlobalItem>();
             if (!item.IsAir && calItem.AppliedEnchantment.HasValue)

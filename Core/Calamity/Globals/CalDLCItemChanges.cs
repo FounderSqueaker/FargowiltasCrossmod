@@ -290,6 +290,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (item.type == ItemID.ReaverShark)
             {
                 item.pick = 59;
+                item.useAnimation = 22;
+                item.useTime = 13;
             }
             if (CalDLCSets.GetValue(CalDLCSets.Items.MarniteExclude, item.type) && !FargoGlobalItem.TungstenAlwaysAffects.Contains(item.type))
             {

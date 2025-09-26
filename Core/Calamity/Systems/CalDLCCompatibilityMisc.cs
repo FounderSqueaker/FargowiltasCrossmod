@@ -310,7 +310,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             CalamityLists.debuffList.Add(BuffType<CurseoftheMoonBuff>());
             CalamityLists.debuffList.Add(BuffType<DefenselessBuff>());
             CalamityLists.debuffList.Add(BuffType<FlamesoftheUniverseBuff>());
-            CalamityLists.debuffList.Add(BuffType<FlippedBuff>());
             CalamityLists.debuffList.Add(BuffType<FusedBuff>());
             CalamityLists.debuffList.Add(BuffType<GodEaterBuff>());
             CalamityLists.debuffList.Add(BuffType<HexedBuff>());
