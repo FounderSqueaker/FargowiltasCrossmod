@@ -19,6 +19,8 @@ using Terraria.Audio;
 using Microsoft.Xna.Framework;
 using CalamityMod;
 using FargowiltasSouls;
+using FargowiltasSouls.Content.UI.Elements;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
 {
@@ -37,9 +39,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.AddEffect<ElementsForceEffect>(Item);
-            player.AddEffect<AerospecJumpEffect>(Item);
             player.AddEffect<HydrothermicEffect>(Item);
-            player.AddEffect<AerospecJumpEffect>(Item);
             player.AddEffect<DaedalusEffect>(Item);
             if (player.CalamityAddon().ReaverToggle)
                 player.FargoSouls().WingTimeModifier += 0.25f;
@@ -84,6 +84,20 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
             var addon = player.CalamityAddon();
             if (addon.ReaverToggle) // blizzard mode
             {
+                if (player.velocity.Y != 0)
+                {
+                    addon.ElementsAirTime++;
+                    static float DamageFormula(float x) => x / MathF.Sqrt(x * x + 1);
+                    float x = addon.ElementsAirTime / 420f;
+                    float bonusMultiplier = DamageFormula(x); // This function approaches y = 1 as x approaches infinity.
+                    float bonusDamage = bonusMultiplier * 0.5f;
+                    player.GetDamage(DamageClass.Generic) += bonusDamage;
+
+                    CooldownBarManager.Activate("AerospecDamage", ModContent.Request<Texture2D>("FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/AerospecEnchant").Value, new Color(153, 200, 193),
+                    () => LumUtils.Saturate(DamageFormula(Main.LocalPlayer.CalamityAddon().ElementsAirTime / 420f)), true, activeFunction: player.HasEffect<ElementsForceEffect>);
+                }
+                else
+                    addon.ElementsAirTime = 0;
                 player.lifeRegen += 15;
                 player.moveSpeed += 0.3f;
                 if (player.miscCounter % 3 == 2 && player.dashDelay > 0)

@@ -101,6 +101,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override Header ToggleHeader => Header.GetHeader<GaleHeader>();
         public override int ToggleItemType => ModContent.ItemType<SulphurEnchant>();
         public override bool ExtraAttackEffect => true;
+        public override bool ExtraJumpEffect => true;
         public static int BaseDamage(Player player)
         {
             int bubbleDamage = 23;
