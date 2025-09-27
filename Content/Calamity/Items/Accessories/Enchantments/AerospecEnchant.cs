@@ -84,31 +84,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         }
         public override Header ToggleHeader => Header.GetHeader<ElementsHeader>();
         public override int ToggleItemType => ModContent.ItemType<AerospecEnchant>();
-        
+        public override bool ExtraJumpEffect => true;
         public override void PostUpdateEquips(Player player)
         {
             var mplayer = player.GetModPlayer<CalDLCAddonPlayer>();
-            if (player.HasEffect<ElementsForceEffect>())
-            {
-                if (mplayer.ReaverToggle)
-                {
-                    if (player.velocity.Y != 0)
-                    {
-                        mplayer.ElementsAirTime++;
-                        static float DamageFormula(float x) => x / MathF.Sqrt(x * x + 1);
-                        float x = mplayer.ElementsAirTime / 420f;
-                        float bonusMultiplier = DamageFormula(x); // This function approaches y = 1 as x approaches infinity.
-                        float bonusDamage = bonusMultiplier * 0.5f;
-                        player.GetDamage(DamageClass.Generic) += bonusDamage;
-
-                        CooldownBarManager.Activate("AerospecDamage", ModContent.Request<Texture2D>("FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/AerospecEnchant").Value, new Color(153, 200, 193),
-                        () => LumUtils.Saturate(DamageFormula(Main.LocalPlayer.CalamityAddon().ElementsAirTime / 420f)), true, activeFunction: player.HasEffect<ElementsForceEffect>);
-                    }
-                    else
-                        mplayer.ElementsAirTime = 0;
-                }
-                return;
-            }
             int critPerJump = player.ForceEffect<AerospecJumpEffect>() ? 10 : 5;
             int maxCritJumps = 3;
 
