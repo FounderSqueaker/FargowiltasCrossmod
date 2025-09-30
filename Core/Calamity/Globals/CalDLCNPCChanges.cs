@@ -126,31 +126,12 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
 
         ];
-        private static List<int> ClippedWingsImmune =
-        [
-            NPCType<BrimstoneHeart>(),
-            NPCType<SupremeCataclysm>(),
-            NPCType<SupremeCatastrophe>(),
-            NPCType<Cataclysm>(),
-            NPCType<Catastrophe>(),
-            NPCType<ProfanedGuardianDefender>(),
-            NPCType<ProfanedGuardianHealer>(),
-            NPCType<EbonianPaladin>(),
-            NPCType<SplitEbonianPaladin>(),
-            NPCType<CrimulanPaladin>(),
-            NPCType<SplitCrimulanPaladin>()
-
-        ];
         public override void SetStaticDefaults()
         {
 
             foreach (int type in SuffocationImmune)
             {
                 NPCID.Sets.SpecificDebuffImmunity[type][BuffID.Suffocation] = true;
-            }
-            foreach (int type in ClippedWingsImmune)
-            {
-                NPCID.Sets.SpecificDebuffImmunity[type][BuffType<ClippedWingsBuff>()] = true;
             }
             NPCID.Sets.SpecificDebuffImmunity[NPCType<MutantBoss>()][BuffType<Enraged>()] = true;
             NPCID.Sets.SpecificDebuffImmunity[NPCType<MutantBoss>()][BuffType<BanishingFire>()] = true;
