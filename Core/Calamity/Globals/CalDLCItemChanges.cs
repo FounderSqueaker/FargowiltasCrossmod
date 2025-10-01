@@ -343,10 +343,30 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     tooltips[i].Text += " " + Language.GetTextValue("Conditions.InHardmode");
                 }
             }
-            if (item.type == ModContent.ItemType<Rock>())
+            if (item.type == ModContent.ItemType<AbyssalDivingGear>() && WorldSavingSystem.EternityMode)
             {
-                tooltips.Add(new TooltipLine(Mod, "sqrl", $"[i:{ModContent.ItemType<TopHatSquirrelCaught>()}] [c/AAAAAA:" + Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.SoldBySquirrel") + $"]"));
+                foreach (var tooltip in tooltips)
+                {
+                    if (tooltip.Name == "Tooltip5")
+                    {
+                        tooltip.Text += "\n" + Language.GetTextValue("Mods.FargowiltasSouls.Items.Extra.SpaceBreathImmunity");
+                    }
+                }
             }
+            if (item.type == ModContent.ItemType<AbyssalDivingSuit>() && WorldSavingSystem.EternityMode)
+            {
+                foreach (var tooltip in tooltips)
+                {
+                    if (tooltip.Name == "Tooltip14")
+                    {
+                        tooltip.Text += "\n" + Language.GetTextValue("Mods.FargowiltasSouls.Items.Extra.SpaceBreathImmunity");
+                    }
+                }
+            }
+            if (item.type == ModContent.ItemType<Rock>())
+                {
+                    tooltips.Add(new TooltipLine(Mod, "sqrl", $"[i:{ModContent.ItemType<TopHatSquirrelCaught>()}] [c/AAAAAA:" + Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.SoldBySquirrel") + $"]"));
+                }
             if (item.type == ModContent.ItemType<Masochist>())
             {
 
