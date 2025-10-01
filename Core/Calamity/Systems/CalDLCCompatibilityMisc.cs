@@ -318,7 +318,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             CalamityLists.debuffList.Add(BuffType<JammedBuff>());
             CalamityLists.debuffList.Add(BuffType<LethargicBuff>());
             CalamityLists.debuffList.Add(BuffType<LightningRodBuff>());
-            CalamityLists.debuffList.Add(BuffType<LovestruckBuff>());
             CalamityLists.debuffList.Add(BuffType<LowGroundBuff>());
             CalamityLists.debuffList.Add(BuffType<MarkedforDeathBuff>());
             CalamityLists.debuffList.Add(BuffType<MidasBuff>());
