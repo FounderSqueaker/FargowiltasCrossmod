@@ -16,5 +16,5 @@ ExoBox: Скорость уменьшена на 40%
 HardmodeSwords: Улучшения характеристик ослаблены
 OceanCrest: Даёт иммунитет к водным дебаффам режима Вечность
 // truth be told I have absolutely no idea what this enchantment is so the key name is just that
-CalEnch: Накапливаемый урон не может быть выше 500000
-// PickSpeedUpGeneric: Pickaxe speed increased by {0}%
+CalEnch: Накапливаемый урон не может превышать 500000
+PickSpeedUpGeneric: Скорость кирки увеличена на {0}%
