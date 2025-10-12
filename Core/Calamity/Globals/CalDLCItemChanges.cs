@@ -474,7 +474,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     lines.Insert(3, Language.GetTextValue(key + "CalSniperSoul0"));
                     lines.Insert(4, Language.GetTextValue(key + "CalConjuristsSoul0"));
                     lines.Insert(lines.Count - 1, Language.GetTextValue(key + "CalConjuristsSoul1"));
-                    tooltips[tt0].Text = tooltips[tt0].Text.Insert(lastLine + 1, Language.GetTextValue(key + "CalamityUniverse") + "\n");
+                    lines.Insert(lines.Count - 1, Language.GetTextValue(key + "CalamityUniverse"));
                     tooltips[tt0].Text = string.Join("\n", lines);
                 }
             }
