@@ -200,7 +200,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             }
             if (item.type == ModContent.ItemType<ArchWizardsSoul>() || uniSoul)
             {
-                player.statManaMax2 += 50;
+                if (item.type == ModContent.ItemType<ArchWizardsSoul>())
+                    player.statManaMax2 += 50;
             }
             if (item.type == ModContent.ItemType<ConjuristsSoul>() || uniSoul)
             {
@@ -432,15 +433,13 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (item.type == ModContent.ItemType<BerserkerSoul>() && !item.social && tt0 != -1)
             {
                 tooltips[tt0 + 1].Text = tooltips[tt0 + 1].Text + Language.GetTextValue(key + "NoStack"); // if this is a problem for grammar in other languages, let me know.
-                tooltips.Insert(tt0, new TooltipLine(Mod, "CalBerserkerSoul0", Language.GetTextValue("[i:CalamityMod/ElementalGauntlet] Melee attacks and projectiles inflict Elemental Mix")));
-                tooltips.Insert(tt0 + 3, new TooltipLine(Mod, "CalBerserkerSoul1", Language.GetTextValue("20% increased true melee damage and +5 melee armor penetration")));
-                //tooltips.Insert(9, new TooltipLine(Mod, "CalBerserkerSoul", Language.GetTextValue(key + "CalamityBerserker")));
+                tooltips.Insert(tt0, new TooltipLine(Mod, "CalBerserkerSoul0", Language.GetTextValue(key + "CalBerserkerSoul0")));
+                tooltips.Insert(tt0 + 3, new TooltipLine(Mod, "CalBerserkerSoul1", Language.GetTextValue(key + "CalBerserkerSoul1")));
             }
 
             if (item.type == ModContent.ItemType<SnipersSoul>() && !item.social && tt0 != -1)
             {
-                tooltips.Insert(tt0 + 2, new TooltipLine(Mod, "CalSniperSoul0", Language.GetTextValue("20% reduced ammo usage")));
-                //tooltips.Insert(8, new TooltipLine(Mod, "CalSniperSoul", Language.GetTextValue(key + "CalamitySniper")));
+                tooltips.Insert(tt0 + 2, new TooltipLine(Mod, "CalSniperSoul0", Language.GetTextValue(key + "CalSniperSoul0")));
             }
 
             if (item.type == ModContent.ItemType<ArchWizardsSoul>() && !item.social)
@@ -452,8 +451,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (item.type == ModContent.ItemType<ConjuristsSoul>() && !item.social)
             {
                 tooltips[tt0 + 2].Text = tooltips[tt0 + 2].Text.Replace("3", "4");
-                tooltips.Insert(tt0 + 5, new TooltipLine(Mod, "ConjuristsSoul0", Language.GetTextValue("Grants immunity to Shadowflame and Irradiated")));
-                tooltips.Insert(tt0 + 6, new TooltipLine(Mod, "ConjuristsSoul1", Language.GetTextValue("[i:CalamityMod/Nucleogenesis] Minions inflict a variety of debuffs and spawn damaging sparks on enemy hits")));
+                tooltips.Insert(tt0 + 5, new TooltipLine(Mod, "ConjuristsSoul0", Language.GetTextValue(key + "CalConjuristsSoul0")));
+                tooltips.Insert(tt0 + 6, new TooltipLine(Mod, "ConjuristsSoul1", Language.GetTextValue(key + "CalConjuristsSoul1")));
                 //tooltips.Insert(7, new TooltipLine(Mod, "CalConjurSoul", Language.GetTextValue(key + "CalamityConjurist")));
             }
 
@@ -468,9 +467,9 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 }
                 else
                 {
-                    var text = tooltips[tt0].Text;
-                    int lastLine = text.LastIndexOf("\n");
-                    text.Insert(lastLine + 1, Language.GetTextValue(key + "CalamityUniverse"));
+                    int lastLine = tooltips[tt0].Text.LastIndexOf("\n");
+                    Main.NewText(lastLine);
+                    tooltips[tt0].Text = tooltips[tt0].Text.Insert(lastLine + 1, Language.GetTextValue(key + "CalamityUniverse") + "\n");
                 }
             }
 

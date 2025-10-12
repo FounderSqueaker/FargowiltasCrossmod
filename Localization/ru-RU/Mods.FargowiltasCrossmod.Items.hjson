@@ -1,41 +1,24 @@
 AddedEffects: {
 	AngelTreads: Эффекты ангельских ботфортов
 	AeolusBoots: Эффекты ботинок Эола
-	CalamitySupersonic: Эффекты пустотного кушака Статиса
-	ThoriumSuperSonic: Эффекты воздушных бегунов, ботинок выживальщика и утяжелённых летунов
-	CalamityColossus: Эффекты слияния, асгардской эгиды и оплота божества
-	ThoriumColossus:
+	// NoStack: ", does not stack with upgrades"
+	// if this is a problem for grammar in other languages, let me know.
+	// CalBerserkerSoul0: "[i:CalamityMod/ElementalGauntlet] Melee attacks and projectiles inflict Elemental Mix"
+	// CalBerserkerSoul1: 20% increased true melee damage and +5 melee armor penetration
+	// CalSniperSoul0: 20% reduced ammo usage
+	// CalConjuristsSoul0: Grants immunity to Shadowflame and Irradiated
+	// CalConjuristsSoul1: "[i:CalamityMod/Nucleogenesis] Minions inflict a variety of debuffs and spawn damaging sparks on enemy hits"
+	/* CalamityUniverse:
 		'''
-		Эффекты сладкой мести, обсидиановой чешуи, террариевого защитника,
-		филактерии, сердца из камня и колючего панцыря
-		'''
-	CalamityBerserker: Эффекты знака храбрости и элементальной рукавицы
-	ThoriumBerserker: Эффекты эмблемы рапиры
-	CalamityWizard: Эффекты эфирного талисмана
-	ThoriumWizard: Эффекты мутного катализатора
-	CalamitySniper: Эффекты элементального колчана и колчана небытия
-	Vagabond: Эффекты нанотехнологии и зеркала затмения
-	ThoriumSniper: Эффекты сотрясающей боеголовки
-	CalamityConjurist: Эффект нуклеосинтеза
-	ThoriumConjurist: Эффекты подвески Юмы и кристаллического скорпиона
-	CalamityTrawler: Эффекты глубоководного водолазного костюма
-	CalamityWorldShaper: Эффекты зачарования мранитового архитектора
-	ThoriumUniverse:
-		'''
-		Увеличивает метательную скорость атаки на 15%
-		Эффекты «Руководства по умелому метанию: том III»,
-		русалочьей фляги и глазной повязки мертвеца
-		'''
-}
-
-OutlawsEssence: {
-	DisplayName: Эссенция бандита
-	Tooltip:
-		'''
-		Увеличивает разбойный урон на 18%
-		Увеличивает скорость разбойных снарядов на 5%
-		Увеличивает разбойный шанс критической атаки на 5%
-		'''
+		[i:CalamityMod/Nanotech] Rogue projectiles create nanoblades as they travel
+		[i:CalamityMod/Nanotech] Stealth strikes summon nanobeams and sparks on enemy hits, deal more damage and heal 2 hp
+		[i:CalamityMod/Nanotech] Landing a stealth strike grants a 12% crit bonus to non-stealth strikes, decaying over 5s
+		{$Mods.FargowiltasCrossmod.Items.AddedEffects.CalBerserkerSoul0}
+		{$Mods.FargowiltasCrossmod.Items.AddedEffects.CalBerserkerSoul1}
+		{$Mods.FargowiltasCrossmod.Items.AddedEffects.CalSniperSoul0}
+		{$Mods.FargowiltasCrossmod.Items.AddedEffects.CalConjuristsSoul0}
+		{$Mods.FargowiltasCrossmod.Items.AddedEffects.CalConjuristsSoul1}
+		''' */
 }
 
 VagabondsSoul: {
