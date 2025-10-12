@@ -1,51 +1,26 @@
 AddedEffects: {
 	AngelTreads: Effects of Angel Treads
 	AeolusBoots: Effects of Aeolus Boots
-	CalamitySupersonic: Effects of Statis' Void Sash
-	ThoriumSuperSonic: Effects of Air Walkers, Survivalist Boots, and Weighted Winglets
-	CalamityColossus: Effects of The Amalgam, Asgardian Aegis and Rampart of Deities
-	ThoriumColossus:
-		'''
-		Effects of Sweet Vengeance, Obsidian Scale, Terrarium Defender,
-		Phylactery, Heart of Stone, and Spiny Shell
-		'''
-	CalamityBerserker: Effects of Badge of Bravery and Elemental Gauntlet
-	ThoriumBerserker: Effects of Rapier Badge
-	CalamityWizard: Effects of Ethereal Talisman
-	ThoriumWizard: Effects of Murky Catalyst
-	CalamitySniper: Effects of Elemental Quiver and Quiver of Nihility
-	Vagabond: Effects of Nanotech and Eclipse Mirror
-	ThoriumSniper: Effects of Concussive Warhead
-	CalamityConjurist: Effects of Nucleogenesis
-	ThoriumConjurist: Effects of Yuma's Pendant and Crystal Scorpion
-	CalamityTrawler: Effects of Abyssal Diving Suit
-	CalamityWorldShaper: Effects of Marnite Architect Enchantment
-	ThoriumUniverse:
-		'''
-		15% increased throwing velocity
-		Effects of Guide to Expert Throwing Volume III,
-		Mermaid Canteen, and Deadman's Patch
-		'''
-}
+	NoStack: , does not stack with upgrades // if this is a problem for grammar in other languages, let me know.
 
-OutlawsEssence: {
-	DisplayName: Outlaw's Essence
-	Tooltip:
+	CalamityUniverse:
 		'''
-		18% increased rogue damage
-		5% increased rogue projectile velocity
-		5% increased rogue critical chance
+		[i:CalamityMod/Nanotech] Rogue projectiles create nanoblades as they travel
+		[i:CalamityMod/Nanotech] Stealth strikes summon nanobeams and sparks on enemy hits, deal more damage and heal 2 hp
+		[i:CalamityMod/Nanotech] Landing a stealth strike grants a 12% crit bonus to non-stealth strikes, decaying over 5s
 		'''
+	
 }
 
 VagabondsSoul: {
 	DisplayName: Vagabond's Soul
 	Tooltip:
 		'''
-		22% increased rogue damage
+		22% increased rogue damage and 10% increased rogue critical chance
 		20% increased rogue projectile velocity
-		10% increased rogue critical chance
-		Effects of Nanotech and Eclipse Mirror
+		[i:CalamityMod/Nanotech] Rogue projectiles create nanoblades as they travel
+		[i:CalamityMod/Nanotech] Stealth strikes summon nanobeams and sparks on enemy hits, deal more damage and heal 2 hp
+		[i:CalamityMod/Nanotech] Landing a stealth strike grants a 12% crit bonus to non-stealth strikes, decaying over 5s
 		'''
 }
 

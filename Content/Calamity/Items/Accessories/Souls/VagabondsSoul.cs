@@ -1,4 +1,5 @@
 ﻿using CalamityMod;
+using CalamityMod.CalPlayer;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Weapons.Rogue;
 using Fargowiltas.Content.Items.Tiles;
@@ -6,6 +7,7 @@ using FargowiltasCrossmod.Content.Calamity.Toggles;
 using FargowiltasCrossmod.Core;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
+using FargowiltasSouls.Core.ModPlayers;
 using FargowiltasSouls.Core.Toggler;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -23,10 +25,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Souls
             player.GetDamage<RogueDamageClass>() += 0.22f;
             player.Calamity().rogueVelocity += 0.2f;
             player.GetCritChance<RogueDamageClass>() += 10;
-            if (player.AddEffect<NanotechEffect>(Item))
-            {
-                ModContent.GetInstance<Nanotech>().UpdateAccessory(player, hideVisual);
-            }
+
+            player.AddEffect<NanotechEffect>(Item);
         }
         public override void AddRecipes()
         {
@@ -48,5 +48,15 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Souls
     public class NanotechEffect : UniverseEffect
     {
         public override int ToggleItemType => ModContent.ItemType<Nanotech>();
+
+        public override void PostUpdateEquips(Player player)
+        {
+            CalamityPlayer modPlayer = player.Calamity();
+            modPlayer.nanotech = true;
+            modPlayer.raiderTalisman = true;
+            modPlayer.electricianGlove = true;
+            modPlayer.filthyGlove = true;
+            modPlayer.bloodyGlove = true;
+        }
     }
 }

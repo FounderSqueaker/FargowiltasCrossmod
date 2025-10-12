@@ -102,9 +102,9 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             return result;
         }
 
-        private static readonly MethodInfo MinimalEffects_Method = typeof(ToggleBackend).GetMethod("MinimalEffects", LumUtils.UniversalBindingFlags);
-        public delegate void Orig_MinimalEffects(ToggleBackend self);
-        internal static void MinimalEffects_Detour(Orig_MinimalEffects orig, ToggleBackend self)
+        private static readonly MethodInfo MinimalEffects_Method = typeof(SoulToggleBackend).GetMethod("MinimalEffects", LumUtils.UniversalBindingFlags);
+        public delegate void Orig_MinimalEffects(SoulToggleBackend self);
+        internal static void MinimalEffects_Detour(Orig_MinimalEffects orig, SoulToggleBackend self)
         {
             orig(self);
             Player player = Main.LocalPlayer;
@@ -223,9 +223,9 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             orig();
             return false;
         }
-        private static readonly MethodInfo SoulTogglerOnActivate_Method = typeof(SoulTogglerButton).GetMethod("OnActivate", LumUtils.UniversalBindingFlags);
-        public delegate void Orig_SoulTogglerOnActivate(SoulTogglerButton self);
-        internal static void SoulTogglerOnActivate_Detour(Orig_SoulTogglerOnActivate orig, SoulTogglerButton self)
+        private static readonly MethodInfo SoulTogglerOnActivate_Method = typeof(OncomingMutantManager).GetMethod("OnActivate", LumUtils.UniversalBindingFlags);
+        public delegate void Orig_SoulTogglerOnActivate(OncomingMutantManager self);
+        internal static void SoulTogglerOnActivate_Detour(Orig_SoulTogglerOnActivate orig, OncomingMutantManager self)
         {
             orig(self);
             self.OncomingMutant.TextHoldShift = $"{Language.GetTextValue("Mods.FargowiltasCrossmod.UI.ToggledWithCal")}]\n[c/787878:{self.OncomingMutant.TextHoldShift}";

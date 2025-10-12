@@ -1,4 +1,6 @@
-﻿using CalamityMod.Items.Accessories;
+﻿using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod;
+using CalamityMod.Items.Accessories;
 using FargowiltasCrossmod.Core;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
@@ -8,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace FargowiltasCrossmod.Content.Calamity.Toggles
@@ -35,12 +38,14 @@ namespace FargowiltasCrossmod.Content.Calamity.Toggles
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class ElementalQuiverEffect : UniverseEffect
     {
+        public override bool IsLoadingEnabled(Mod mod) => false;
         public override int ToggleItemType => ModContent.ItemType<ElementalQuiver>();
     }
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class QuiverofNihilityEffect : UniverseEffect
     {
+        public override bool IsLoadingEnabled(Mod mod) => false;
         public override int ToggleItemType => ModContent.ItemType<QuiverofNihility>();
         public override bool MinionEffect => true;
     }
@@ -49,11 +54,16 @@ namespace FargowiltasCrossmod.Content.Calamity.Toggles
     public class ElementalGauntletEffect : UniverseEffect
     {
         public override int ToggleItemType => ModContent.ItemType<ElementalGauntlet>();
+        public override void OnHitNPCEither(Player player, NPC target, NPC.HitInfo hitInfo, DamageClass damageClass, int baseDamage, Projectile projectile, Item item)
+        {
+            CalamityUtils.Inflict246DebuffsNPC(target, ModContent.BuffType<ElementalMix>());
+        }
     }
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class EtherealTalismanEffect : UniverseEffect
     {
+        public override bool IsLoadingEnabled(Mod mod) => false;
         public override int ToggleItemType => ModContent.ItemType<EtherealTalisman>();
     }
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]

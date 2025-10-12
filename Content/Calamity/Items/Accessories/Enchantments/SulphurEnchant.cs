@@ -80,7 +80,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             bool force = Main.LocalPlayer.ForceEffect<SulphurEffect>();
             damageClass = DamageClass.Default;
             tooltipColor = null;
-            scaling = (int)Main.LocalPlayer.GetDamage(Main.LocalPlayer.HeldItem.DamageType).ApplyTo(((Main.LocalPlayer.HeldItem.damage + Main.LocalPlayer.FindAmmo(Main.LocalPlayer.HeldItem.useAmmo).damage) / 2) + 8);
+            scaling = (int)Main.LocalPlayer.GetDamage(Main.LocalPlayer.HeldItem.DamageType).ApplyTo(((Main.LocalPlayer.HeldItem.damage + Main.LocalPlayer.FindAmmo([Main.LocalPlayer.HeldItem.useAmmo]).damage) / 2) + 8);
             if (force)
                 scaling *= 2;
             float softcap = force ? 110 : 32;

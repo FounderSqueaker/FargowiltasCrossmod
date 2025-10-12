@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Buffs.StatBuffs;
+using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.CalPlayer;
 using CalamityMod.CalPlayer.Dashes;
 using CalamityMod.Items;
@@ -186,43 +188,51 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
             if (item.type == ModContent.ItemType<BerserkerSoul>() || uniSoul)
             {
-                if (player.AddEffect<ElementalGauntletEffect>(item))
-                {
-                    ModContent.GetInstance<ElementalGauntlet>().UpdateAccessory(player, hideVisual);
-                }
-            }
-            if (item.type == ModContent.ItemType<ArchWizardsSoul>() || uniSoul)
-            {
-                if (player.AddEffect<EtherealTalismanEffect>(item))
-                {
-                    ModContent.GetInstance<EtherealTalisman>().UpdateAccessory(player, hideVisual);
-                }
+                calPlayer.gloveLevel = 6; // gives 0 bonus but overrides the others (does not stack with upgrades)
+                player.GetDamage<TrueMeleeDamageClass>() += 0.1f; // the other 10% is from .kbGlove in cal code
+                player.GetArmorPenetration<MeleeDamageClass>() += 5; // badge of bravery
+
+                player.AddEffect<ElementalGauntletEffect>(item); // elemental mix
             }
             if (item.type == ModContent.ItemType<SnipersSoul>() || uniSoul)
             {
-                if (player.AddEffect<ElementalQuiverEffect>(item))
-                {
-                    ModContent.GetInstance<ElementalQuiver>().UpdateAccessory(player, hideVisual);
-                }
-                if (player.AddEffect<QuiverofNihilityEffect>(item))
-                {
-                    ModContent.GetInstance<QuiverofNihility>().UpdateAccessory(player, hideVisual);
-                }
+                calPlayer.rangedAmmoCost *= 0.8f;
+            }
+            if (item.type == ModContent.ItemType<ArchWizardsSoul>() || uniSoul)
+            {
+                player.statManaMax2 += 50;
             }
             if (item.type == ModContent.ItemType<ConjuristsSoul>() || uniSoul)
             {
-                if (player.AddEffect<NucleogenesisEffect>(item))
+                player.buffImmune[ModContent.BuffType<Shadowflame>()] = true;
+                player.buffImmune[ModContent.BuffType<Irradiated>()] = true;
+                if (player.HasEffect<NucleogenesisEffect>() || player.AddEffect<NucleogenesisEffect>(item))
                 {
-                    ModContent.GetInstance<Nucleogenesis>().UpdateAccessory(player, hideVisual);
+                    fargoPlayer.MinionSlotsNonstack = -1; // kills it from giving any this frame
+
+                    calPlayer.nucleogenesis = true; // +4 minions and onhit effect
+                    calPlayer.shadowMinions = true; //shadowflame
+                    calPlayer.holyMinions = true; //holy flames
+                    calPlayer.voltaicJelly = true; //electrified
+                    calPlayer.starTaintedGenerator = true; //astral infection and irradiated
+
+                }
+                else
+                {
+                    if (fargoPlayer.MinionSlotsNonstack < 4 && fargoPlayer.MinionSlotsNonstack >= 0)
+                        fargoPlayer.MinionSlotsNonstack = 4; // sums to 4 with base conjurist soul effect
+
+                    calPlayer.nucleogenesis = false; // +4 minions and onhit effect
+                    calPlayer.shadowMinions = false; //shadowflame
+                    calPlayer.holyMinions = false; //holy flames
+                    calPlayer.voltaicJelly = false; //electrified
+                    calPlayer.starTaintedGenerator = false; //astral infection and irradiated
                 }
             }
             if (uniSoul)
             {
-                player.Calamity().rogueVelocity += 0.15f;
-                if (player.AddEffect<NanotechEffect>(item))
-                {
-                    ModContent.GetInstance<Nanotech>().UpdateAccessory(player, hideVisual);
-                }
+                player.Calamity().rogueVelocity += 0.2f;
+                player.AddEffect<NanotechEffect>(item);
             }
 
             // toggles to Cal accs
@@ -343,6 +353,9 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     tooltips[i].Text += " " + Language.GetTextValue("Conditions.InHardmode");
                 }
             }
+
+            int tt0 = tooltips.FindIndex(line => line.Name == "Tooltip0");
+
             if (item.type == ModContent.ItemType<AbyssalDivingGear>() && WorldSavingSystem.EternityMode)
             {
                 foreach (var tooltip in tooltips)
@@ -400,51 +413,65 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             }
             if (item.type == ModContent.ItemType<SupersonicSoul>() && !item.social)
             {
-                tooltips.Insert(12, new TooltipLine(Mod, "CalSupersonicSoul", Language.GetTextValue(key + "CalamitySupersonic")));
+                //tooltips.Insert(12, new TooltipLine(Mod, "CalSupersonicSoul", Language.GetTextValue(key + "CalamitySupersonic")));
             }
             //Colossus Soul
             if (item.type == ModContent.ItemType<ColossusSoul>() && !item.social)
             {
-                tooltips.Insert(8, new TooltipLine(Mod, "CalColossusSoul", Language.GetTextValue(key + "CalamityColossus")));
+                //tooltips.Insert(8, new TooltipLine(Mod, "CalColossusSoul", Language.GetTextValue(key + "CalamityColossus")));
             }
             if (item.type == ModContent.ItemType<TrawlerSoul>() && !item.social)
             {
-                tooltips.Insert(8, new TooltipLine(Mod, "CalFishSoul", Language.GetTextValue(key + "CalamityTrawler")));
+                //tooltips.Insert(8, new TooltipLine(Mod, "CalFishSoul", Language.GetTextValue(key + "CalamityTrawler")));
             }
             if (item.type == ModContent.ItemType<WorldShaperSoul>() && !item.social)
             {
-                tooltips.Insert(tooltips.Count - 3, new TooltipLine(Mod, "CalWorldShaper", Language.GetTextValue(key + "CalamityWorldShaper")));
+                //tooltips.Insert(tooltips.Count - 3, new TooltipLine(Mod, "CalWorldShaper", Language.GetTextValue(key + "CalamityWorldShaper")));
             }
 
-            if (item.type == ModContent.ItemType<BerserkerSoul>() && !item.social)
+            if (item.type == ModContent.ItemType<BerserkerSoul>() && !item.social && tt0 != -1)
             {
-                tooltips.Insert(9, new TooltipLine(Mod, "CalBerserkerSoul", Language.GetTextValue(key + "CalamityBerserker")));
+                tooltips[tt0 + 1].Text = tooltips[tt0 + 1].Text + Language.GetTextValue(key + "NoStack"); // if this is a problem for grammar in other languages, let me know.
+                tooltips.Insert(tt0, new TooltipLine(Mod, "CalBerserkerSoul0", Language.GetTextValue("[i:CalamityMod/ElementalGauntlet] Melee attacks and projectiles inflict Elemental Mix")));
+                tooltips.Insert(tt0 + 3, new TooltipLine(Mod, "CalBerserkerSoul1", Language.GetTextValue("20% increased true melee damage and +5 melee armor penetration")));
+                //tooltips.Insert(9, new TooltipLine(Mod, "CalBerserkerSoul", Language.GetTextValue(key + "CalamityBerserker")));
+            }
+
+            if (item.type == ModContent.ItemType<SnipersSoul>() && !item.social && tt0 != -1)
+            {
+                tooltips.Insert(tt0 + 2, new TooltipLine(Mod, "CalSniperSoul0", Language.GetTextValue("20% reduced ammo usage")));
+                //tooltips.Insert(8, new TooltipLine(Mod, "CalSniperSoul", Language.GetTextValue(key + "CalamitySniper")));
             }
 
             if (item.type == ModContent.ItemType<ArchWizardsSoul>() && !item.social)
             {
-                tooltips.Insert(8, new TooltipLine(Mod, "CalWizardSoul", Language.GetTextValue(key + "CalamityWizard")));
-            }
-
-            if (item.type == ModContent.ItemType<SnipersSoul>() && !item.social)
-            {
-                tooltips.Insert(8, new TooltipLine(Mod, "CalSniperSoul", Language.GetTextValue(key + "CalamitySniper")));
+                tooltips[tt0 + 2].Text = tooltips[tt0 + 2].Text.Replace("100", "150");
+                //tooltips.Insert(8, new TooltipLine(Mod, "CalWizardSoul", Language.GetTextValue(key + "CalamityWizard")));
             }
 
             if (item.type == ModContent.ItemType<ConjuristsSoul>() && !item.social)
             {
-                tooltips.Insert(7, new TooltipLine(Mod, "CalConjurSoul", Language.GetTextValue(key + "CalamityConjurist")));
+                tooltips[tt0 + 2].Text = tooltips[tt0 + 2].Text.Replace("3", "4");
+                tooltips.Insert(tt0 + 5, new TooltipLine(Mod, "ConjuristsSoul0", Language.GetTextValue("Grants immunity to Shadowflame and Irradiated")));
+                tooltips.Insert(tt0 + 6, new TooltipLine(Mod, "ConjuristsSoul1", Language.GetTextValue("[i:CalamityMod/Nucleogenesis] Minions inflict a variety of debuffs and spawn damaging sparks on enemy hits")));
+                //tooltips.Insert(7, new TooltipLine(Mod, "CalConjurSoul", Language.GetTextValue(key + "CalamityConjurist")));
             }
 
             int expert = tooltips.FindIndex(x => x.Name == "Expert");
             if (item.type == ModContent.ItemType<UniverseSoul>() && !item.social)
             {
-                tooltips.Insert(expert - 1, new TooltipLine(Mod, "CalUniverseSoul",
-                    Language.GetTextValue(key + "CalamityBerserker") + "\n" +
-                    Language.GetTextValue(key + "CalamitySniper") + "\n" +
-                    Language.GetTextValue(key + "CalamityWizard") + "\n" +
-                    Language.GetTextValue(key + "CalamityConjurist") + "\n" +
-                    Language.GetTextValue(key + "Vagabond")));
+                if (SoulsItem.IsNotRuminating(item))
+                {
+                    var conjurists = "[i:FargowiltasSouls/ConjuristsSoul]";
+                    int extraeff = tooltips.FindIndex(t => t.Text.Contains(conjurists));
+                    tooltips[extraeff].Text = tooltips[extraeff].Text.Replace(conjurists, conjurists + "[i:FargowiltasCrossmod/VagabondsSoul]");
+                }
+                else
+                {
+                    var text = tooltips[tt0].Text;
+                    int lastLine = text.LastIndexOf("\n");
+                    text.Insert(lastLine + 1, Language.GetTextValue(key + "CalamityUniverse"));
+                }
             }
 
             if (item.type == ModContent.ItemType<DimensionSoul>() && !item.social)
