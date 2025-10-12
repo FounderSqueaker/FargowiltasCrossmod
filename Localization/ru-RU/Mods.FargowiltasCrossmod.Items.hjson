@@ -10,15 +10,17 @@ AddedEffects: {
 	// CalConjuristsSoul1: "[i:CalamityMod/Nucleogenesis] Minions inflict a variety of debuffs and spawn damaging sparks on enemy hits"
 	/* CalamityUniverse:
 		'''
-		{$Mods.FargowiltasCrossmod.Items.AddedEffects.CalBerserkerSoul0}
-		{$Mods.FargowiltasCrossmod.Items.AddedEffects.CalBerserkerSoul1}
-		{$Mods.FargowiltasCrossmod.Items.AddedEffects.CalSniperSoul0}
-		{$Mods.FargowiltasCrossmod.Items.AddedEffects.CalConjuristsSoul0}
-		{$Mods.FargowiltasCrossmod.Items.AddedEffects.CalConjuristsSoul1}
 		[i:CalamityMod/Nanotech] Rogue projectiles create nanoblades as they travel
 		[i:CalamityMod/Nanotech] Stealth strikes summon nanobeams and sparks on enemy hits, deal more damage and heal 2 hp
 		[i:CalamityMod/Nanotech] Landing a stealth strike grants a 12% crit bonus to non-stealth strikes, decaying over 5s
 		''' */
+	// CalColossusSoul0: "[i:CalamityMod/AsgardianAegis] Grants the ability to ram dash"
+	// CalSupersonicSoul0: "[i:CalamityMod/StatisVoidSash][i:CalamityMod/TheAmalgam] Grants the ability to dodge attacks on a cooldown, [i:FargowiltasSouls/HallowedPendant] firing rays of light at nearby enemies"
+	// CalTrawlerSoul0: "[i:CalamityMod/AbyssalDivingSuit] Turns the holder into an armored diver while underwater, granting strong bonuses and resisting most abyss effects"
+	// CalWorldshaperSoul0: "[i:CalamityMod/ArchaicPowder] Increased defensive stats while underground"
+	// CalWorldshaperSoul1: "[i:FargowiltasCrossmod/MarniteEnchant] Lasers strike nearby enemies while not attacking, or while using tools"
+	// CalDimensionsSoul0: "[i:PanicNecklace] Increases movement speed and [i:FargowiltasSouls/HallowedPendant] length of invincibility after taking damage, [i:CalamityMod/StatisVoidSash][i:CalamityMod/TheAmalgam] you dodge attacks and [i:FargowiltasSouls/HallowedPendant] retaliate on a cooldown"
+	// CalDimensionsSoul1: "[i:CalamityMod/ArchaicPowder] Increased defensive stats while underground and [i:FargowiltasCrossmod/MarniteEnchant] lasers strike nearby enemies while not attacking, or while using tools"
 }
 
 VagabondsSoul: {

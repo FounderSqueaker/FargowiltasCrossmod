@@ -155,35 +155,93 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
             if (item.type == ModContent.ItemType<SupersonicSoul>() || dimSoul)
             {
-                if (player.AddEffect<StatisVoidSashEffect>(item))
+                if (player.HasEffect<SupersonicDodge>() && player.EffectItem<SupersonicDodge>() == item)
                 {
-                    ModContent.GetInstance<StatisVoidSash>().UpdateAccessory(player, hideVisual);
+                    player.brainOfConfusionItem = item;
+                    player.blackBelt = true;
+
+                    AccessoryEffectPlayer effectsPlayer = player.AccessoryEffects();
+                    int superDodge = ModContent.GetInstance<SupersonicDodge>().Index;
+                    effectsPlayer.ActiveEffects[superDodge] = false;
+                    effectsPlayer.EffectItems[superDodge] = null;
+                    fargoPlayer.SupersonicDodge = false;
+
                 }
+                
             }
             if (item.type == ModContent.ItemType<ColossusSoul>() || dimSoul)
             {
-                if (player.AddEffect<AmalgamEffect>(item))
-                {
-                    ModContent.GetInstance<TheAmalgam>().UpdateAccessory(player, hideVisual);
-                }
+                player.buffImmune[ModContent.BuffType<ArmorCrunch>()] = true; // "Stronger" Broken Armor
+                player.buffImmune[ModContent.BuffType<BrainRot>()] = true; // Counterpart to Burning Blood
+                player.buffImmune[ModContent.BuffType<BurningBlood>()] = true; // "Stronger" Bleeding
+                player.buffImmune[BuffID.Venom] = true; // "Stronger" Poisoned
+                player.buffImmune[ModContent.BuffType<SulphuricPoisoning>()] = true; // "Stronger" Poisoned
+                player.buffImmune[BuffID.Webbed] = true; // "Stronger" Slow
+                player.buffImmune[BuffID.Blackout] = true; // "Stronger" Darkness
+
+                // Additional debuff immunities (Everything from Ornate Shield + Asgard's Valor)
+                player.buffImmune[BuffID.OnFire] = true;
+                player.buffImmune[BuffID.OnFire3] = true;
+                player.buffImmune[ModContent.BuffType<BrimstoneFlames>()] = true;
+                player.buffImmune[BuffID.Chilled] = true;
+                player.buffImmune[BuffID.Frozen] = true;
+                player.buffImmune[BuffID.Frostburn] = true;
+                player.buffImmune[BuffID.Frostburn2] = true;
+
+                // Additional debuff immunities (Everything from Elysian Aegis + thematic counterparts)
+                player.buffImmune[BuffID.CursedInferno] = true;
+                player.buffImmune[BuffID.ShadowFlame] = true;
+                player.buffImmune[BuffID.Daybreak] = true;
+                player.buffImmune[ModContent.BuffType<Nightwither>()] = true;
+                player.buffImmune[ModContent.BuffType<HolyFlames>()] = true;
+
+                // Immune to God Slayer Inferno itself
+                player.buffImmune[ModContent.BuffType<GodSlayerInferno>()] = true;
+
                 if (player.AddEffect<AsgardianAegisEffect>(item))
                 {
-                    ModContent.GetInstance<AsgardianAegis>().UpdateAccessory(player, hideVisual);
+                    // Asgardian Aegis ram dash
+                    calPlayer.DashID = AsgardianAegisDash.ID;
+                    player.dashType = 0;
                     fargoPlayer.HasDash = true;
                 }
 
-                ModContent.GetInstance<RampartofDeities>().UpdateAccessory(player, hideVisual);
             }
             if (item.type == ModContent.ItemType<TrawlerSoul>() || dimSoul)
             {
                 if (player.AddEffect<AbyssalDivingSuitEffect>(item))
                 {
-                    ModContent.GetInstance<AbyssalDivingSuit>().UpdateAccessory(player, hideVisual);
+                    if (player.IsUnderwater())
+                    {
+                        calPlayer.abyssalDivingSuit = true;
+                        calPlayer.abyssalDivingSuitHide = hideVisual;
+                    }
+                    /*
+                    player.buffImmune[ModContent.BuffType<AbyssalDivingSuitPlates>()] = true;
+                    player.buffImmune[ModContent.BuffType<AbyssalDivingSuitBuff>()] = true;
+                    calPlayer.abyssalDivingSuitPlateHits = 3;
+                    if (player.IsUnderwater())
+                        player.gills = true;
+                    calPlayer.abyssalDivingSuitPower = true;
+                    calPlayer.depthCharm = true;
+                    calPlayer.jellyfishNecklace = true;
+                    calPlayer.anechoicPlating = true;
+                    calPlayer.ironBoots = true;
+                    player.arcticDivingGear = true;
+                    player.accFlipper = true;
+                    player.accDivingHelm = true;
+                    player.iceSkate = true;
+                    */
                 }
             }
             if (item.type == ModContent.ItemType<WorldShaperSoul>() || dimSoul)
             {
-                MarniteEnchant.AddEffects(player, item);
+                player.AddEffect<MarniteLasersEffect>(item);
+                if (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight || player.ZoneUnderworldHeight)
+                {
+                    player.statDefense += 10;
+                    player.endurance += 0.05f;
+                }
             }
 
             if (item.type == ModContent.ItemType<BerserkerSoul>() || uniSoul)
@@ -414,27 +472,30 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             }
             if (item.type == ModContent.ItemType<SupersonicSoul>() && !item.social)
             {
+                tooltips[tt0 + 4].Text = Language.GetTextValue(key + "CalSupersonicSoul0");
                 //tooltips.Insert(12, new TooltipLine(Mod, "CalSupersonicSoul", Language.GetTextValue(key + "CalamitySupersonic")));
             }
             //Colossus Soul
             if (item.type == ModContent.ItemType<ColossusSoul>() && !item.social)
             {
-                //tooltips.Insert(8, new TooltipLine(Mod, "CalColossusSoul", Language.GetTextValue(key + "CalamityColossus")));
+                tooltips.Insert(tt0 + 2, new TooltipLine(Mod, "CalColossusSoul0", Language.GetTextValue(key + "CalColossusSoul0")));
             }
             if (item.type == ModContent.ItemType<TrawlerSoul>() && !item.social)
             {
+                tooltips.Insert(tt0 + 5, new TooltipLine(Mod, "CalTrawlerSoul0", Language.GetTextValue(key + "CalTrawlerSoul0")));
                 //tooltips.Insert(8, new TooltipLine(Mod, "CalFishSoul", Language.GetTextValue(key + "CalamityTrawler")));
             }
             if (item.type == ModContent.ItemType<WorldShaperSoul>() && !item.social)
             {
-                //tooltips.Insert(tooltips.Count - 3, new TooltipLine(Mod, "CalWorldShaper", Language.GetTextValue(key + "CalamityWorldShaper")));
+                tooltips.Insert(tt0 + 4, new TooltipLine(Mod, "CalWorldshaperSoul0", Language.GetTextValue(key + "CalWorldshaperSoul0")));
+                tooltips.Insert(tt0 + 5, new TooltipLine(Mod, "CalWorldshaperSoul1", Language.GetTextValue(key + "CalWorldshaperSoul1")));
             }
 
             if (item.type == ModContent.ItemType<BerserkerSoul>() && !item.social && tt0 != -1)
             {
                 tooltips[tt0 + 1].Text = tooltips[tt0 + 1].Text + Language.GetTextValue(key + "NoStack"); // if this is a problem for grammar in other languages, let me know.
-                tooltips.Insert(tt0, new TooltipLine(Mod, "CalBerserkerSoul0", Language.GetTextValue(key + "CalBerserkerSoul0")));
-                tooltips.Insert(tt0 + 3, new TooltipLine(Mod, "CalBerserkerSoul1", Language.GetTextValue(key + "CalBerserkerSoul1")));
+                tooltips.Insert(tt0 + 2, new TooltipLine(Mod, "CalBerserkerSoul1", Language.GetTextValue(key + "CalBerserkerSoul1")));
+                tooltips.Insert(tt0 + 4, new TooltipLine(Mod, "CalBerserkerSoul0", Language.GetTextValue(key + "CalBerserkerSoul0")));
             }
 
             if (item.type == ModContent.ItemType<SnipersSoul>() && !item.social && tt0 != -1)
@@ -463,12 +524,13 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 {
                     var conjurists = "[i:FargowiltasSouls/ConjuristsSoul]";
                     int extraeff = tooltips.FindIndex(t => t.Text.Contains(conjurists));
+                    tooltips[extraeff - 1].Text = tooltips[extraeff - 1].Text.Replace("3", "4");
                     tooltips[extraeff].Text = tooltips[extraeff].Text.Replace(conjurists, conjurists + "[i:FargowiltasCrossmod/VagabondsSoul]");
                 }
                 else
                 {
-                    int lastLine = tooltips[tt0].Text.LastIndexOf("\n");
                     var lines = tooltips[tt0].Text.Split("\n").ToList();
+                    lines[2] = lines[2].Replace("3", "4");
                     lines.Insert(4, Language.GetTextValue(key + "CalBerserkerSoul0"));
                     lines.Insert(2, Language.GetTextValue(key + "CalBerserkerSoul1"));
                     lines.Insert(3, Language.GetTextValue(key + "CalSniperSoul0"));
@@ -481,11 +543,19 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
             if (item.type == ModContent.ItemType<DimensionSoul>() && !item.social)
             {
-                tooltips.Insert(expert - 1, new TooltipLine(Mod, "CalDimensionSoul",
-                    Language.GetTextValue(key + "CalamityColossus") + "\n" +
-                    Language.GetTextValue(key + "AngelTreads") + "\n" +
-                    Language.GetTextValue(key + "CalamityTrawler") + "\n" +
-                    Language.GetTextValue(key + "CalamityWorldShaper")));
+                if (SoulsItem.IsNotRuminating(item))
+                {
+                    
+                }
+                else
+                {
+                    var lines = tooltips[tt0].Text.Split("\n").ToList();
+                    lines.Insert(4, Language.GetTextValue(key + "CalColossusSoul0"));
+                    lines[5] = Language.GetTextValue(key + "CalDimensionsSoul0");
+                    lines.Insert(7, Language.GetTextValue(key + "CalTrawlerSoul0"));
+                    lines.Insert(lines.Count - 1, Language.GetTextValue(key + "CalDimensionsSoul1"));
+                    tooltips[tt0].Text = string.Join("\n", lines);
+                }
             }
 
             if (FargoClientConfig.Instance.ExpandedTooltips)
