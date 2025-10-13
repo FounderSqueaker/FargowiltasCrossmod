@@ -113,7 +113,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             player.SetToggleValue<TheSpongeEffect>(true);
             player.SetToggleValue<ChaliceOfTheBloodGodEffect>(true);
             player.SetToggleValue<YharimsGiftEffect>(true);
-            player.SetToggleValue<DraedonsHeartEffect>(true);
+            //player.SetToggleValue<DraedonsHeartEffect>(true);
             player.SetToggleValue<NebulousCoreEffect>(false);
             player.SetToggleValue<CalamityEffect>(true);
 

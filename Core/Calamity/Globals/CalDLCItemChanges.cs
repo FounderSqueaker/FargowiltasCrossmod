@@ -119,7 +119,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
             if (item.type == ModContent.ItemType<EternitySoul>())
             {
-                ModContent.GetInstance<BrandoftheBrimstoneWitch>().UpdateAccessory(player, hideVisual);
+                BrandoftheBrimstoneWitch.ActiveEffects(player, item);
             }
             if (item.type == ModContent.ItemType<EternitySoul>() || item.type == ModContent.ItemType<TerrariaSoul>())
             {

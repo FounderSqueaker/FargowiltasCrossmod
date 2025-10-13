@@ -264,8 +264,12 @@ BrandoftheBrimstoneWitch: {
 	DisplayName: Brand of the Brimstone Witch
 	Tooltip:
 		'''
-		Effects of Heart of the Elements, Radiance, The Sponge, Chalice of the Blood God
-		Effects of Nebulous Core, Yharim's Gift, Draedon's Heart and Calamity
+		+10% damage and critical strike chance, +25% max life
+		[i:CalamityMod/Affliction] Gives your team +0.5HP/s life regen, +10% max life, 7% damage reduction, 13 defense and +10% damage
+		[i:CalamityMod/ChaliceOfTheBloodGod] +1HP/s life regen and reduces the cooldown of healing potions by 25%
+		[i:CalamityMod/ChaliceOfTheBloodGod] Damage taken is dealt over time instead, and gets reduced by using healing potions
+		[i:CalamityMod/Calamity] Lights your cursor ablaze, dealing immense damage and inflicting Vulnerability Hex
+		[i:CalamityMod/FleshTotem] Halves contact damage on a 20 second cooldown and [i:CalamityMod/VoidofExtinction] you take less damage from the Brimstone Flames debuff
 		'''
 }
 
