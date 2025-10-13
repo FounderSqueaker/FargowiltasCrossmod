@@ -349,7 +349,7 @@ namespace FargowiltasCrossmod.Content.Common.Bosses.Mutant
                     VanillaAttackBuffer = (int)attackChoice;
                     npc.netUpdate = true;
                 }
-                attackChoice = 28; //empty normal attack
+                attackChoice = 17; //empty normal attack
             }
             switch (DLCAttackChoice) //new attacks
             {
