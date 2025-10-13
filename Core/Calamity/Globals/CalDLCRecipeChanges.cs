@@ -746,8 +746,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
                 if (recipe.HasResult<SupersonicSoul>())
                 {
-                    if (recipe.RemoveIngredient(ItemType<AeolusBoots>()))
-                        recipe.AddIngredient<TracersSeraph>();
+                    //if (recipe.RemoveIngredient(ItemType<AeolusBoots>()))
+                    //    recipe.AddIngredient<TracersSeraph>();
                     if (recipe.RemoveIngredient(ItemID.HorseshoeBundle))
                         recipe.AddIngredient<MOAB>();
                     if (recipe.RemoveIngredient(ItemID.MasterNinjaGear))
