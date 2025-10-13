@@ -77,7 +77,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Toggles
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class AmalgamEffect : ColossusEffect
     {
-        //public override bool IsLoadingEnabled(Mod mod) => false;
+        public override bool IsLoadingEnabled(Mod mod) => false;
         public override int ToggleItemType => ModContent.ItemType<TheAmalgam>();
         public override bool MutantsPresenceAffects => false;
     }
@@ -91,6 +91,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Toggles
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class RampartofDeitiesEffect : ColossusEffect
     {
+        public override bool IsLoadingEnabled(Mod mod) => false;
         public override int ToggleItemType => ModContent.ItemType<RampartofDeities>();
     }
 
@@ -103,7 +104,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Toggles
     }
     public class StatisVoidSashEffect : SupersonicEffect
     {
-        //public override bool IsLoadingEnabled(Mod mod) => false;
+        public override bool IsLoadingEnabled(Mod mod) => false;
         public override int ToggleItemType => ModContent.ItemType<StatisVoidSash>();
     }
 }

@@ -124,8 +124,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             player.SetToggleValue<NucleogenesisEffect>(true);
             player.SetToggleValue<ElementalQuiverEffect>(true);
             player.SetToggleValue<ElementalGauntletEffect>(true);
-            player.SetToggleValue<EtherealTalismanEffect>(true);
-            player.SetToggleValue<AmalgamEffect>(true);
+            //player.SetToggleValue<EtherealTalismanEffect>(true);
+            //player.SetToggleValue<AmalgamEffect>(true);
             player.SetToggleValue<AsgardianAegisEffect>(true);
             player.SetToggleValue<RampartofDeitiesEffect>(true);
 
