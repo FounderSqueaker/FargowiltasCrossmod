@@ -652,6 +652,15 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 .AddIngredient(ItemID.ArmoredCavefish, 1)
                 .AddTile(TileID.Anvils)
                 .Register();
+
+            // mind that this also gets modified by PostAddRecipes
+            Recipe.Create(ItemType<FlightMasterySoul>())
+            .AddIngredient(ItemID.EmpressFlightBooster) // Soaring Insignia
+            .AddIngredient(ItemID.GravityGlobe)
+            .AddIngredient<TracersSeraph>()
+            .AddIngredient(ItemID.LongRainbowTrailWings) // Celestial Starboard
+            .AddTile<CrucibleCosmosSheet>()
+            .Register();
             #endregion
         }
         public override void PostAddRecipes()
@@ -746,8 +755,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
                 if (recipe.HasResult<SupersonicSoul>())
                 {
-                    //if (recipe.RemoveIngredient(ItemType<AeolusBoots>()))
-                    //    recipe.AddIngredient<TracersSeraph>();
                     if (recipe.RemoveIngredient(ItemID.HorseshoeBundle))
                         recipe.AddIngredient<MOAB>();
                     if (recipe.RemoveIngredient(ItemID.MasterNinjaGear))
@@ -870,6 +877,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     }
                     */
                 }
+                /*
                 if (recipe.TryGetResult<DeificAmulet>(out _))
                 {
                     if (recipe.TryGetIngredient(ItemID.StarVeil, out Item veil))
@@ -878,6 +886,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     }
                     recipe.AddIngredient<HallowedPendant>();
                 }
+                */
                 if (recipe.HasResult(ItemType<SigilOfChampions>()) && !recipe.HasIngredient<DivineGeode>())
                 {
                     recipe.AddIngredient<DivineGeode>(5);
@@ -892,6 +901,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     else if (!recipe.HasIngredient<DivineGeode>())
                         recipe.AddIngredient<DivineGeode>(4);
                 }
+                /*
                 if (recipe.TryGetResult<RampartofDeities>(out _))
                 {
                     if (recipe.TryGetIngredient(ItemID.FrozenShield, out Item shield))
@@ -900,6 +910,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     }
                     recipe.AddIngredient<Devilshield>();
                 }
+                */
                 if (recipe.HasResult<AbomsCurse>() && !recipe.HasIngredient<AuricBar>())
                 {
                     recipe.AddIngredient<AuricBar>(2);
@@ -931,18 +942,13 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
         public override void AddRecipeGroups()
         {
             static string RecipeGroups(string key) => Language.GetTextValue($"Mods.FargowiltasCrossmod.RecipeGroups.{key}");
+            static string ItemXOrY(int id1, int id2) => $"{Lang.GetItemName(id1)} {Language.GetTextValue($"Mods.FargowiltasSouls.RecipeGroups.Or")} {Lang.GetItemName(id2)}";
             #region RecipeGroups
-            RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyGildedDagger", 
-                new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("GildedDagger")}",
-               ItemType<GildedDagger>(),
-               ItemType<GleamingDagger>()
-               ));
+            RecipeGroup group = new(() => ItemXOrY(ItemType<GildedDagger>(), ItemType<GleamingDagger>()), ItemType<GildedDagger>(), ItemType<GleamingDagger>());
+            RecipeGroup.RegisterGroup("FargowiltasCrossmod: AnyGildedDagger", group);
 
-            RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyEvilBar", 
-                new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("EvilBar")}",
-                ItemID.DemoniteBar,
-                ItemID.CrimtaneBar
-                ));
+            group = new RecipeGroup(() => ItemXOrY(ItemID.DemoniteBar, ItemID.CrimtaneBar), ItemID.DemoniteBar, ItemID.CrimtaneBar);
+            RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyEvilBar", group);
 
             //reaver head group
             RecipeGroup ReaverHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("ReaverHelmet")}",
