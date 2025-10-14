@@ -1,36 +1,37 @@
 AddedEffects: {
 	AngelTreads: Эффекты ангельских ботфортов
 	AeolusBoots: Эффекты ботинок Эола
-	// NoStack: ", does not stack with upgrades"
+	NoStack: ", не увеличивается с улучшениями"
 	// if this is a problem for grammar in other languages, let me know.
-	// CalBerserkerSoul0: "[i:CalamityMod/ElementalGauntlet] Melee attacks and projectiles inflict Elemental Mix"
-	// CalBerserkerSoul1: 20% increased true melee damage and +5 melee armor penetration
-	// CalSniperSoul0: 20% reduced ammo usage
-	// CalConjuristsSoul0: Grants immunity to Shadowflame and Irradiated
-	// CalConjuristsSoul1: "[i:CalamityMod/Nucleogenesis] Minions inflict a variety of debuffs and spawn damaging sparks on enemy hits"
-	/* CalamityUniverse:
+	CalBerserkerSoul0: "[i:CalamityMod/ElementalGauntlet] Ближние оружия и снаряды накладывают «Элементальный микс»"
+	CalBerserkerSoul1: Увеличивает истинный ближний урон на 20% и пробивание брони для ближних оружий на 5 ед.
+	CalSniperSoul0: Шанс 20% не потратить боеприпас
+	CalConjuristsSoul0: Даёт иммунитет к дебаффам «Теневое пламя» и «Облучение»
+	CalConjuristsSoul1: "[i:CalamityMod/Nucleogenesis] Миньоны накладывают различные дебаффы и выпускают искры, наносящие урон врагам, при попадании"
+	CalamityUniverse:
 		'''
-		[i:CalamityMod/Nanotech] Rogue projectiles create nanoblades as they travel
-		[i:CalamityMod/Nanotech] Stealth strikes summon nanobeams and sparks on enemy hits, deal more damage and heal 2 hp
-		[i:CalamityMod/Nanotech] Landing a stealth strike grants a 12% crit bonus to non-stealth strikes, decaying over 5s
-		''' */
-	// CalColossusSoul0: "[i:CalamityMod/AsgardianAegis] Grants the ability to ram dash"
-	// CalSupersonicSoul0: "[i:CalamityMod/StatisVoidSash][i:CalamityMod/TheAmalgam] Grants the ability to dodge attacks on a cooldown, [i:FargowiltasSouls/HallowedPendant] firing rays of light at nearby enemies"
-	// CalTrawlerSoul0: "[i:CalamityMod/AbyssalDivingSuit] Turns the holder into an armored diver while underwater, granting strong bonuses and resisting most abyss effects"
-	// CalWorldshaperSoul0: "[i:CalamityMod/ArchaicPowder] Increased defensive stats while underground"
-	// CalWorldshaperSoul1: "[i:FargowiltasCrossmod/MarniteEnchant] Lasers strike nearby enemies while not attacking, or while using tools"
-	// CalDimensionsSoul0: "[i:PanicNecklace] Increases movement speed and [i:FargowiltasSouls/HallowedPendant] length of invincibility after taking damage, [i:CalamityMod/StatisVoidSash][i:CalamityMod/TheAmalgam] you dodge attacks and [i:FargowiltasSouls/HallowedPendant] retaliate on a cooldown"
-	// CalDimensionsSoul1: "[i:CalamityMod/ArchaicPowder] Increased defensive stats while underground and [i:FargowiltasCrossmod/MarniteEnchant] lasers strike nearby enemies while not attacking, or while using tools"
+		[i:CalamityMod/Nanotech] Разбойные снаряды создают нано-лезвия на своём пути
+		[i:CalamityMod/Nanotech] Скрытные удары создают нано-лучи и искры при попадани, наносят больше урона и излечивают 2 ОЗ
+		[i:CalamityMod/Nanotech] Скрытные попадания увеличивают шанс критического разбойного удара для нескрытных ударов на 12%, уменьш. через 5с
+		'''
+	CalColossusSoul0: "[i:CalamityMod/AsgardianAegis] Даёт таранящий рывок"
+	CalSupersonicSoul0: "[i:CalamityMod/StatisVoidSash][i:CalamityMod/TheAmalgam] Даёт возможность уклониться от атаки, [i:FargowiltasSouls/HallowedPendant] выпуская лучи света в ближайших врагов"
+	CalTrawlerSoul0: "[i:CalamityMod/AbyssalDivingSuit] При входе в воду превращает владельца в бронированного ныряльщика, что даёт огромные бонусы и невосприимчивости к эффектам бездны"
+	CalWorldshaperSoul0: "[i:CalamityMod/ArchaicPowder] Увеличивает защитные характеристики под землёй"
+	CalWorldshaperSoul1: "[i:FargowiltasCrossmod/MarniteEnchant] Пока вы не атакуете или используете инструменты, вы выпускаете лазеры в ближайших врагов"
+	CalDimensionsSoul0: "[i:PanicNecklace] Увеличивает скорость передвижения и [i:FargowiltasSouls/HallowedPendant] продолжительность неуязвимости после получения урона, [i:CalamityMod/StatisVoidSash][i:CalamityMod/TheAmalgam] вы уклоняетесь от атак и [i:FargowiltasSouls/HallowedPendant] атакуете в ответ"
+	CalDimensionsSoul1: "[i:CalamityMod/ArchaicPowder] Увеличивает защитные характеристики под землёй и, [i:FargowiltasCrossmod/MarniteEnchant] пока вы не атакуете или используете инструменты, вы выпускаете лазеры в ближайших врагов"
 }
 
 VagabondsSoul: {
 	DisplayName: Душа Беглеца
 	Tooltip:
 		'''
-		Увеличивает разбойный урон на 22%
+		Увеличивает разбойный урон на 22% и шанс критического урона на 10%
 		Увеличивает скорость разбойных снарядов на 20%
-		Увеличивает разбойный шанс критической атаки на 10%
-		Эффекты нанотехнологии и зеркала затмения
+		[i:CalamityMod/Nanotech] Разбойные снаряды создают нано-лезвия на своём пути
+		[i:CalamityMod/Nanotech] Скрытные удары создают нано-лучи и искры при попадани, наносят больше урона и излечивают 2 ОЗ
+		[i:CalamityMod/Nanotech] Скрытные попадания увеличивают шанс критического разбойного удара для нескрытных ударов на 12%, уменьш. через 5с
 		'''
 }
 
@@ -263,8 +264,12 @@ BrandoftheBrimstoneWitch: {
 	DisplayName: Клеймо серной ведьмы
 	Tooltip:
 		'''
-		Эффекты сердца элементов, сияния, губки и кубка кровавого божества
-		Эффекты ядра туманности, дара Ярима, сердца Дрэйдона и бедствия
+		Увеличивает урон и шанс критического удара на 10% и максимальный запас здоровья на 25%
+		[i:CalamityMod/Affliction] Увеличивает регенерацию здоровья на 0,5 ОЗ/с, макс. запас здоровья на 10%, сопротивление урону на 7%, защиту на 13 и урон 10% для вашей команды
+		[i:CalamityMod/ChaliceOfTheBloodGod] Ускоряет регенерацию здоровья на 1 ОЗ/с и уменьшает длительность послезельевой болезни на 25%
+		[i:CalamityMod/ChaliceOfTheBloodGod] Полученный урон превращается в постепенный, который можно уменьшить лечебными зельями
+		[i:CalamityMod/Calamity] Воспламеняет ваш курсор, что наносит огромный урон и накладывает «Проклятие уязвимости»
+		[i:CalamityMod/FleshTotem] Уменьшает получаемый контактный урон с перезарядкой 20 секунд, а также [i:CalamityMod/VoidofExtinction] вы получаете меньше урона от дебаффа «Серное пламя»
 		'''
 }
 
@@ -286,7 +291,7 @@ MarniteEnchant: {
 		'''
 		Увеличивает скорость размещения блоков на 10% и дальность размещения блоков на 5
 		Пока вы не атакуете или используете инструменты, вы выпускаете лазеры в ближайших врагов
-		[i:CalamityMod/MarniteRepulsionShield] Эффекты мранитового репульсионного щита
+		[i:CalamityMod/MarniteRepulsionShield] Врагов позади вас бьёт лучами жёсткого света с огромным отбрасыванием
 		'''
 }
 
