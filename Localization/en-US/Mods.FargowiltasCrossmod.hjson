@@ -28,7 +28,7 @@ EternityDeathDifficulty: {
 		Enables [c/00FFFF:Eternity Mode] and [c/800080:Death Mode,] and enables Master Mode drops.
 		[c/00FFFF:This is the main intended experience.] 
 
-		AReworks the [c/00FFFF:Eternity Mode] behaviour for several Calamity bosses. Current reworks:
+		Reworks the [c/00FFFF:Eternity Mode] behaviour for several Calamity bosses. Current reworks:
 		-All bosses up to Calamitas Clone
 		-Old Duke
 		-Exo Mechs
