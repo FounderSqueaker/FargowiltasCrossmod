@@ -25,7 +25,6 @@ namespace FargowiltasCrossmod.Content.Calamity.Buffs
         {
             //also decreases defense, DR, and cripples life regen
             //player.FargoSouls().noDodge = true;
-            player.FargoSouls().noSupersonic = true;
             player.CalamityDLC().CalamitousPresence = true;
             player.FargoSouls().GrazeRadius *= 0.5f;
             player.moonLeech = true;
