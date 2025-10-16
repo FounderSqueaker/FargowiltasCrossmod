@@ -1,55 +1,49 @@
 ﻿using CalamityMod.Buffs.Alcohol;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Buffs.StatDebuffs;
-using CalamityMod.Projectiles.Magic;
-using CalamityMod.Projectiles.Melee;
-using CalamityMod.Projectiles.Summon;
-using FargowiltasSouls.Content.Buffs.Eternity;
-using FargowiltasSouls.Content.Buffs.Souls;
-using FargowiltasSouls.Content.Buffs;
-using FargowiltasSouls.Content.Projectiles.Masomode;
-using System;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using CalamityMod.Items;
-using FargowiltasSouls.Content.Items.Accessories.Souls;
-using FargowiltasSouls.Content.Items.Ammos;
-using FargowiltasSouls.Content.Items.Weapons.FinalUpgrades;
-using FargowiltasSouls.Content.Items.Armor;
 using CalamityMod.Items.SummonItems.Invasion;
 using CalamityMod.Items.SummonItems;
-using CalamityMod.NPCs.AcidRain;
+using CalamityMod.Items.Placeables.Furniture;
+using CalamityMod.Items.Tools;
 using CalamityMod.Items.Weapons.DraedonsArsenal;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
-using CalamityMod.Items.Tools;
 using CalamityMod.Items.Weapons.Typeless;
+using CalamityMod.NPCs.AcidRain;
+using CalamityMod.Projectiles.Magic;
+using CalamityMod.Projectiles.Melee;
+using CalamityMod.Projectiles.Summon;
 using Fargowiltas;
-using CalamityMod.Items.Placeables.Furniture;
+using Fargowiltas.Content.Items.Vanity;
+using FargowiltasSouls.Content.Items.Accessories.Souls;
+using FargowiltasSouls.Content.Items.Ammos;
 using FargowiltasSouls.Content.Bosses.TrojanSquirrel;
 using FargowiltasSouls.Content.Bosses.CursedCoffin;
 using FargowiltasSouls.Content.Bosses.DeviBoss;
 using FargowiltasSouls.Content.Bosses.BanishedBaron;
 using FargowiltasSouls.Content.Bosses.Lifelight;
 using FargowiltasSouls.Content.Bosses.Champions.Cosmos;
-using CalamityMod.Items.Tools;
-using CalamityMod.Items.Weapons.Typeless;
-using FargowiltasSouls.Content.Projectiles.Accessories.VerdantDoomsayerMask;
-using FargowiltasSouls.Content.Projectiles.Masomode.Bosses.MechanicalBosses;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.WallOfFlesh;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.Plantera;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.Golem;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.DukeFishron;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.LunaticCultist;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.MoonLord;
+using static FargowiltasSouls.Content.Items.EmodeItemBalance;
+using FargowiltasSouls.Content.Buffs;
 using FargowiltasSouls.Content.Buffs.Eternity;
+using FargowiltasSouls.Content.Buffs.Souls;
+using FargowiltasSouls.Content.Items;
+using FargowiltasSouls.Content.Items.Weapons.FinalUpgrades;
+using FargowiltasSouls.Content.Projectiles.Accessories.VerdantDoomsayerMask;
 using FargowiltasSouls.Content.Projectiles.Eternity;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.DukeFishron;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.Golem;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.LunaticCultist;
 using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.MechanicalBosses;
-using Fargowiltas.Content.Items.Vanity;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.MoonLord;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.Plantera;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.WallOfFlesh;
+using System.Linq;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace FargowiltasCrossmod.Core.Calamity
 {
@@ -61,6 +55,11 @@ namespace FargowiltasCrossmod.Core.Calamity
         /// Get boolean value, false if set is null. Necessary to alleviate SetDefaultsBeforeLookupsAreBuilt error.
         /// </summary>
         public static bool GetValue(bool[] set, int index) => set != null && set[index];
+        /// <summary>
+        /// Used for DisabledEmodeChanges.
+        /// Get boolean value, false if set or index is null. Necessary to alleviate SetDefaultsBeforeLookupsAreBuilt error.
+        /// </summary>
+        public static bool GetValue(string[][] set, int index) => set != null && set[index] != null;
         public class Items
         {
             public static bool[] RockItem;
@@ -73,9 +72,9 @@ namespace FargowiltasCrossmod.Core.Calamity
             /// <summary>
             /// Items for which emode changes should be explicitly disabled. Exists to remove conflicts with Calamity item changes for the same item.
             /// </summary>
-            public static bool[] DisabledEmodeChanges; 
+            public static string[][] DisabledEmodeChanges;
 
-            
+
         }
         public class NPCs
         {
@@ -186,47 +185,47 @@ namespace FargowiltasCrossmod.Core.Calamity
                 ItemType<PhotonRipper>()
             );
 
-            Items.DisabledEmodeChanges = itemFactory.CreateBoolSet(false,
-                ItemID.StarCannon,
-                ItemID.VampireKnives,
-                ItemID.IceBlade,
-                ItemID.HallowedGreaves,
-                ItemID.HallowedHeadgear,
-                ItemID.HallowedHelmet,
-                ItemID.HallowedHood,
-                ItemID.HallowedMask,
-                ItemID.HallowedPlateMail,
-                ItemID.AncientHallowedGreaves,
-                ItemID.AncientHallowedHeadgear,
-                ItemID.AncientHallowedHelmet,
-                ItemID.AncientHallowedHood,
-                ItemID.AncientHallowedMask,
-                ItemID.AncientHallowedPlateMail,
-                ItemID.MonkStaffT1,
-                ItemID.MonkStaffT2,
-                ItemID.MoltenFury,
-                ItemID.DaedalusStormbow,
-                ItemID.Razorpine,
-                ItemID.BlizzardStaff,
-                ItemID.LaserMachinegun,
-                ItemID.RodofDiscord,
-                ItemID.MoonlordTurretStaff,
-                ItemID.PewMaticHorn,
-                ItemID.HoundiusShootius,
-                ItemID.Bladetongue,
-                ItemID.Excalibur,
-                ItemID.TrueExcalibur,
-                ItemID.Gungnir,
-                ItemID.Stynger,
-                ItemID.GrenadeLauncher,
-                ItemID.NettleBurst,
-                ItemID.SolarEruption,
-                ItemID.Phantasm,
-                ItemID.NebulaBlaze,
-                ItemID.StardustDragonStaff,
-                ItemID.RocketLauncher,
-                ItemID.TacticalShotgun,
-                ItemID.DD2BetsyBow
+
+            Items.DisabledEmodeChanges = itemFactory.CreateCustomSet<string[]>(null,
+                ItemID.StarCannon, (string[])["Damage"], // stupid fucking thing requires (string[]) for each for some reason
+                ItemID.VampireKnives, (string[])["VampireKnives"],
+                ItemID.IceBlade, (string[])["IceBladeFrostburn"],
+                ItemID.HallowedGreaves, (string[])["HolyDodge"],
+                ItemID.HallowedHeadgear, (string[])["HolyDodge"],
+                ItemID.HallowedHelmet, (string[])["HolyDodge"],
+                ItemID.HallowedHood, (string[])["HolyDodge"],
+                ItemID.HallowedMask, (string[])["HolyDodge"],
+                ItemID.HallowedPlateMail, (string[])["HolyDodge"],
+                ItemID.AncientHallowedGreaves, (string[])["HolyDodge"],
+                ItemID.AncientHallowedHeadgear, (string[])["HolyDodge"],
+                ItemID.AncientHallowedHelmet, (string[])["HolyDodge"],
+                ItemID.AncientHallowedHood, (string[])["HolyDodge"],
+                ItemID.AncientHallowedMask, (string[])["HolyDodge"],
+                ItemID.AncientHallowedPlateMail, (string[])["HolyDodge"],
+                ItemID.MonkStaffT1, (string[])["Damage"],
+                ItemID.MonkStaffT2, (string[])["Damage"],
+                ItemID.MoltenFury, (string[])["Damage"],
+                ItemID.DaedalusStormbow, (string[])["Speed"],
+                ItemID.Razorpine, (string[])["Damage"],
+                ItemID.BlizzardStaff, (string[])["Damage", "Speed"],
+                ItemID.LaserMachinegun, (string[])["Damage"],
+                ItemID.RodofDiscord, (string[])["RodofDiscord"],
+                ItemID.MoonlordTurretStaff, (string[])["Damage"],
+                ItemID.PewMaticHorn, (string[])["Damage"],
+                ItemID.Bladetongue, (string[])["Scale"],
+                ItemID.Excalibur, (string[])["Damage", "Speed"],
+                ItemID.TrueExcalibur, (string[])["Damage", "Speed"],
+                ItemID.Gungnir, (string[])["Damage", "Speed"],
+                ItemID.Stynger, (string[])["Damage"],
+                ItemID.GrenadeLauncher, (string[])["Speed"],
+                ItemID.NettleBurst, (string[])["Damage"],
+                ItemID.SolarEruption, (string[])["Damage"],
+                ItemID.Phantasm, (string[])["Damage"],
+                ItemID.NebulaBlaze, (string[])["Damage"],
+                ItemID.StardustDragonStaff, (string[])["Damage"],
+                ItemID.RocketLauncher, (string[])["Damage"],
+                ItemID.TacticalShotgun, (string[])["Damage"],
+                ItemID.DD2BetsyBow, (string[])["AerialBane"]
 
             );
             #endregion
