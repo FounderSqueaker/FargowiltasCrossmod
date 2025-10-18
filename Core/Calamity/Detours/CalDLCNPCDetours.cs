@@ -340,7 +340,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             bool ret = orig(self, npc, projectile);
             switch (self.GetVulnerabilityState(npc))
             {
-                case 0: //if (!projectile.CountsAsClass(DamageClass.Melee)) return false; break; melee
+                case MoonLord.ClassState.Melee: //if (!projectile.CountsAsClass(DamageClass.Melee)) return false; break; melee
                     if (projectile.CountsAsClass<RogueDamageClass>())
                         ret = true;
                     break;
