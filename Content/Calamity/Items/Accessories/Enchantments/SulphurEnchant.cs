@@ -116,8 +116,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             player.GetJumpState<SulphurJump>().Enable();
 
             // jank fix to make jungle jump have lower priority
-            if (player.HasEffect<JungleJump>() && player.GetJumpState<SulphurJump>().Available)
-                player.FargoSouls().CanJungleJump = false;
+            //if (player.HasEffect<JungleJumpEffect>() && player.GetJumpState<SulphurJump>().Available)
+            //    ;
         }
     }
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
@@ -151,8 +151,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override void OnStarted(Player player, ref bool playSound)
         {
             // jank fix to make jungle junk have lower priority, part 2
-            if (player.HasEffect<JungleJump>())
-                player.FargoSouls().CanJungleJump = true;
+            //if (player.HasEffect<JungleJumpEffect>())
+            //    ;
 
             int bubbleDamage = SulphurEffect.BaseDamage(player);
 
