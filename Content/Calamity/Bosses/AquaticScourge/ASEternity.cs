@@ -332,10 +332,19 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.AquaticScourge
                 }
                 if (npc.ai[2] == -1)
                 {
-                    if (DLCUtils.HostCheck)
+                    if (Main.netMode == NetmodeID.SinglePlayer) //for singleplayer
+                    {
                         npc.StrikeInstantKill();
-                    //else
-                    //    npc.active = false;
+                    }
+                    else if (Main.netMode == NetmodeID.Server) //for multiplayer
+                    {
+                        npc.life = 0;
+                        npc.HitEffect();
+                        npc.checkDead();
+                        npc.active = false;
+                        npc.netUpdate = true;
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc.whoAmI);
+                    }
                     return false;
                 }
                 NPC head = Main.npc[(int)npc.ai[2]];

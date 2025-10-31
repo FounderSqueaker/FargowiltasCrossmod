@@ -1657,27 +1657,42 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             {
                 npc.dontTakeDamage = true;
             }
-            //make destroyer not invincible and normal scale
-            List<int> bossworms =
+            //make destroyer not invincible and revamp calamity scale change
+            List<int> vanillabossworms =
                 [
-
-                    ModContent.NPCType<DesertScourgeHead>(), ModContent.NPCType<DesertScourgeBody>(), ModContent.NPCType<DesertScourgeTail>(),
                     NPCID.EaterofWorldsHead, NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail,
-
-                    ModContent.NPCType<AquaticScourgeHead>(), ModContent.NPCType<AquaticScourgeBody>(),ModContent.NPCType<AquaticScourgeBodyAlt>(), ModContent.NPCType<AquaticScourgeTail>(),
                     NPCID.TheDestroyer, NPCID.TheDestroyerBody, NPCID.TheDestroyerTail,
-                    /*ModContent.NPCType<AstrumDeusHead>(), ModContent.NPCType<AstrumDeusBody>(), ModContent.NPCType<AstrumDeusTail>(),*/
-                    ModContent.NPCType<StormWeaverHead>(), ModContent.NPCType<StormWeaverBody>(), ModContent.NPCType<StormWeaverTail>(),
-
                 ];
-            if (bossworms.Contains(npc.type) && WorldSavingSystem.EternityMode)
+            if (vanillabossworms.Contains(npc.type) && WorldSavingSystem.EternityMode)
             {
                 Mod calamity = ModCompatibility.Calamity.Mod;
 
-                calamity.Call("SetCalamityAI", npc, 1, 600f);
+                calamity.Call("SetCalamityAI", npc, 1, 600f); //DRIncreaseTime in Calamity Destroyer and Calamity EoW - fix destroyer invincible bug
                 calamity.Call("SetCalamityAI", npc, 2, 0f);
-                npc.SyncExtraAI();
+
+                if (Main.GameUpdateCount % 20 == 0 && Main.netMode != NetmodeID.MultiplayerClient) //when not limited, SUPER LAGGY and cause multiplayer desync issue
+                {
+                    npc.SyncExtraAI();
+                }
             }
+            /*List<int> calamitybossworms =
+                [
+                    ModContent.NPCType<DesertScourgeHead>(), ModContent.NPCType<DesertScourgeBody>(), ModContent.NPCType<DesertScourgeTail>(),
+                    //ModContent.NPCType<AquaticScourgeHead>(), ModContent.NPCType<AquaticScourgeBody>(), ModContent.NPCType<AquaticScourgeBodyAlt>(), ModContent.NPCType<AquaticScourgeTail>(),
+                    //ModContent.NPCType<AstrumDeusHead>(), ModContent.NPCType<AstrumDeusBody>(), ModContent.NPCType<AstrumDeusTail>(),
+                    //ModContent.NPCType<StormWeaverHead>(), ModContent.NPCType<StormWeaverBody>(), ModContent.NPCType<StormWeaverTail>(),
+                ];
+            if (calamitybossworms.Contains(npc.type) && WorldSavingSystem.EternityMode)
+            {
+                //Mod calamity = ModCompatibility.Calamity.Mod;
+                //calamity.Call("SetCalamityAI", npc, 1, 600f);
+                //calamity.Call("SetCalamityAI", npc, 2, 0f);
+
+                if (Main.GameUpdateCount % 20 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    npc.SyncExtraAI();
+                }
+            }*/
             //make plantera not summon free tentacles
             if (npc.type == ModContent.NPCType<PlanterasFreeTentacle>())
             {
