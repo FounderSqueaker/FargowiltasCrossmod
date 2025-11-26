@@ -364,7 +364,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             //overdose
             if (npc.type == ModContent.NPCType<OldDuke>())
             {
-                npc.lifeMax = (int)(npc.lifeMax * 1.6f);
+                if (CalDLCWorldSavingSystem.E_EternityRev)
+                    npc.lifeMax = (int)(npc.lifeMax * 1f);
+                else
+                    npc.lifeMax = (int)(npc.lifeMax * 1.4f);
             }
             //dog
             if (npc.type == ModContent.NPCType<DevourerofGodsHead>() || npc.type == ModContent.NPCType<DevourerofGodsBody>() || npc.type == ModContent.NPCType<DevourerofGodsTail>())
