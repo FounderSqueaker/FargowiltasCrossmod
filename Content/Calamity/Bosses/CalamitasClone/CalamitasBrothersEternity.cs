@@ -126,7 +126,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
             NPC.DR_NERD(0.225f);
             int hp = 16000;
             NPC.LifeMaxNERB(hp, hp, 80000);
-            double HPBoost = CalamityConfig.Instance.BossHealthBoost * 0.01;
+            double HPBoost = CalamityServerConfig.Instance.BossHealthBoost * 0.01;
             NPC.lifeMax += (int)(NPC.lifeMax * HPBoost);
         }
         public override void SendExtraAI(BitWriter bitWriter, BinaryWriter binaryWriter)

@@ -488,9 +488,9 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     npc.lifeMax = (int)(14000000 / 1.6f);
                 if (npc.type == NPCType<Yharon>())
                     npc.lifeMax = (int)(11000000 / 1.6f);
-                if (npc.type == NPCType<AbomBoss>())
-                    npc.lifeMax = (int)(20000000 / 1.6f);
-                if (npc.type == NPCType<AresBody>() || npc.type == NPCType<AresGaussNuke>() || npc.type == NPCType<AresLaserCannon>() || npc.type == NPCType<AresPlasmaFlamethrower>() || npc.type == NPCType<AresTeslaCannon>())
+                if (npc.type == ModContent.NPCType<AbomBoss>())
+                    npc.lifeMax = (int)(18000000 / 1.6f);
+                if (npc.type == ModContent.NPCType<AresBody>() || npc.type == ModContent.NPCType<AresGaussNuke>() || npc.type == ModContent.NPCType<AresLaserCannon>() || npc.type == ModContent.NPCType<AresPlasmaFlamethrower>() || npc.type == ModContent.NPCType<AresTeslaCannon>())
                     npc.lifeMax = (int)(30000000 / 1.6f);
                 if (npc.type == NPCType<ThanatosHead>() || npc.type == NPCType<ThanatosBody1>() || npc.type == NPCType<ThanatosBody2>() || npc.type == NPCType<ThanatosTail>())
                     npc.lifeMax = (int)(30000000 / 1.6f);
@@ -519,10 +519,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 }
             }
             //setdefaultsbeforelookupsarebuilt error
-            if (!Main.gameMenu && CalamityConfig.Instance != null && npc.boss && npc.ModNPC != null && npc.ModNPC.Mod != null && (npc.ModNPC.Mod == FargowiltasCrossmod.Instance || npc.ModNPC.Mod == ModCompatibility.SoulsMod.Mod))
+            if (!Main.gameMenu && CalamityServerConfig.Instance != null && npc.boss && npc.ModNPC != null && npc.ModNPC.Mod != null && (npc.ModNPC.Mod == FargowiltasCrossmod.Instance || npc.ModNPC.Mod == ModCompatibility.SoulsMod.Mod))
             {
                 // Boost health according to Calamity boss health boost config
-                float HPBoost = CalamityConfig.Instance.BossHealthBoost * 0.01f;
+                float HPBoost = CalamityServerConfig.Instance.BossHealthBoost * 0.01f;
                 npc.lifeMax += (int)(npc.lifeMax * HPBoost);
             }
             #endregion
@@ -1594,8 +1594,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             {
                 npc.dontTakeDamage = true;
             }
-            //make destroyer not invincible and normal scale
-            List<int> bossworms =
+            //make destroyer not invincible and revamp calamity scale change
+            List<int> vanillabossworms =
                 [
 
                     NPCType<DesertScourgeHead>(), NPCType<DesertScourgeBody>(), NPCType<DesertScourgeTail>(),
@@ -1607,14 +1607,36 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     NPCType<StormWeaverHead>(), NPCType<StormWeaverBody>(), NPCType<StormWeaverTail>(),
 
                 ];
-            if (bossworms.Contains(npc.type) && WorldSavingSystem.EternityMode)
+            if (vanillabossworms.Contains(npc.type) && WorldSavingSystem.EternityMode)
             {
                 Mod calamity = ModCompatibility.Calamity.Mod;
 
-                calamity.Call("SetCalamityAI", npc, 1, 600f);
+                calamity.Call("SetCalamityAI", npc, 1, 600f); //DRIncreaseTime in Calamity Destroyer and Calamity EoW - fix destroyer invincible bug
                 calamity.Call("SetCalamityAI", npc, 2, 0f);
-                npc.SyncExtraAI();
+
+                if (Main.GameUpdateCount % 20 == 0 && Main.netMode != NetmodeID.MultiplayerClient) //when not limited, SUPER LAGGY and cause multiplayer desync issue
+                {
+                    npc.SyncExtraAI();
+                }
             }
+            /*List<int> calamitybossworms =
+                [
+                    ModContent.NPCType<DesertScourgeHead>(), ModContent.NPCType<DesertScourgeBody>(), ModContent.NPCType<DesertScourgeTail>(),
+                    //ModContent.NPCType<AquaticScourgeHead>(), ModContent.NPCType<AquaticScourgeBody>(), ModContent.NPCType<AquaticScourgeBodyAlt>(), ModContent.NPCType<AquaticScourgeTail>(),
+                    //ModContent.NPCType<AstrumDeusHead>(), ModContent.NPCType<AstrumDeusBody>(), ModContent.NPCType<AstrumDeusTail>(),
+                    //ModContent.NPCType<StormWeaverHead>(), ModContent.NPCType<StormWeaverBody>(), ModContent.NPCType<StormWeaverTail>(),
+                ];
+            if (calamitybossworms.Contains(npc.type) && WorldSavingSystem.EternityMode)
+            {
+                //Mod calamity = ModCompatibility.Calamity.Mod;
+                //calamity.Call("SetCalamityAI", npc, 1, 600f);
+                //calamity.Call("SetCalamityAI", npc, 2, 0f);
+
+                if (Main.GameUpdateCount % 20 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    npc.SyncExtraAI();
+                }
+            }*/
             //make plantera not summon free tentacles
             if (npc.type == NPCType<PlanterasFreeTentacle>())
             {

@@ -77,6 +77,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
         public int phase;
         public bool CanDoSlam = false;
         public int SlamCooldown = 0;
+        public int SuckCooldown = 60 * 12;
         public bool DoSlam = false;
         public int AttackIndex = 0;
         public int PassiveTimer = 0;
@@ -97,6 +98,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
             binaryWriter.Write(CanDoSlam);
             binaryWriter.Write7BitEncodedInt(AttackIndex);
             binaryWriter.Write7BitEncodedInt(SlamCooldown);
+            binaryWriter.Write7BitEncodedInt(SuckCooldown);
             binaryWriter.Write7BitEncodedInt(PassiveTimer);
         }
         public override void ReceiveExtraAI(BitReader bitReader, BinaryReader binaryReader)
@@ -114,6 +116,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
             CanDoSlam = binaryReader.ReadBoolean();
             AttackIndex = binaryReader.Read7BitEncodedInt();
             SlamCooldown = binaryReader.Read7BitEncodedInt();
+            SuckCooldown = binaryReader.Read7BitEncodedInt();
             PassiveTimer = binaryReader.Read7BitEncodedInt();
         }
 
@@ -201,6 +204,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
             int attack = attackCycle[AttackIndex];
             if (SlamCooldown > 0)
                 SlamCooldown--;
+            if (SuckCooldown > 0)
+                SuckCooldown--;
             if (DoSlam)
             {
                 attack = 22;
@@ -335,6 +340,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
         }
         public void suck(NPC NPC)
         {
+            if (SuckCooldown > 0)
+            {
+                ai[3] = 0;
+                IncrementCycle(NPC);
+                return;
+            }
             Player target = Main.player[NPC.target];
 
             CanDoSlam = true; //can do slam after this attack
@@ -390,6 +401,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
             }
             if (ai[3] == -150)
             {
+                SuckCooldown = 60 * 12;
                 ai[3] = 0;
                 IncrementCycle(NPC);
             }
