@@ -497,10 +497,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 }
             }
             //setdefaultsbeforelookupsarebuilt error
-            if (!Main.gameMenu && CalamityConfig.Instance != null && npc.boss && npc.ModNPC != null && npc.ModNPC.Mod != null && (npc.ModNPC.Mod == FargowiltasCrossmod.Instance || npc.ModNPC.Mod == ModCompatibility.SoulsMod.Mod))
+            if (!Main.gameMenu && CalamityServerConfig.Instance != null && npc.boss && npc.ModNPC != null && npc.ModNPC.Mod != null && (npc.ModNPC.Mod == FargowiltasCrossmod.Instance || npc.ModNPC.Mod == ModCompatibility.SoulsMod.Mod))
             {
                 // Boost health according to Calamity boss health boost config
-                float HPBoost = CalamityConfig.Instance.BossHealthBoost * 0.01f;
+                float HPBoost = CalamityServerConfig.Instance.BossHealthBoost * 0.01f;
                 npc.lifeMax += (int)(npc.lifeMax * HPBoost);
             }
             #endregion
