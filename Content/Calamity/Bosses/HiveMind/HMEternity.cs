@@ -197,7 +197,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
 
             Main.windSpeedTarget = Main.windSpeedCurrent = 0.4f;
             //sets rain time to 4 hours
-            if (!CalamityConfig.Instance.BossesStopWeather)
+            if (!CalamityServerConfig.Instance.BossesStopWeather)
             {
                 int day = 86400;
                 int hour = day / 24;

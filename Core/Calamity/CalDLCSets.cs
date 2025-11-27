@@ -296,7 +296,6 @@ namespace FargowiltasCrossmod.Core.Calamity
                 BuffType<CurseoftheMoonBuff>(),
                 BuffType<FlamesoftheUniverseBuff>(),
                 BuffType<GodEaterBuff>(),
-                BuffType<InfestedBuff>(),
                 BuffType<IvyVenomBuff>(),
                 BuffType<NeurotoxinBuff>(),
                 BuffType<ShadowflameBuff>(),

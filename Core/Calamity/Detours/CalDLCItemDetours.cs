@@ -55,7 +55,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
 
         private bool AllowUseCalBossSummons(On_Player.orig_ItemCheck_CheckCanUse orig, Player self, Item sItem)
         {
-            if (CalDLCSets.Items.CalBossSummon[ sItem.type] && Fargowiltas.Common.Configs.FargoServerConfig.Instance.EasySummons)
+            if (CalDLCSets.Items.CalBossSummon[ sItem.type] && Fargowiltas.Common.Configs.FargoServerConfig.Instance.EasySummons && Main.netMode != NetmodeID.Server)
             {
                 return true;
             }
