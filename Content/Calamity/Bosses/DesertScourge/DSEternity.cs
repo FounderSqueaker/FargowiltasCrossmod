@@ -559,6 +559,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
                         }
                     }
                     break;
+                default: // sum ting wong
+                    attackStep = 0;
+                    timer = 0;
+                    NetSync(NPC);
+                    NPC.netUpdate = true;
+                    break;
             }
             timer++;
         }
