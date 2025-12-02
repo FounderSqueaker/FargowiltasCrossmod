@@ -1,3 +1,2 @@
-Patch 1.2.0.18
-- Updated to Calamity Mod v2.0.7
-- Old Duke: Health 1.6x -> 1 when rework is enabled, 1.6x -> 1.4x when rework is disabled
+Patch 1.2.0.19
+- Fixed desert scourge sometimes breaking
