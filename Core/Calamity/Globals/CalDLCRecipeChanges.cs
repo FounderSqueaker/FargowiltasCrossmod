@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using CalamityMod;
 using CalamityMod.Items;
 using CalamityMod.Items.Accessories;
@@ -51,6 +51,8 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using FargowiltasSouls.Content.Items.Accessories.Eternity;
+using Fargowiltas.Common.Systems.Recipes;
+using CalamityMod.Enums;
 
 namespace FargowiltasCrossmod.Core.Calamity.Globals
 {
@@ -163,7 +165,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
             Recipe.Create(ItemType<EvilSmasher>())
                 .AddIngredient(ItemID.SoulofNight, 12)
-                .AddRecipeGroup("FargowiltasCrossmod:AnyEvilBar", 15)
+                .AddRecipeGroup("Fargowiltas:AnyEvilBar", 15)
                 .AddTile(TileID.Anvils)
                 .DisableDecraft()
                 .Register();
@@ -582,48 +584,26 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<BlackAnurian>(),
                 ItemType<HerringStaff>(),
                 ItemType<Lionfish>(),
-            ], ItemType<SulphurousCrate>(), 5, ItemType<PurifiedGel>());
-
-            CreateCrateRecipes(
-            [
                 ItemType<StrangeOrb>(),
                 ItemType<TorrentialTear>(),
                 ItemType<DepthCharm>(),
                 ItemType<IronBoots>(),
                 ItemType<AnechoicPlating>(),
-            ], ItemType<SulphurousCrate>(), 3, ItemType<PurifiedGel>());
+                ItemType<BrokenWaterFilter>(),
+                ItemType<EffigyOfDecay>(),
+                ItemType<RustyBeaconPrototype>(),
+                ItemType<RustyMedallion>()
+            ], ItemType<HydrothermalCrate>(), 3);
 
             CreateCrateRecipes(
             [
-                ItemType<SkyfinBombers>(),
-                ItemType<NuclearFuelRod>(),
-                ItemType<SulphurousGrabber>(),
-                ItemType<FlakToxicannon>(),
-                ItemType<SpentFuelContainer>(),
-                ItemType<SlitheringEels>(),
-                ItemType<BelchingSaxophone>(),
-            ], ItemType<HydrothermalCrate>(), 5, ItemType<CorrodedFossil>());
+                ItemType<BrokenWaterFilter>(),
+                ItemType<EffigyOfDecay>(),
+                ItemType<RustyBeaconPrototype>(),
+                ItemType<RustyMedallion>()
+            ], ItemType<SulphurousCrate>(), 3);
 
-            CreateCrateRecipes(
-            [
-                ItemType<StellarKnife>(),
-                ItemType<AstralachneaStaff>(),
-                ItemType<TitanArm>(),
-                ItemType<HivePod>(),
-                ItemType<AstralScythe>(),
-                ItemType<StellarCannon>(),
-                ItemType<StarbusterCore>(),
-            ], ItemType<AstralCrate>(), 5, ItemType<AureusCell>());
-
-            CreateCrateRecipes(
-            [
-                ItemType<Poseidon>(),
-                ItemType<ClamorRifle>(),
-                ItemType<ShellfishStaff>(),
-                ItemType<ClamCrusher>(),
-            ], ItemType<PrismCrate>(), 3, ItemType<MolluskHusk>());
-
-            void CreateCrateRecipes(int[] results, int crate, int crateAmount, int extraItem = -1)
+            void CreateCrateRecipes(int[] results, int crate, int crateAmount, int hardmodeCrate = -1, int extraItem = -1)
             {
                 foreach (int result in results)
                 {
@@ -941,23 +921,20 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
         }
         public override void AddRecipeGroups()
         {
-            static string RecipeGroups(string key) => Language.GetTextValue($"Mods.FargowiltasCrossmod.RecipeGroups.{key}");
+            static string RecipeGroupKey(string key) => Language.GetTextValue($"Mods.FargowiltasCrossmod.RecipeGroups.{key}");
             static string ItemXOrY(int id1, int id2) => $"{Lang.GetItemName(id1)} {Language.GetTextValue($"Mods.FargowiltasSouls.RecipeGroups.Or")} {Lang.GetItemName(id2)}";
             #region RecipeGroups
-            RecipeGroup group = new(() => ItemXOrY(ItemType<GildedDagger>(), ItemType<GleamingDagger>()), ItemType<GildedDagger>(), ItemType<GleamingDagger>());
-            RecipeGroup.RegisterGroup("FargowiltasCrossmod: AnyGildedDagger", group);
-
-            group = new RecipeGroup(() => ItemXOrY(ItemID.DemoniteBar, ItemID.CrimtaneBar), ItemID.DemoniteBar, ItemID.CrimtaneBar);
-            RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyEvilBar", group);
+            RecipeGroup SulphCrate = new(() => ItemXOrY(ItemType<SulphurousCrate>(), ItemType<HydrothermalCrate>()), ItemType<SulphurousCrate>(), ItemType<HydrothermalCrate>());
+            RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnySulphCrate", SulphCrate);
 
             //reaver head group
-            RecipeGroup ReaverHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("ReaverHelmet")}",
+            RecipeGroup ReaverHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroupKey("ReaverHelmet")}",
                 ItemType<CalamityMod.Items.Armor.Reaver.ReaverHeadExplore>(),
                 ItemType<CalamityMod.Items.Armor.Reaver.ReaverHeadMobility>(),
                 ItemType<CalamityMod.Items.Armor.Reaver.ReaverHeadTank>());
             RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyReaverHelms", ReaverHelmsGroup);
             //daedalus head group
-            RecipeGroup DeadalusHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("DaedalusHelmet")}",
+            RecipeGroup DeadalusHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroupKey("DaedalusHelmet")}",
                 ItemType<CalamityMod.Items.Armor.Daedalus.DaedalusHeadMelee>(),
                 ItemType<CalamityMod.Items.Armor.Daedalus.DaedalusHeadRanged>(),
                 ItemType<CalamityMod.Items.Armor.Daedalus.DaedalusHeadMagic>(),
@@ -973,7 +950,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<CalamityMod.Items.Armor.Bloodflare.BloodflareHeadRogue>());
             RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyBloodflareHelms", BloodflareHelmsGroup);
             //victide head group
-            RecipeGroup VictideHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("VictideHelmet")}",
+            RecipeGroup VictideHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroupKey("VictideHelmet")}",
                 ItemType<CalamityMod.Items.Armor.Victide.VictideHeadMelee>(),
                 ItemType<CalamityMod.Items.Armor.Victide.VictideHeadRanged>(),
                 ItemType<CalamityMod.Items.Armor.Victide.VictideHeadMagic>(),
@@ -981,7 +958,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<CalamityMod.Items.Armor.Victide.VictideHeadRogue>());
             RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyVictideHelms", VictideHelmsGroup);
             //aerospec head group
-            RecipeGroup AerospecHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("AerospecHelmet")}",
+            RecipeGroup AerospecHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroupKey("AerospecHelmet")}",
                 ItemType<CalamityMod.Items.Armor.Aerospec.AerospecHelm>(),
                 ItemType<CalamityMod.Items.Armor.Aerospec.AerospecHood>(),
                 ItemType<CalamityMod.Items.Armor.Aerospec.AerospecHat>(),
@@ -989,7 +966,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<CalamityMod.Items.Armor.Aerospec.AerospecHeadgear>());
             RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyAerospecHelms", AerospecHelmsGroup);
             //statigel head group
-            RecipeGroup StatigelHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("StatigelHelmet")}",
+            RecipeGroup StatigelHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroupKey("StatigelHelmet")}",
                 ItemType<CalamityMod.Items.Armor.Statigel.StatigelHeadMelee>(),
                 ItemType<CalamityMod.Items.Armor.Statigel.StatigelHeadMagic>(),
                 ItemType<CalamityMod.Items.Armor.Statigel.StatigelHeadRanged>(),
@@ -997,7 +974,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<CalamityMod.Items.Armor.Statigel.StatigelHeadSummon>());
             RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyStatisHelms", StatigelHelmsGroup);
             //aerospec head group
-            RecipeGroup HydrothermHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("HydrothermicHelmet")}",
+            RecipeGroup HydrothermHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroupKey("HydrothermicHelmet")}",
                 ItemType<CalamityMod.Items.Armor.Hydrothermic.HydrothermicHeadMelee>(),
                 ItemType<CalamityMod.Items.Armor.Hydrothermic.HydrothermicHeadRanged>(),
                 ItemType<CalamityMod.Items.Armor.Hydrothermic.HydrothermicHeadMagic>(),
