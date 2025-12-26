@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
+using CalamityMod.NPCs.CalClone;
 
 namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
 {
@@ -106,9 +107,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
             if (Projectile.localAI[0] == 0f)
             {
                 Projectile.localAI[0] = 1f;
-
                 if (Projectile.ai[0] == 0f)
-                    Projectile.damage = Projectile.GetProjectileDamage(ModContent.NPCType<CalamityMod.NPCs.CalClone.CalamitasClone>());
+                    Projectile.damage = CalamityMod.NPCs.CalClone.CalamitasClone.FireblastDamage;
             }
 
             Lighting.AddLight(Projectile.Center, 0.75f * Projectile.Opacity, 0f, 0f);

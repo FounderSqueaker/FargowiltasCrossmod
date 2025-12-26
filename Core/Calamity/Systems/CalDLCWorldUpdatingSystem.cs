@@ -1,6 +1,8 @@
 ﻿using CalamityMod;
 using CalamityMod.Events;
+using CalamityMod.NPCs;
 using CalamityMod.Skies;
+using CalamityMod.Systems;
 using Fargowiltas.NPCs;
 using FargowiltasCrossmod.Core.Calamity;
 using FargowiltasCrossmod.Core.Common;
@@ -25,7 +27,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             {
                 ModCompatibility.SoulsMod.Mod.Call("EternityVanillaBossBehaviour", CalDLCConfig.Instance.EternityPriorityOverRev);
                 if (CalDLCConfig.Instance.EternityPriorityOverRev && WorldSavingSystem.EternityMode)
-                    CalamityMod.CalamityMod.ExternalFlag_DisableNonRevBossAI = true;
+                    CalamityVanillaAIOverrideNPC.Enabled = false;
             }
 
         }
@@ -34,10 +36,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
         {
             if (ModCompatibility.Calamity.Loaded)
             {
-                if (!Main.expertMode && (CalDLCWorldSavingSystem.EternityRev || CalDLCWorldSavingSystem.EternityDeath))
+                if (!Main.expertMode && (CalDLCWorldSavingSystem.EternityRev || CalDLCWorldSavingSystem.MasoDeath))
                 {
                     CalDLCWorldSavingSystem.EternityRev = false;
-                    CalDLCWorldSavingSystem.EternityDeath = false;
+                    CalDLCWorldSavingSystem.MasoDeath = false;
                     if (Main.netMode != NetmodeID.SinglePlayer)
                         PacketManager.SendPacket<EternityCalPacket>();
                 }

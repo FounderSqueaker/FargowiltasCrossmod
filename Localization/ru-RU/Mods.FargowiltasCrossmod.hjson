@@ -19,7 +19,7 @@ EternityRevDifficulty: {
 	Deactivation: Режим Вечная месть выключен.
 }
 
-EternityDeathDifficulty: {
+MasoDeathDifficulty: {
 	Name: Вечная смерть
 	ShortDescription: "[c/00FFFF:Испытывающий способности режим от модов Fargo, включающий в себя изменения из] [c/800080:режима Смерть][c/00FFFF: и дополненные ИИ ванильных боссов.]"
 	ExpandedDescription:

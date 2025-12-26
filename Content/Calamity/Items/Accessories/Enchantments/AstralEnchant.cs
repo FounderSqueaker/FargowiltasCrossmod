@@ -65,7 +65,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddIngredient<AstralBreastplate>(1);
             recipe.AddIngredient<AstralLeggings>(1);
             recipe.AddIngredient<AstralPike>(1);
-            recipe.AddIngredient<AstralBow>(1);
+            //recipe.AddIngredient<AstralBow>(1); //gone dont care to replace rn
             recipe.AddIngredient<StarSputter>(1);
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.Register();

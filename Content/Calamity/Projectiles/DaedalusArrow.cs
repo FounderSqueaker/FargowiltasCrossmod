@@ -2,6 +2,7 @@
 using CalamityMod;
 using CalamityMod.Dusts;
 using CalamityMod.Graphics.Primitives;
+using CalamityMod.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -66,7 +67,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Projectiles
             //target.AddBuff(ModContent.BuffType<HolyFlames>(), 180);
         }
 
-        private float PrimitiveWidthFunction(float completionRatio)
+        private float PrimitiveWidthFunction(float completionRatio, Vector2 vertexPos)
         {
             float arrowheadCutoff = 0.36f;
             float width = 39f;
@@ -78,7 +79,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Projectiles
             return width;
         }
 
-        private Color PrimitiveColorFunction(float completionRatio)
+        private Color PrimitiveColorFunction(float completionRatio, Vector2 vertexPos)
         {
             float endFadeRatio = 0.41f;
 
@@ -101,7 +102,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Projectiles
             Vector2 overallOffset = Projectile.Size * 0.5f;
             overallOffset += Projectile.velocity * 1.4f;
             int numPoints = 92;
-            PrimitiveRenderer.RenderTrail(Projectile.oldPos, new(PrimitiveWidthFunction, PrimitiveColorFunction, (_) => overallOffset, shader: GameShaders.Misc["CalamityMod:TrailStreak"]), numPoints);
+            PrimitiveSettings settings = new PrimitiveSettings(PrimitiveWidthFunction, PrimitiveColorFunction, (float _, Vector2 _) => overallOffset, shader: GameShaders.Misc["CalamityMod:TrailStreak"]);
+            PrimitiveRenderer.RenderTrail(Projectile.oldPos, settings, numPoints);
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
             return false;
         }
 

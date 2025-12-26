@@ -94,7 +94,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 
             if (player.whoAmI == Main.myPlayer)
             {
-                int baseDamage = player.ApplyArmorAccDamageBonusesTo(5);
+                int baseDamage = 5;
                 var source = player.GetSource_EffectItem<MarniteRepulsionEffect>();
                 if (player.ownedProjectileCounts[ModContent.ProjectileType<MarniteRepulsionHitbox>()] < 1)
                 {

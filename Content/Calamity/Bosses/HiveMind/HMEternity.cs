@@ -9,6 +9,7 @@ using CalamityMod.Events;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.NPCs;
 using CalamityMod.NPCs.HiveMind;
+using CalamityMod.NPCs.NormalNPCs;
 using CalamityMod.NPCs.VanillaNPCAIOverrides.Bosses;
 using CalamityMod.Projectiles.Boss;
 using CalamityMod.World;
@@ -230,7 +231,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                 currentAfterimages -= 1f;
             }
             targetAfterimages = Math.Min(5, NPC.velocity.Length());
-            Vector2 bottom = NPC.Bottom;
+            //currently cal sets his width and height in findframe which breaks this which breaks the whole boss. wait on fix
+            Vector2 bottom = new Vector2(NPC.Bottom.X, NPC.Bottom.Y);
             NPC.width = (int)(150 * NPC.scale);
             NPC.height = (int)(100 * NPC.scale);
             NPC.Bottom = bottom;
@@ -256,6 +258,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                 }
                 if (timer < 300)
                 {
+                    
                     NPC.Center += NPC.DirectionTo(target.Center) * 5;
                     NPC.dontTakeDamage = true;
                 }
@@ -263,10 +266,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                 if (timer >= 300 && timer < 320)
                 {
                     NPC.scale += 0.05f;
-
+                    NPC.position.Y -= 15;
                 }
                 if (timer == 300)
                 {
+                    
+
                     SoundEngine.PlaySound(roar with { Pitch = -0.5f }, NPC.Center);
                     ScreenShakeSystem.StartShake(15);
                     if (DLCUtils.HostCheck)
@@ -391,7 +396,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
 
                 CalamityBurrow(NPC, target);
 
-                if (((!NPC.AnyNPCs(ModContent.NPCType<HiveBlob>()) && !NPC.AnyNPCs(ModContent.NPCType<HiveBlob2>())) || timer > 60 * 21) && burrowTimer > 0)
+                if (((!NPC.AnyNPCs(ModContent.NPCType<HiveBlob>())) || timer > 60 * 21) && burrowTimer > 0)
                 {
                     SoundEngine.PlaySound(roar with { Pitch = 0.5f }, NPC.Center);
                     Phase = 2;
@@ -411,13 +416,13 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
 
                     if (NPC.life > NPC.lifeMax * 0.75f)
                     {
-                        int aliveBlobs = NPC.CountNPCS(ModContent.NPCType<HiveBlob>()) + NPC.CountNPCS(ModContent.NPCType<HiveBlob2>());
+                        int aliveBlobs = NPC.CountNPCS(ModContent.NPCType<HiveBlob>());
                         float damageMult = 1 - LumUtils.Saturate(aliveBlobs / BlobEternity.P1Blobs);
                         NPC.SimpleStrikeNPC((int)Math.Round(damageMult * (NPC.life - (NPC.lifeMax * 0.75f))), 1);
                     }
                     foreach (NPC n in Main.npc)
                     {
-                        if ((n.type == ModContent.NPCType<HiveBlob>() || n.type == ModContent.NPCType<HiveBlob2>()) && n.ai[0] == NPC.whoAmI)
+                        if ((n.type == ModContent.NPCType<HiveBlob>()) && n.ai[0] == NPC.whoAmI)
                         {
                             n.StrikeInstantKill();
                         }

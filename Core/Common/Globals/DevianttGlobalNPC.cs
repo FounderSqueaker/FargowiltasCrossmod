@@ -46,10 +46,10 @@ namespace FargowiltasCrossmod.Core.Common.Globals
             Condition killedEidolonWyrm = new Condition("Mods.FargowiltasCrossmod.Conditions.EidolonWyrmDowned", () => CalDLCWorldSavingSystem.downedEidolonWyrm);
             Condition killedCloudElemental = new Condition("Mods.FargowiltasCrossmod.Conditions.CloudElementalDowned", () => CalDLCWorldSavingSystem.downedCloudElemental);
             Condition killedEarthElemental = new Condition("Mods.FargowiltasCrossmod.Conditions.EarthElementalDowned", () => CalDLCWorldSavingSystem.downedEarthElemental);
-            Condition killedArmoredDigger = new Condition("Mods.FargowiltasCrossmod.Conditions.ArmoredDiggerDowned", () => CalDLCWorldSavingSystem.downedArmoredDigger);
+            Condition killedBurrower = new Condition("Mods.FargowiltasCrossmod.Conditions.BurrowerDowned", () => CalDLCWorldSavingSystem.downedBurrower);
 
             shop.Add(new Item(ModContent.ItemType<ClamPearl>()) { shopCustomPrice = Item.buyPrice(gold: 5) }, killedClam);
-            shop.Add(new Item(ModContent.ItemType<AbandonedRemote>()) { shopCustomPrice = Item.buyPrice(gold: 10) }, killedArmoredDigger);
+            shop.Add(new Item(ModContent.ItemType<AbandonedRemote>()) { shopCustomPrice = Item.buyPrice(gold: 10) }, killedBurrower);
             shop.Add(new Item(ModContent.ItemType<PlaguedWalkieTalkie>()) { shopCustomPrice = Item.buyPrice(gold: 10) }, killedPlaguebringerMini);
             shop.Add(new Item(ModContent.ItemType<DeepseaProteinShake>()) { shopCustomPrice = Item.buyPrice(gold: 30) }, killedReaperShark);
             shop.Add(new Item(ModContent.ItemType<ColossalTentacle>()) { shopCustomPrice = Item.buyPrice(gold: 30) }, killedColossalSquid);

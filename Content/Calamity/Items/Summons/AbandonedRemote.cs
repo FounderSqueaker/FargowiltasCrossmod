@@ -1,5 +1,6 @@
 ﻿
 using CalamityMod;
+using CalamityMod.NPCs.Deconstructors;
 using CalamityMod.NPCs.NormalNPCs;
 using Fargowiltas.Items.Summons;
 using FargowiltasCrossmod.Core;
@@ -15,7 +16,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Summons
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class AbandonedRemote : BaseSummon
     {
-        public override int NPCType => ModContent.NPCType<ArmoredDiggerHead>();
+        public override int NPCType => ModContent.NPCType<Burrower>();
         public override void AddRecipes()
         {
         }

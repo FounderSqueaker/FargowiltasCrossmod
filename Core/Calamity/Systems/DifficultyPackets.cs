@@ -126,7 +126,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
         {
             BitsByte containmentFlagWrapper = new()
             {
-                [0] = CalDLCWorldSavingSystem.EternityDeath,
+                [0] = CalDLCWorldSavingSystem.MasoDeath,
                 [1] = CalDLCWorldSavingSystem.EternityRev,
                 [2] = WorldSavingSystem.EternityMode,
                 [3] = WorldSavingSystem.ShouldBeEternityMode
@@ -137,7 +137,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
         public override void Read(BinaryReader reader)
         {
             BitsByte containmentFlagWrapper = reader.ReadByte();
-            CalDLCWorldSavingSystem.EternityDeath = containmentFlagWrapper[0];
+            CalDLCWorldSavingSystem.MasoDeath = containmentFlagWrapper[0];
             CalDLCWorldSavingSystem.EternityRev = containmentFlagWrapper[1];
             WorldSavingSystem.EternityMode = containmentFlagWrapper[2];
             WorldSavingSystem.ShouldBeEternityMode = containmentFlagWrapper[3];

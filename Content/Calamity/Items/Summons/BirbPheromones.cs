@@ -12,7 +12,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Summons
     public class BirbPheromones : BaseSummon
     {
         public override string Texture => "CalamityMod/Items/SummonItems/ExoticPheromones";
-        public override int NPCType => ModContent.NPCType<Bumblefuck>();
+        public override int NPCType => ModContent.NPCType<Dragonfolly>();
         public override void AddRecipes()
         {
             Recipe.Create(Type).AddIngredient<ExoticPheromones>().AddTile(TileID.WorkBenches).Register();

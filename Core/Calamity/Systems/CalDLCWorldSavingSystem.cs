@@ -15,7 +15,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
     public class CalDLCWorldSavingSystem : ModSystem
     {
         private static bool eternityRev;
-        private static bool eternityDeath;
+        private static bool masoDeath;
 
         public static bool downedMiniPlaguebringer = false;
         public static bool downedReaperShark = false;
@@ -23,16 +23,16 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
         public static bool downedEidolonWyrm = false;
         public static bool downedCloudElemental = false;
         public static bool downedEarthElemental = false;
-        public static bool downedArmoredDigger = false;
+        public static bool downedBurrower = false;
         public static bool EternityRev
         {
             get => eternityRev;
             set => eternityRev = value;
         }
-        public static bool EternityDeath
+        public static bool MasoDeath
         {
-            get => eternityDeath;
-            set => eternityDeath = value;
+            get => masoDeath;
+            set => masoDeath = value;
         }
 
         public static bool E_EternityRev => EternityRev && WorldSavingSystem.EternityMode && CalDLCConfig.Instance.EternityPriorityOverRev;
@@ -50,12 +50,12 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
         public override void OnWorldLoad()
         {
             EternityRev = false;
-            EternityDeath = false;
+            MasoDeath = false;
         }
         public override void OnWorldUnload()
         {
             EternityRev = false;
-            EternityDeath = false;
+            MasoDeath = false;
         }
         public override void ClearWorld()
         {
@@ -65,14 +65,14 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             downedEidolonWyrm = false;
             downedCloudElemental = false;
             downedEarthElemental = false;
-            downedArmoredDigger = false;
+            downedBurrower = false;
             base.ClearWorld();
         }
         public override void NetSend(BinaryWriter writer)
         {
             BitsByte flags = new();
             flags[0] = EternityRev;
-            flags[1] = EternityDeath;
+            flags[1] = MasoDeath;
             flags[2] = PermafrostPhaseSeen;
 
             BitsByte downedFlags = new();
@@ -82,7 +82,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             downedFlags[3] = downedEidolonWyrm;
             downedFlags[4] = downedCloudElemental;
             downedFlags[5] = downedEarthElemental;
-            downedFlags[6] = downedArmoredDigger;
+            downedFlags[6] = downedBurrower;
             writer.Write(flags);
             writer.Write(downedFlags);
         }
@@ -91,7 +91,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             BitsByte flags = reader.ReadByte();
             BitsByte downedFlags = reader.ReadByte();
             EternityRev = flags[0];
-            EternityDeath = flags[1];
+            MasoDeath = flags[1];
             PermafrostPhaseSeen = flags[2];
 
             downedMiniPlaguebringer = downedFlags[0];
@@ -100,7 +100,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             downedEidolonWyrm = downedFlags[3];
             downedCloudElemental = downedFlags[4];
             downedEarthElemental = downedFlags[5];
-            downedArmoredDigger = downedFlags[6];
+            downedBurrower = downedFlags[6];
         }
         public override void SaveWorldData(TagCompound tag)
         {
@@ -110,8 +110,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             var downed = new List<string>();
             if (EternityRev)
                 downed.Add("EternityRevActive");
-            if (EternityDeath)
-                downed.Add("EternityDeathActive");
+            if (MasoDeath)
+                downed.Add("MasoDeathActive");
             if (PermafrostPhaseSeen)
                 downed.Add("PermafrostPhaseSeen");
             if (downedMiniPlaguebringer)
@@ -126,8 +126,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
                 downed.Add("downedCloudElemental");
             if (downedEarthElemental)
                 downed.Add("downedEarthElemental");
-            if (downedArmoredDigger)
-                downed.Add("downedArmoredDigger");
+            if (downedBurrower)
+                downed.Add("downedBurrower");
             tag["downed"] = downed;
 
             tag["droppedSummon"] = DroppedSummon;
@@ -137,7 +137,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
         {
             var downed = tag.GetList<string>("downed");
             EternityRev = downed.Contains("EternityRevActive");
-            EternityDeath = downed.Contains("EternityDeathActive");
+            MasoDeath = downed.Contains("MasoDeathActive");
             PermafrostPhaseSeen = downed.Contains("PermafrostPhaseSeen");
             downedMiniPlaguebringer = downed.Contains("downedMiniPlaguebringer");
             downedReaperShark = downed.Contains("downedReaperShark");
@@ -145,7 +145,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             downedEidolonWyrm = downed.Contains("downedEidolonWyrm");
             downedCloudElemental = downed.Contains("downedCloudElemental");
             downedEarthElemental = downed.Contains("downedEarthElemental");
-            downedArmoredDigger = downed.Contains("downedArmoredDigger");
+            downedBurrower = downed.Contains("downedBurrower");
 
             DroppedSummon = tag.GetList<int>("droppedSummon").ToList();
             /*

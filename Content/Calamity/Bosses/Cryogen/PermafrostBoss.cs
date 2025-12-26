@@ -37,14 +37,14 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
     [AutoloadBossHead]
     public class PermafrostBoss : ModNPC
     {
-        //public override string Texture => "CalamityMod/NPCs/TownNPCs/DILF";
+        //public override string Texture => "CalamityMod/NPCs/TownNPCs/Archmage";
 
         public override bool IsLoadingEnabled(Mod mod) => CryogenEternity.Enabled;
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
 
-            Main.npcFrameCount[Type] = Main.npcFrameCount[ModContent.NPCType<DILF>()];
+            Main.npcFrameCount[Type] = Main.npcFrameCount[ModContent.NPCType<Archmage>()];
 
         }
         public override void SetDefaults()
@@ -89,7 +89,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
             shieldRot += 0.05f;
             Asset<Texture2D> t = TextureAssets.Npc[Type];
             Asset<Texture2D> encasement = ModContent.Request<Texture2D>("CalamityMod/CalPlayer/DrawLayers/GlacialEmbraceBody");
-            Asset<Texture2D> shield = ModContent.Request<Texture2D>("CalamityMod/Projectiles/Summon/IceClasperSummonProjectile");
+            Asset<Texture2D> shield = ModContent.Request<Texture2D>("CalamityMod/Projectiles/Melee/DarkIceZero");
             spriteBatch.Draw(t.Value, NPC.Center - screenPos, new Rectangle(6, 62, 32, 48), drawColor, NPC.rotation, new Vector2(16, 24), NPC.scale, NPC.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             if (Phase == 0 || Despawning)
             {
@@ -193,7 +193,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
         {
             if (!DLCUtils.HostCheck)
                 return;
-            int n = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<DILF>());
+            int n = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<Archmage>());
             if (n != Main.maxNPCs)
             {
                 Main.npc[n].homeless = true;
@@ -217,7 +217,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
         }
         public override void OnSpawn(IEntitySource source)
         {
-            int n = NPC.FindFirstNPC(ModContent.NPCType<DILF>());
+            int n = NPC.FindFirstNPC(ModContent.NPCType<Archmage>());
             if (n != -1 && n != Main.maxNPCs)
             {
                 //NPC.Bottom = Main.npc[n].Bottom;
@@ -247,7 +247,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
                 Main.time = Main.nightLength / 2;
             Main.LocalPlayer.buffImmune[ModContent.BuffType<HypothermiaBuff>()] = true;
 
-            int n = NPC.FindFirstNPC(ModContent.NPCType<DILF>());
+            int n = NPC.FindFirstNPC(ModContent.NPCType<Archmage>());
             if (n != -1 && n != Main.maxNPCs)
             {
                 Main.npc[n].life = 0;

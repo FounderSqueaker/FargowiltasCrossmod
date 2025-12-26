@@ -1,88 +1,26 @@
 ﻿using CalamityMod.Events;
 using CalamityMod.NPCs;
-using CalamityMod.Projectiles;
 using CalamityMod.World;
 using CalamityMod;
-using FargowiltasSouls.Core.Systems;
 using Microsoft.Xna.Framework.Graphics;
-using MonoMod.RuntimeDetour;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
-using Terraria.DataStructures;
-using CalamityMod.Items;
-using FargowiltasSouls.Content.Items.Weapons.Challengers;
-using FargowiltasSouls.Content.Items.Accessories.Souls;
-using FargowiltasSouls;
 using Luminance.Core.Hooking;
-using Fargowiltas.NPCs;
-using CalamityMod.Projectiles.Boss;
-using FargowiltasSouls.Content.Projectiles;
-using CalamityMod.Items.Weapons.Ranged;
-using CalamityMod.Projectiles.Ranged;
-using Fargowiltas.Items;
-using CalamityMod.Items.Potions;
 using FargowiltasSouls.Content.Bosses.Champions.Nature;
 using FargowiltasSouls.Content.Bosses.Champions.Terra;
 using FargowiltasSouls.Content.Bosses.VanillaEternity;
-using FargowiltasSouls.Content.Items.Accessories.Enchantments;
-using FargowiltasSouls.Content.Items.Accessories.Forces;
-using FargowiltasSouls.Core.ModPlayers;
-using FargowiltasSouls.Core.AccessoryEffectSystem;
-using CalamityMod.CalPlayer;
-using FargowiltasSouls.Core.Toggler;
-using FargowiltasCrossmod.Content.Calamity.Items.Accessories;
-using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments;
-using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Souls;
-using FargowiltasCrossmod.Content.Calamity.Toggles;
-using CalamityMod.Systems;
-using CalamityMod.Enums;
-using Fargowiltas.Items.Vanity;
-using FargowiltasSouls.Content.Bosses.MutantBoss;
-using FargowiltasSouls.Content.Items;
-using FargowiltasSouls.Content.UI.Elements;
-using Terraria.Localization;
-using CalamityMod.Skies;
-using Terraria.Graphics.Effects;
-using FargowiltasSouls.Content.UI;
 using CalamityMod.NPCs.Perforator;
-using FargowiltasCrossmod.Content.Calamity.Bosses.Perforators;
 using FargowiltasSouls.Content.Buffs.Masomode;
 using FargowiltasSouls.Core.Globals;
-using FargowiltasSouls.Common.Utilities;
-using CalamityMod.Items.TreasureBags.MiscGrabBags;
-using CalamityMod.Items.Weapons.Rogue;
-using CalamityMod.Items.Weapons.Summon;
-using Terraria.GameContent.ItemDropRules;
-using CalamityMod.Items.Accessories.Vanity;
-using CalamityMod.Items.LoreItems;
-using CalamityMod.Items.Pets;
-using FargowiltasSouls.Content.Items.Misc;
-using Fargowiltas.Items.Explosives;
-using FargowiltasSouls.Content.Items.Accessories.Masomode;
-using Fargowiltas.Items.Tiles;
-using CalamityMod.Walls;
-using CalamityMod.Tiles.Abyss;
-using CalamityMod.Items.Placeables.FurnitureAcidwood;
-using CalamityMod.Tiles.FurnitureAcidwood;
-using CalamityMod.Tiles.FurnitureVoid;
-using CalamityMod.Tiles.FurnitureAbyss;
-using CalamityMod.Tiles.Astral;
-using CalamityMod.Tiles.FurnitureMonolith;
-using CalamityMod.Tiles.Crags;
-using CalamityMod.Tiles.FurnitureAshen;
-using CalamityMod.Tiles.FurnitureEutrophic;
-using CalamityMod.Tiles.SunkenSea;
-using FargowiltasCrossmod.Core.Calamity.Globals;
-using Terraria.GameContent;
-using CalamityMod.Items.Accessories;
+using CalamityMod.Systems.Collections;
+using CalamityMod.NPCs.SlimeGod;
+using CalamityMod.NPCs.Leviathan;
 
 namespace FargowiltasCrossmod.Core.Calamity.Systems
 {
@@ -104,8 +42,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             HookHelper.ModifyMethodWithDetour(CalamityPreDrawMethod, CalamityPreDraw_Detour);
             HookHelper.ModifyMethodWithDetour(CalamityPostDrawMethod, CalamityPostDraw_Detour);
             HookHelper.ModifyMethodWithDetour(CalamityBossHeadSlotMethod, CalamityBossHeadSlot_Detour);
-
-            HookHelper.ModifyMethodWithDetour(CalamityGetNPCDamageMethod, CalamityGetNPCDamage_Detour);
 
             HookHelper.ModifyMethodWithDetour(NatureChampAIMethod, NatureChampAI_Detour);
             HookHelper.ModifyMethodWithDetour(TerraChampAIMethod, TerraChampAI_Detour);
@@ -198,7 +134,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
         {
             bool wasRevenge = CalamityWorld.revenge;
             bool wasBossRush = BossRushEvent.BossRushActive;
-            bool shouldDisableNPC = CalamityLists.DestroyerIDs.Contains(npc.type) || npc.type == NPCID.SkeletronPrime;
+            bool shouldDisableNPC = new int[] { NPCID.TheDestroyer, NPCID.TheDestroyerBody, NPCID.TheDestroyerTail, NPCID.SkeletronPrime }.Contains(npc.type);
             bool shouldDisable = CalDLCWorldSavingSystem.E_EternityRev && shouldDisableNPC;
 
             if (shouldDisable)
@@ -215,8 +151,11 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             return result;
         }
 
-        private static readonly List<int> DisablePostDrawNPCS = new(CalamityLists.DestroyerIDs)
+        private static readonly List<int> DisablePostDrawNPCS =new()
             {
+            NPCID.TheDestroyer,
+            NPCID.TheDestroyerBody,
+            NPCID.TheDestroyerTail,
             NPCID.WallofFleshEye,
             NPCID.Creeper,
             NPCID.SkeletronPrime
@@ -243,20 +182,11 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             orig(self, npc, ref index);
         }
 
-        private static readonly MethodInfo CalamityGetNPCDamageMethod = typeof(NPCStats).GetMethod("GetNPCDamage", LumUtils.UniversalBindingFlags);
-        public delegate void Orig_CalamityGetNPCDamage(NPC npc);
-        internal static void CalamityGetNPCDamage_Detour(Orig_CalamityGetNPCDamage orig, NPC npc)
-        {
-            // Prevent vanilla bosses and their segments from having their damage overriden by Calamity
-            bool countsAsBoss = npc.boss || NPCID.Sets.ShouldBeCountedAsBoss[npc.type];
-            if (npc.type < NPCID.Count && (countsAsBoss || CalamityLists.bossHPScaleList.Contains(npc.type)))
-                return;
-            orig(npc);
-        }
         private static readonly MethodInfo NatureChampAIMethod = typeof(NatureChampion).GetMethod("AI", LumUtils.UniversalBindingFlags);
         public delegate void Orig_NatureChampAI(NatureChampion self);
         internal static void NatureChampAI_Detour(Orig_NatureChampAI orig, NatureChampion self)
         {
+           
             NPC npc = self.NPC;
             double originalSurface = Main.worldSurface;
             if (BossRushEvent.BossRushActive)

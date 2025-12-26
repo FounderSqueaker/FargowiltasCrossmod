@@ -2,6 +2,7 @@
 using CalamityMod.NPCs;
 using CalamityMod.NPCs.ExoMechs.Artemis;
 using CalamityMod.Particles;
+using CalamityMod.Projectiles.DraedonsArsenal;
 using CalamityMod.Sounds;
 using FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.FightManagers;
 using FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Projectiles;
@@ -245,11 +246,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.ArtemisAndApollo
         /// <param name="npc"></param>
         public static void DoBehavior_MachineGunLasers_ManageSounds(NPC npc)
         {
+            //check sounds, previously gattlingLaser but those died
             if (AITimer == MachineGunLasers_AttackDelay - 20)
-                SoundEngine.PlaySound(GatlingLaser.FireSound with { Volume = 2f });
+                SoundEngine.PlaySound(new SoundStyle("CalamityMod/Sounds/Item/NidhoggFire") with { Volume = 2f });
 
             if (AITimer == MachineGunLasers_AttackDelay + 33)
-                GatlingLaserSoundLoop = LoopedSoundManager.CreateNew(GatlingLaser.FireLoopSound, () => !npc.active || SharedState.AIState != ExoTwinsAIState.MachineGunLasers);
+                GatlingLaserSoundLoop = LoopedSoundManager.CreateNew(new SoundStyle("CalamityMod/Sounds/Item/NidhoggFire"), () => !npc.active || SharedState.AIState != ExoTwinsAIState.MachineGunLasers);
             if (AITimer >= MachineGunLasers_AttackDuration - 45 || AITimer <= MachineGunLasers_AttackDelay)
                 GatlingLaserSoundLoop?.Stop();
 

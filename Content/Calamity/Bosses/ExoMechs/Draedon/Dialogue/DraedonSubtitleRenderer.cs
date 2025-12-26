@@ -1,4 +1,5 @@
-﻿using CalamityMod.UI.DraedonSummoning;
+﻿using CalamityMod.Fonts;
+using CalamityMod.UI.DraedonSummoning;
 using Luminance.Common.Easings;
 using Luminance.Common.Utilities;
 using Luminance.Core.Graphics;
@@ -64,7 +65,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Draedon.Dialogue
                 if (GameCulture.FromCultureName(GameCulture.CultureName.Russian).IsActive)
                     return FontAssets.MouseText.Value;
 
-                return CodebreakerUI.DialogFont;
+                return FontAssetSystem.CodebreakerDialog.Value;
             }
         }
 

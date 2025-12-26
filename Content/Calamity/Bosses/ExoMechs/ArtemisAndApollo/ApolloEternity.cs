@@ -6,6 +6,7 @@ using CalamityMod.NPCs;
 using CalamityMod.NPCs.ExoMechs.Apollo;
 using CalamityMod.Particles;
 using CalamityMod.Sounds;
+using CalamityMod.Systems.Collections;
 using CalamityMod.UI;
 using FargowiltasCrossmod.Assets.Particles;
 using FargowiltasCrossmod.Assets.Particles.Metaballs;
@@ -541,7 +542,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.ArtemisAndApollo
             if (ExoTwinsStates.DoBehavior_EnterSecondPhase_ApolloIsProtectingArtemis(this))
             {
                 modifiers.FinalDamage *= ExoTwinsStates.EnterSecondPhase_ApolloDamageProtectionFactor;
-                if (!CalamityLists.projectileDestroyExceptionList.Contains(projectile.type))
+                if (! CalamityProjectileSets.ShouldNotBeReflected[projectile.type])
                     projectile.active = false;
             }
         }

@@ -72,7 +72,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.Hydrothermic.HydrothermicSubligar>(), 1);
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.Helstorm>(), 1);
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.HavocsBreath>(), 1);
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Placeables.PyreMantleMolten>(), 100);
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Placeables.Abyss.PyreMantleMolten>(), 100);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
         }

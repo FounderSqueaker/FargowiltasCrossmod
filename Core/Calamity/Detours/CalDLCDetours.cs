@@ -1,42 +1,15 @@
 ﻿using CalamityMod.Events;
-using CalamityMod.NPCs;
-using CalamityMod.Projectiles;
-using CalamityMod.World;
 using CalamityMod;
 using FargowiltasSouls.Core.Systems;
-using Microsoft.Xna.Framework.Graphics;
-using MonoMod.RuntimeDetour;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.ID;
-using Terraria.DataStructures;
-using CalamityMod.Items;
-using FargowiltasSouls.Content.Items.Weapons.Challengers;
-using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls;
 using Luminance.Core.Hooking;
 using Fargowiltas.NPCs;
-using CalamityMod.Projectiles.Boss;
-using FargowiltasSouls.Content.Projectiles;
-using CalamityMod.Items.Weapons.Ranged;
-using CalamityMod.Projectiles.Ranged;
-using Fargowiltas.Items;
-using CalamityMod.Items.Potions;
-using FargowiltasSouls.Content.Bosses.Champions.Nature;
-using FargowiltasSouls.Content.Bosses.Champions.Terra;
-using FargowiltasSouls.Content.Bosses.VanillaEternity;
-using FargowiltasSouls.Content.Items.Accessories.Enchantments;
-using FargowiltasSouls.Content.Items.Accessories.Forces;
-using FargowiltasSouls.Core.ModPlayers;
-using FargowiltasSouls.Core.AccessoryEffectSystem;
-using CalamityMod.CalPlayer;
 using FargowiltasSouls.Core.Toggler;
 using FargowiltasCrossmod.Content.Calamity.Items.Accessories;
 using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments;
@@ -44,46 +17,16 @@ using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Souls;
 using FargowiltasCrossmod.Content.Calamity.Toggles;
 using CalamityMod.Systems;
 using CalamityMod.Enums;
-using Fargowiltas.Items.Vanity;
-using FargowiltasSouls.Content.Bosses.MutantBoss;
 using FargowiltasSouls.Content.Items;
-using FargowiltasSouls.Content.UI.Elements;
 using Terraria.Localization;
 using CalamityMod.Skies;
 using Terraria.Graphics.Effects;
 using FargowiltasSouls.Content.UI;
-using CalamityMod.NPCs.Perforator;
-using FargowiltasCrossmod.Content.Calamity.Bosses.Perforators;
-using FargowiltasSouls.Content.Buffs.Masomode;
-using FargowiltasSouls.Core.Globals;
 using FargowiltasSouls.Common.Utilities;
-using CalamityMod.Items.TreasureBags.MiscGrabBags;
-using CalamityMod.Items.Weapons.Rogue;
-using CalamityMod.Items.Weapons.Summon;
-using Terraria.GameContent.ItemDropRules;
-using CalamityMod.Items.Accessories.Vanity;
 using CalamityMod.Items.LoreItems;
-using CalamityMod.Items.Pets;
-using FargowiltasSouls.Content.Items.Misc;
-using Fargowiltas.Items.Explosives;
-using FargowiltasSouls.Content.Items.Accessories.Masomode;
-using Fargowiltas.Items.Tiles;
-using CalamityMod.Walls;
-using CalamityMod.Tiles.Abyss;
-using CalamityMod.Items.Placeables.FurnitureAcidwood;
-using CalamityMod.Tiles.FurnitureAcidwood;
-using CalamityMod.Tiles.FurnitureVoid;
-using CalamityMod.Tiles.FurnitureAbyss;
-using CalamityMod.Tiles.Astral;
-using CalamityMod.Tiles.FurnitureMonolith;
-using CalamityMod.Tiles.Crags;
-using CalamityMod.Tiles.FurnitureAshen;
-using CalamityMod.Tiles.FurnitureEutrophic;
-using CalamityMod.Tiles.SunkenSea;
 using FargowiltasCrossmod.Core.Calamity.Globals;
 using Terraria.GameContent;
 using CalamityMod.Items.Accessories;
-using FargowiltasCrossmod.Core.Calamity.Systems;
 
 namespace FargowiltasCrossmod.Core.Calamity.Detours
 {
@@ -153,7 +96,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             player.SetToggleValue<EclipseMirrorEffect>(true);
             player.SetToggleValue<AbyssalDivingSuitEffect>(true);
             player.SetToggleValue<NucleogenesisEffect>(true);
-            player.SetToggleValue<ElementalQuiverEffect>(true);
+
+            player.SetToggleValue<PlanebreakersPouchEffect>(true);
             player.SetToggleValue<ElementalGauntletEffect>(true);
             player.SetToggleValue<EtherealTalismanEffect>(true);
             player.SetToggleValue<AmalgamEffect>(true);
@@ -267,8 +211,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
         {
             if (SkyManager.Instance["CalamityMod:BossRush"] != null && SkyManager.Instance["CalamityMod:BossRush"].IsActive())
                 SkyManager.Instance.Deactivate("CalamityMod:BossRush", new object[0]);
-            if (Filters.Scene["CalamityMod:BossRush"].IsActive())
-                Filters.Scene["CalamityMod:BossRush"].Deactivate(new object[0]);
+            //if (Filters.Scene["CalamityMod:BossRush"].IsActive())
+            //    Filters.Scene["CalamityMod:BossRush"].Deactivate(new object[0]);
             return false;
         }
         private static readonly MethodInfo DropSummon_Int_Method = typeof(EModeUtils).GetMethod("DropSummon", LumUtils.UniversalBindingFlags, [typeof(NPC), typeof(int), typeof(bool), typeof(bool).MakeByRefType(), typeof(bool)]);

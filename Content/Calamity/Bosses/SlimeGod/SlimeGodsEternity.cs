@@ -379,7 +379,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.SlimeGod
                 {
                     float speed = 5.5f;
                     int type = ModContent.ProjectileType<UnstableEbonianGlob>();
-                    int projectileDamage = npc.GetProjectileDamage(type);
+                    int projectileDamage = CalamityMod.NPCs.SlimeGod.SlimeGodCore.GlobDamage;
                     for (int i = -1; i < 2; i++)
                     {
                         Vector2 dir = (-Vector2.UnitY).RotatedBy(MathHelper.PiOver2 * i);
@@ -445,7 +445,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.SlimeGod
                     {
                         float speed = 2.6f;
                         int type = ModContent.ProjectileType<UnstableCrimulanGlob>();
-                        int projectileDamage = npc.GetProjectileDamage(type);
+                        int projectileDamage = SlimeGodCore.GlobDamage;
                         const int GlobCount = 7;
                         for (int j = -1; j < 2; j += 2)
                         {
@@ -538,7 +538,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.SlimeGod
                     {
                         float speed = 2f;
                         int type = ModContent.ProjectileType<UnstableEbonianGlob>();
-                        int projectileDamage = npc.GetProjectileDamage(type);
+                        int projectileDamage = SlimeGodCore.GlobDamage;
                         const int GlobCount = 12;
                         for (int i = 0; i < GlobCount; i++)
                         {

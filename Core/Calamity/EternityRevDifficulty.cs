@@ -13,12 +13,31 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using static CalamityMod.Systems.DifficultyModeSystem;
+using Terraria.Audio;
+using System.Collections.Generic;
 
 namespace FargowiltasCrossmod.Core.Calamity
 {
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class EternityRevDifficulty : DifficultyMode
     {
+        public override LocalizedText Name => Language.GetText("Mods.FargowiltasCrossmod.EternityRevDifficulty.Name");
+        public override LocalizedText FTWName => Language.GetText("Mods.FargowiltasCrossmod.EternityRevDifficulty.Name");
+        public override Color ChatTextColor => Color.Cyan;
+        public override Color FTWTextColor => Color.Cyan;
+        public override SoundStyle ActivationSound => SoundID.Roar with { Pitch = -0.5f };
+        public override int BackBoneGameModeID => GameModeID.Expert;
+        public override LocalizedText ShortDescription => Language.GetText("Mods.FargowiltasCrossmod.EternityRevDifficulty.ShortDescription");
+        public override Asset<Texture2D> TextureDisabled
+        {
+            get
+            {
+                _textureDisabled ??= ModContent.Request<Texture2D>("FargowiltasCrossmod/Assets/EternityRevIcon");
+
+                return _textureDisabled;
+            }
+        }
+        public override float DifficultyScale => 2;
         public override bool Enabled
         {
             get => CalDLCWorldSavingSystem.EternityRev;
@@ -70,57 +89,17 @@ namespace FargowiltasCrossmod.Core.Calamity
         //TODO: add conditions to this description, for priority and Maso line
         public override LocalizedText ExpandedDescription => Language.GetText("Mods.FargowiltasCrossmod.EternityRevDifficulty.ExpandedDescription");
 
-        public EternityRevDifficulty()
-        {
-            DifficultyScale = 1f;
-            Name = Language.GetText("Mods.FargowiltasCrossmod.EternityRevDifficulty.Name");
-            ShortDescription = Language.GetText("Mods.FargowiltasCrossmod.EternityRevDifficulty.ShortDescription");
-
-            ActivationTextKey = "Mods.FargowiltasCrossmod.EternityRevDifficulty.Activation";
-            DeactivationTextKey = "Mods.FargowiltasCrossmod.EternityRevDifficulty.Deactivation";
-
-            ActivationSound = SoundID.Roar with { Pitch = -0.5f };
-            ChatTextColor = Color.Cyan;
-
-            //MostAlternateDifficulties = 1;
-            //Difficulties = new DifficultyMode[] { new NoDifficulty(), new RevengeanceDifficulty(), new DeathDifficulty(), this };
-            //Difficulties = Difficulties.OrderBy(d => d.DifficultyScale).ToArray();
-            //Difficulties.Add(this);
-
-            //DifficultyTiers = new List<DifficultyMode[]>();
-            //float currentTier = -1;
-            //int tierIndex = -1;
-
-            //for (int i = 0; i < Difficulties.Count; i++)
-            //{
-            //    // If at a new tier, create a new list of difficulties at that tier.
-            //    if (currentTier != Difficulties[i].DifficultyScale)
-            //    {
-            //        DifficultyTiers.Add(new DifficultyMode[] { Difficulties[i] });
-            //        currentTier = Difficulties[i].DifficultyScale;
-            //        tierIndex++;
-            //    }
-
-            //    // If the tier already exists, just add it to the list of other difficulties at that tier.
-            //    else
-            //    {
-            //        DifficultyTiers[tierIndex] = DifficultyTiers[tierIndex].Append(Difficulties[i]).ToArray();
-            //        MostAlternateDifficulties = Math.Max(DifficultyTiers[tierIndex].Length, MostAlternateDifficulties);
-            //    }
-            //}
-        }
-
-        public override int FavoredDifficultyAtTier(int tier)
+        public override int[] FavoredDifficultyAtTier(int tier)
         {
             DifficultyMode[] tierList = DifficultyTiers[tier];
-
+            List<int> list = new List<int>();
             for (int i = 0; i < tierList.Length; i++)
             {
-                if (tierList[i].Name.Value == "Death")
-                    return i;
+                if (tierList[i].Name.Value == "Revengeance")
+                    list.Add(i);
             }
-
-            return 0;
+            if (list.Count <= 0) list.Add(0);
+            return list.ToArray();
         }
     }
 }

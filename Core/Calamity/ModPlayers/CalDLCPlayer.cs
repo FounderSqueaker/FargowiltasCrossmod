@@ -15,6 +15,7 @@ using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
 using CalamityMod.Items.Weapons.Rogue;
+using CalamityMod.NPCs;
 using CalamityMod.Particles;
 using Fargowiltas.Common.Configs;
 using FargowiltasCrossmod.Content.Calamity.Buffs;
@@ -82,7 +83,7 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
                 {
                     ModCompatibility.SoulsMod.Mod.Call("EternityVanillaBossBehaviour", CalDLCConfig.Instance.EternityPriorityOverRev);
                     if (CalDLCConfig.Instance.EternityPriorityOverRev && WorldSavingSystem.EternityMode)
-                        CalamityMod.CalamityMod.ExternalFlag_DisableNonRevBossAI = true;
+                        CalamityVanillaAIOverrideNPC.Enabled = false;
                 }
             }
             if (ModCompatibility.WrathoftheGods.Loaded)

@@ -13,19 +13,37 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using static CalamityMod.Systems.DifficultyModeSystem;
+using Terraria.Audio;
+using System.Collections.Generic;
 
 namespace FargowiltasCrossmod.Core.Calamity
 {
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
-    public class EternityDeathDifficulty : DifficultyMode
+    public class MasoDeathDifficulty : DifficultyMode
     {
+        public override LocalizedText Name => Language.GetText("Mods.FargowiltasCrossmod.MasoDeathDifficulty.Name");
+        public override LocalizedText FTWName => Language.GetText("Mods.FargowiltasCrossmod.MasoDeathDifficulty.Name");
+        public override Color ChatTextColor => Color.DarkRed;
+        public override Color FTWTextColor => Color.DarkRed;
+        public override SoundStyle ActivationSound => SoundID.Roar with { Pitch = -0.5f };
+        public override int BackBoneGameModeID => GameModeID.Master;
+        public override LocalizedText ShortDescription => Language.GetText("Mods.FargowiltasCrossmod.MasoDeathDifficulty.ShortDescription");
+        public override Asset<Texture2D> TextureDisabled {
+            get
+            {
+                _textureDisabled ??= ModContent.Request<Texture2D>("FargowiltasCrossmod/Assets/MasoDeathIcon");
+
+                return _textureDisabled;
+            }
+        }
+        public override float DifficultyScale => 2;
         public override bool Enabled
         {
-            get => CalDLCWorldSavingSystem.EternityDeath;
+            get => CalDLCWorldSavingSystem.MasoDeath;
             set
             {
                 CalDLCWorldSavingSystem.EternityRev = value;
-                CalDLCWorldSavingSystem.EternityDeath = value;
+                CalDLCWorldSavingSystem.MasoDeath = value;
                 if (value)
                 {
                     CalamityWorld.revenge = true;
@@ -57,71 +75,29 @@ namespace FargowiltasCrossmod.Core.Calamity
             }
         }
 
-        private Asset<Texture2D> _texture;
         public override Asset<Texture2D> Texture
         {
             get
             {
-                _texture ??= ModContent.Request<Texture2D>("FargowiltasCrossmod/Assets/EternityDeathIcon");
+                _texture ??= ModContent.Request<Texture2D>("FargowiltasCrossmod/Assets/MasoDeathIcon");
 
                 return _texture;
             }
         }
 
         //TODO: add conditions to this description, for priority and Maso line
-        public override LocalizedText ExpandedDescription => Language.GetText("Mods.FargowiltasCrossmod.EternityDeathDifficulty.ExpandedDescription");
-
-        public EternityDeathDifficulty()
-        {
-            DifficultyScale = 2f;
-            Name = Language.GetText("Mods.FargowiltasCrossmod.EternityDeathDifficulty.Name");
-            ShortDescription = Language.GetText("Mods.FargowiltasCrossmod.EternityDeathDifficulty.ShortDescription");
-
-            ActivationTextKey = "Mods.FargowiltasCrossmod.EternityDeathDifficulty.Activation";
-            DeactivationTextKey = "Mods.FargowiltasCrossmod.EternityDeathDifficulty.Deactivation";
-
-            ActivationSound = SoundID.Roar with { Pitch = -0.5f };
-            ChatTextColor = Color.DarkRed;
-
-            //MostAlternateDifficulties = 1;
-            //Difficulties = new DifficultyMode[] { new NoDifficulty(), new RevengeanceDifficulty(), new DeathDifficulty(), this };
-            //Difficulties = Difficulties.OrderBy(d => d.DifficultyScale).ToArray();
-            //Difficulties.Add(this);
-
-            //DifficultyTiers = new List<DifficultyMode[]>();
-            //float currentTier = -1;
-            //int tierIndex = -1;
-
-            //for (int i = 0; i < Difficulties.Count; i++)
-            //{
-            //    // If at a new tier, create a new list of difficulties at that tier.
-            //    if (currentTier != Difficulties[i].DifficultyScale)
-            //    {
-            //        DifficultyTiers.Add(new DifficultyMode[] { Difficulties[i] });
-            //        currentTier = Difficulties[i].DifficultyScale;
-            //        tierIndex++;
-            //    }
-
-            //    // If the tier already exists, just add it to the list of other difficulties at that tier.
-            //    else
-            //    {
-            //        DifficultyTiers[tierIndex] = DifficultyTiers[tierIndex].Append(Difficulties[i]).ToArray();
-            //        MostAlternateDifficulties = Math.Max(DifficultyTiers[tierIndex].Length, MostAlternateDifficulties);
-            //    }
-            //}
-        }
-
-        public override int FavoredDifficultyAtTier(int tier)
+        public override LocalizedText ExpandedDescription => Language.GetText("Mods.FargowiltasCrossmod.MasoDeathDifficulty.ExpandedDescription");
+        public override int[] FavoredDifficultyAtTier(int tier)
         {
             DifficultyMode[] tierList = DifficultyTiers[tier];
-
+            List<int> list = new List<int>();
             for (int i = 0; i < tierList.Length; i++)
             {
-                if (tierList[i].Name.Value == "Death")
-                    return i;
+                if (tierList[i] is DeathDifficulty)
+                    list.Add(i);
             }
-
-            return 0;
+            if (list.Count <= 0) list.Add(0);
+            return list.ToArray();
         }
     }
 }

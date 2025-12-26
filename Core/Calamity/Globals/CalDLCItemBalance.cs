@@ -1,6 +1,7 @@
 ﻿using CalamityMod.Items;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Mounts;
+using CalamityMod.Items.Tools;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
@@ -46,7 +47,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
             //Shadowspec items and such
             // Melee
-            if (item.type == ItemType<IridescentExcalibur>()) return 0.6f;
             if (item.type == ItemType<IllustriousKnives>()) return 1f;
             if (item.type == ItemType<NanoCore>() && item.DamageType.CountsAsClass(DamageClass.Melee)) return 2f;
             if (item.type == ItemType<Ozzathoth>()) return 1f;

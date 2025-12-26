@@ -179,7 +179,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                         for (int d = 0; d < 3; d++)
                             Dust.NewDust(NPC.position, NPC.width, NPC.height, (int)CalamityDusts.Brimstone, 0f, 0f, 100, default, 2f);
 
-                        int type = ModContent.ProjectileType<BrimstoneBarrage>();
+                        int type = ModContent.ProjectileType<CalamitousDart>();
                         int damage = FargoSoulsUtil.ScaledProjectileDamage(Parent.defDamage);
                         float speed = 6f;
                         Vector2 velocity = (NPC.rotation + MathHelper.Pi).ToRotationVector2() * speed;
@@ -215,7 +215,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                     dir = dir.RotatedBy(-MathHelper.Pi * 1.1f * sweepDir * progress);
                     if (SeekerNumber == 3) // flamethrower
                     {
-                        float speed = 6f + progress * 8f;
+                        float speed = 6f + progress * 4f;
                         float speedMod = LumUtils.Saturate((parentAI.Timer - flameStart) / 25f);
                         speed *= speedMod;
                         speed = MathHelper.Clamp(speed, 2, 100);
@@ -227,9 +227,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                         {
                             if (DLCUtils.HostCheck)
                             {
-                                int type = ModContent.ProjectileType<BrimstoneFire>();
+                                
+                                int type = ModContent.ProjectileType<CataclysmicFlame>();
                                 int damage = FargoSoulsUtil.ScaledProjectileDamage(Parent.defDamage);
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + dir * NPC.width / 3, dir * speed, type, damage, 0f, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center , dir * speed, type, damage, 0f, Main.myPlayer, 0f, 0f);
                             }
                         }
                     }
@@ -298,7 +299,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                         for (int d = 0; d < 3; d++)
                             Dust.NewDust(NPC.position, NPC.width, NPC.height, (int)CalamityDusts.Brimstone, 0f, 0f, 100, default, 2f);
 
-                        int type = ModContent.ProjectileType<BrimstoneBarrage>();
+                        int type = ModContent.ProjectileType<CalamitousDart>();
                         int damage = FargoSoulsUtil.ScaledProjectileDamage(Parent.defDamage);
                         float speed = 10f;
                         Vector2 velocity = (NPC.rotation + MathHelper.Pi).ToRotationVector2() * speed;
@@ -341,7 +342,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, (int)CalamityDusts.Brimstone, 0f, 0f, 100, default, 2f);
                 if (DLCUtils.HostCheck)
                 {
-                    int type = ModContent.ProjectileType<BrimstoneBarrage>();
+                    int type = ModContent.ProjectileType<CalamitousDart>();
                     int damage = FargoSoulsUtil.ScaledProjectileDamage(Parent.defDamage);
                     float speed = 9f;
                     Vector2 velocity = offset.ToRotationVector2() * speed;

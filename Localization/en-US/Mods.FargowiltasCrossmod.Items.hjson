@@ -455,7 +455,12 @@ VictideEnchant: {
 		'''
 }
 
-Lore.LoreDraedon.DisplayName: Draedon
+Lore: {
+	LoreDraedon: {
+		DisplayName: Draedon
+		Tooltip: ""
+	}
+}
 
 FathomSwarmerEnchant: {
 	DisplayName: Fathom Swarmer Enchantment

@@ -252,7 +252,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                         break;
                     case ProjectileID.CultistBossIceMist:
                         {
-                            if (CalDLCWorldSavingSystem.EternityDeath && projectile.ai[1] == 1)
+                            if (CalDLCWorldSavingSystem.MasoDeath && projectile.ai[1] == 1)
                             {
                                 int p = Player.FindClosest(projectile.position, projectile.width, projectile.height);
                                 //projectile.ai[1] = 1;

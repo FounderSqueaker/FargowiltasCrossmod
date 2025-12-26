@@ -10,10 +10,14 @@ using CalamityMod.Items.Fishing.SulphurCatches;
 using CalamityMod.Items.Fishing.SunkenSeaCatches;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Placeables;
+using CalamityMod.Items.Placeables.Crags;
+using CalamityMod.Items.Placeables.FurnitureAcidwood;
+using CalamityMod.Items.Placeables.FurnitureMonolith;
 using CalamityMod.Items.Potions;
 using CalamityMod.Items.SummonItems;
 using CalamityMod.Items.SummonItems.Invasion;
 using CalamityMod.Items.Weapons.Rogue;
+using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.NPCs;
 using CalamityMod.NPCs.Abyss;
 using CalamityMod.NPCs.AcidRain;
@@ -28,6 +32,7 @@ using CalamityMod.NPCs.CeaselessVoid;
 using CalamityMod.NPCs.Crabulon;
 using CalamityMod.NPCs.Crags;
 using CalamityMod.NPCs.Cryogen;
+using CalamityMod.NPCs.Deconstructors;
 using CalamityMod.NPCs.DesertScourge;
 using CalamityMod.NPCs.DevourerofGods;
 using CalamityMod.NPCs.DraedonLabThings;
@@ -56,6 +61,7 @@ using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.NPCs.TownNPCs;
 using CalamityMod.NPCs.Yharon;
+using CalamityMod.Projectiles.Summon;
 using CalamityMod.World;
 using Fargowiltas;
 using Fargowiltas.NPCs;
@@ -336,7 +342,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 npc.lifeMax = (int)(npc.lifeMax * 1.2f);
             }
             //dragonfolly and minion
-            if (npc.type == ModContent.NPCType<Bumblefuck>() || npc.type == ModContent.NPCType<Bumblefuck2>())
+            if (npc.type == ModContent.NPCType<Dragonfolly>() || npc.type == ModContent.NPCType<DraconicSwarmer>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.2f);
             }
@@ -445,7 +451,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     npc.lifeMax = (int)(1000000 / 1.3f);
                 if (npc.type == ModContent.NPCType<ProfanedGuardianCommander>())
                     npc.lifeMax = (int)(2000000 / 1.3f);
-                if (npc.type == ModContent.NPCType<Bumblefuck>())
+                if (npc.type == ModContent.NPCType<Dragonfolly>())
                     npc.lifeMax = (int)(3000000 / 1.6f);
                 if (npc.type == ModContent.NPCType<Providence>())
                     npc.lifeMax = (int)(9000000 / 1.3f);
@@ -495,7 +501,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 {
                     if (WorldSavingSystem.EternityMode)
                         npc.scale = 1f;
-                    if (CalDLCWorldSavingSystem.EternityDeath)
+                    if (CalDLCWorldSavingSystem.MasoDeath)
                         npc.scale = 1.4f;
                 }
             }
@@ -520,14 +526,13 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             #endregion
 
         }
-
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
             Player player = Main.player[Main.myPlayer];
             if (player.HasEffect<OrichalcumEffect>() && npc.lifeRegen < 0)
             {
                 float modifier = 0.6f;
-                if (npc.Calamity().shellfishVore > 0) //nerf with shellfish thing
+                if (npc.Calamity().shellfishStaffDebuff) //nerf with shellfish thing
                 {
                     modifier = 0.5f;
                 }
@@ -579,7 +584,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
         public static List<int> DropsPhotosynthesisPotion =
         [
             NPCID.AngryNimbus,
-            ModContent.NPCType<ThiccWaifu>(), //fuck you fabsol
+            ModContent.NPCType<CloudElemental>(), //bless you ozzatron
             NPCID.WyvernHead
         ];
         public static List<int> DropsShadowPotion =
@@ -688,7 +693,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                         npcLoot.Remove(dropRule);
                         npcLoot.Add(HardmodeRule(dropRule));
                     }
-                    if (npc.type == NPCID.SandElemental && (commonDrop.itemId == ModContent.ItemType<WifeinaBottle>() || commonDrop.itemId == ModContent.ItemType<WifeinaBottlewithBoobs>())) // ew ew e w ew
+                    if (npc.type == NPCID.SandElemental && (commonDrop.itemId == ModContent.ItemType<ElementalinaBottle>() || commonDrop.itemId == ModContent.ItemType<RareElementalinaBottle>())) // ew ew e w ew
                     {
                         npcLoot.Remove(dropRule);
                         npcLoot.Add(HardmodeRule(dropRule));
@@ -999,10 +1004,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             {
                 TimsConcoctionDrop(ItemDropRule.Common(ModContent.ItemType<SulphurskinPotion>(), 1, 1, 6));
             }
-            if (DropsTeslaPotion.Contains(npc.type))
-            {
-                TimsConcoctionDrop(ItemDropRule.ByCondition(CalamityConditions.DownedHiveMindOrPerforator.ToDropCondition(ShowItemDropInUI.WhenConditionSatisfied), ModContent.ItemType<TeslaPotion>(), 1, 2, 6));
-            }
+            //if (DropsTeslaPotion.Contains(npc.type))
+            //{
+            //    TimsConcoctionDrop(ItemDropRule.ByCondition(CalamityConditions.DownedHiveMindOrPerforator.ToDropCondition(ShowItemDropInUI.WhenConditionSatisfied), ModContent.ItemType<TeslaPotion>(), 1, 2, 6));
+            //}
             if (DropsZenPotion.Contains(npc.type))
             {
                 TimsConcoctionDrop(ItemDropRule.Common(ModContent.ItemType<ZenPotion>(), 1, 1, 1));
@@ -1102,7 +1107,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 doDeviText = true;
                 CalDLCWorldSavingSystem.downedEidolonWyrm = true;
             }
-            if (npc.type == ModContent.NPCType<ThiccWaifu>() && !CalDLCWorldSavingSystem.downedCloudElemental)
+            if (npc.type == ModContent.NPCType<CloudElemental>() && !CalDLCWorldSavingSystem.downedCloudElemental)
             {
                 doDeviText = true;
                 CalDLCWorldSavingSystem.downedCloudElemental = true;
@@ -1112,10 +1117,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 doDeviText = true;
                 CalDLCWorldSavingSystem.downedEarthElemental = true;
             }
-            if (npc.type == ModContent.NPCType<ArmoredDiggerHead>() && !CalDLCWorldSavingSystem.downedArmoredDigger)
+            if (npc.type == ModContent.NPCType<Burrower>() && !CalDLCWorldSavingSystem.downedBurrower)
             {
                 doDeviText = true;
-                CalDLCWorldSavingSystem.downedArmoredDigger = true;
+                CalDLCWorldSavingSystem.downedBurrower = true;
             }
             if (doDeviText && Main.netMode != NetmodeID.Server)
             {
@@ -1418,7 +1423,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 if (npc.Calamity().newAI[0] == 0)
                     DLCUtils.DropSummon(npc, FargowiltasCrossmod.Instance.Name, "AstrumCor", DownedBossSystem.downedAstrumDeus, ref droppedSummon, Main.hardMode);
             }
-            else if (npc.type == ModContent.NPCType<Bumblefuck>())
+            else if (npc.type == ModContent.NPCType<Dragonfolly>())
             {
                 DLCUtils.DropSummon(npc, FargowiltasCrossmod.Instance.Name, "BirbPheromones", DownedBossSystem.downedDragonfolly, ref droppedSummon, NPC.downedAncientCultist);
             }
@@ -1525,7 +1530,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             //    killedAquatic = false;
             //    if (CalDLCConfig.Instance.EternityPriorityOverRev)
             //    {
-            //        if (npc.type == NPCID.AncientLight && CalDLCWorldSavingSystem.EternityDeath && NPC.AnyNPCs(NPCID.CultistBoss))
+            //        if (npc.type == NPCID.AncientLight && CalDLCWorldSavingSystem.MasoDeath && NPC.AnyNPCs(NPCID.CultistBoss))
             //        {
             //            npc.Center += npc.velocity * 0.75f;
             //            npc.dontTakeDamage = true;
@@ -1715,7 +1720,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
         public int PermafrostDefeatLine = 0;
         public override void GetChat(NPC npc, ref string chat)
         {
-            if (npc.type == ModContent.NPCType<DILF>())
+            if (npc.type == ModContent.NPCType<Archmage>())
             {
                 if (PermafrostDefeatLine == 1)
                 {

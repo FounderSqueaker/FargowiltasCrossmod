@@ -30,7 +30,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Essences
                 .AddIngredient<InfestedClawmerang>()
                 .AddIngredient<MeteorFist>()
                 .AddIngredient<SludgeSplotch>(300)
-                .AddIngredient<SkyStabber>()
+                .AddIngredient<FeatherKnife>(300)
                 .AddIngredient<HardenedHoneycomb>(300)
                 .AddIngredient<InfernalKris>(300)
                 .AddIngredient<RogueEmblem>()

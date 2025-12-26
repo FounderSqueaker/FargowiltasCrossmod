@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Placeables;
+using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.NPCs.SunkenSea;
 using Fargowiltas.Items.Summons;
 using FargowiltasCrossmod.Core;

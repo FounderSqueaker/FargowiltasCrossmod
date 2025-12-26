@@ -6,6 +6,7 @@ using CalamityMod;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Skies;
+using CalamityMod.Systems.Collections;
 using FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen;
 using FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind;
 using FargowiltasCrossmod.Content.Common.Bosses.Mutant;
@@ -57,7 +58,6 @@ public class FargowiltasCrossmod : Mod
     }
     */
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
-    public static ref List<int> pierceResistExceptionList => ref CalamityLists.pierceResistExceptionList;
     public override void PostSetupContent()
     {
         if (ModCompatibility.Calamity.Loaded)
@@ -77,7 +77,6 @@ public class FargowiltasCrossmod : Mod
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     public void PostSetupContent_Calamity()
     {
-        pierceResistExceptionList.Add(ProjectileID.FinalFractal);
         
         /* doesn't seem to be working, may investigate later
         List<int> CalamityReworkedSpears = new List<int>

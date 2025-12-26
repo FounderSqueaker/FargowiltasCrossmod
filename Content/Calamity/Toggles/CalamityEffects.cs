@@ -33,9 +33,9 @@ namespace FargowiltasCrossmod.Content.Calamity.Toggles
     }
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
-    public class ElementalQuiverEffect : UniverseEffect
+    public class PlanebreakersPouchEffect : UniverseEffect
     {
-        public override int ToggleItemType => ModContent.ItemType<ElementalQuiver>();
+        public override int ToggleItemType => ModContent.ItemType<PlanebreakersPouch>();
     }
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]

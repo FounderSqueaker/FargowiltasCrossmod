@@ -15,7 +15,6 @@ using CalamityMod.Particles;
 using CalamityMod;
 using CalamityMod.Projectiles.Boss;
 using FargowiltasSouls;
-using Luminance.Common.Utilities;
 using FargowiltasSouls.Core.Systems;
 
 namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone

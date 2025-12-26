@@ -38,6 +38,7 @@ using FargowiltasSouls.Content.Bosses.Lifelight;
 using FargowiltasSouls.Content.Bosses.Champions.Cosmos;
 using CalamityMod.Items.Tools;
 using CalamityMod.Items.Weapons.Typeless;
+using CalamityMod.Items.Placeables;
 
 namespace FargowiltasCrossmod.Core.Calamity
 {
@@ -122,7 +123,7 @@ namespace FargowiltasCrossmod.Core.Calamity
                 ItemType<ProfanedShard>(),
                 ItemType<ExoticPheromones>(),
                 ItemType<ProfanedCore>(),
-                ItemType<RuneofKos>(),
+                ItemType<MarkofProvidence>(),
                 ItemType<NecroplasmicBeacon>(),
                 ItemType<CosmicWorm>(),
                 ItemType<YharonEgg>(),
@@ -133,11 +134,10 @@ namespace FargowiltasCrossmod.Core.Calamity
                 ItemType<CausticTear>(),
                 ItemType<MartianDistressRemote>()
                 );
-
             Items.AdamantiteExclude = itemFactory.CreateBoolSet(false,
                 ItemType<HeavenlyGale>(),
                 ItemType<TheSevensStriker>(),
-                ItemType<Phangasm>(),
+                //ItemType<Phangasm>(),
                 ItemType<TheJailor>(),
                 ItemType<AetherfluxCannon>(),
                 ItemType<TheAnomalysNanogun>(),
@@ -285,10 +285,8 @@ namespace FargowiltasCrossmod.Core.Calamity
 
             #region Projectiles
             SetFactory projectileFactory = ProjectileID.Sets.Factory;
-
-            Projectiles.TungstenExclude = projectileFactory.CreateBoolSet(false,
-                    ProjectileType<BladecrestOathswordProj>(),
-                    ProjectileType<OldLordClaymoreProj>()
+            //empty because cal fixed the projs here
+            Projectiles.TungstenExclude = projectileFactory.CreateBoolSet(false
                 );
 
             Projectiles.MultipartShredder = projectileFactory.CreateBoolSet(false,

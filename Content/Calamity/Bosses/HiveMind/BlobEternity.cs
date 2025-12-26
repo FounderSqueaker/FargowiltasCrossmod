@@ -358,8 +358,4 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
         }
         
     }
-    public class Blob2Eternity : BlobEternity
-    {
-        public override int NPCOverrideID => ModContent.NPCType<HiveBlob2>();
-    }
 }

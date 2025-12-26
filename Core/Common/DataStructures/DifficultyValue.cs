@@ -20,7 +20,7 @@ namespace FargowiltasCrossmod.Core.Common.DataStructures
         /// <summary>
         /// The value that should be selected in Death Eternity mode.
         /// </summary>
-        public TValue EternityDeathValue;
+        public TValue MasoDeathValue;
 
         /// <summary>
         /// The value that should be selected in Masochist Mode.
@@ -37,8 +37,8 @@ namespace FargowiltasCrossmod.Core.Common.DataStructures
             {
                 if (WorldSavingSystem.MasochistModeReal)
                     return MasochistValue;
-                if (CalDLCWorldSavingSystem.EternityDeath)
-                    return EternityDeathValue;
+                if (CalDLCWorldSavingSystem.MasoDeath)
+                    return MasoDeathValue;
 
                 return EternityRevValue;
             }

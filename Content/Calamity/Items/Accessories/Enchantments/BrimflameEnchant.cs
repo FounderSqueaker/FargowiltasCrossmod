@@ -69,7 +69,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient<BrimflameScowl>();
+            recipe.AddIngredient<BrimflameCowl>();
             recipe.AddIngredient<BrimflameRobes>(1);
             recipe.AddIngredient<BrimflameBoots>(1);
             recipe.AddIngredient<BrimroseStaff>(1);

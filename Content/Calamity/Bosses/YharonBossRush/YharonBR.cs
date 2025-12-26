@@ -1,6 +1,6 @@
 ﻿using CalamityMod.Events;
 using CalamityMod.NPCs.Bumblebirb;
-using CalamityMod.NPCs.CalamityAIs.CalamityBossAIs;
+
 using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.NPCs.Providence;
 using CalamityMod.Projectiles.Boss;
@@ -48,7 +48,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ProvidenceBossRush
             if (npc.GetLifePercent() <= 0.53f && FuckerSpawnCounter == 0)
             {
                 FuckerSpawnCounter = 1;
-                NPC.NewNPCDirect(npc.GetSource_FromAI(), npc.Center, ModContent.NPCType<Bumblefuck>());
+                NPC.NewNPCDirect(npc.GetSource_FromAI(), npc.Center, ModContent.NPCType<Dragonfolly>());
                 SoundEngine.PlaySound(SoundID.DD2_BetsyScream with { Pitch = 0.25f }, npc.Center);
             } 
             return base.PreAI(npc);

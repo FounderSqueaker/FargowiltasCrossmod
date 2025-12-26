@@ -38,6 +38,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
+
 namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
 {
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
@@ -406,10 +407,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                 }
                 if (Timer % 3 == 0)
                 {
-                    int type = ModContent.ProjectileType<BrimstoneFire>();
+                    int type = ModContent.ProjectileType<CataclysmicFlame>();
                     int damage = FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage);
                     Vector2 dir = ForwardRotation.ToRotationVector2();
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + dir * NPC.width / 3, dir * speed, type, damage, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center , dir * speed, type, damage, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
 
@@ -443,7 +444,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
 
                 // rotation
                 float idealAngle = NPC.DirectionTo(Target.Center).ToRotation() + MathHelper.PiOver2 * 1.2f * sweepDir;
-                NPC.rotation = NPC.rotation.ToRotationVector2().RotateTowards(idealAngle - MathHelper.PiOver2, 0.1f).ToRotation();
+                NPC.rotation = LumUtils.RotateTowards(NPC.rotation.ToRotationVector2(), idealAngle - MathHelper.PiOver2, 0.1f).ToRotation();
 
                 // movement
                 Vector2 desiredPos = Target.Center + Target.DirectionTo(NPC.Center) * idealDistance;
@@ -458,7 +459,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                 {
                     float speed = LumUtils.Saturate((Timer - startFire) / 25f);
                     speed *= 10;
-                    speed = MathHelper.Clamp(speed, 2, 10);
+                    speed = MathHelper.Clamp(speed, 2, 5);
                     Flames(speed);
                 }
             }
@@ -469,7 +470,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                 NPC.velocity *= 0.94f;
 
                 float progress = (Timer - Flamethrower_WindupTime - Flamethrower_PullbackTime) / Flamethrower_SweepTime;
-                Flames(10f + progress * 12f);
+                Flames(5f + progress * 12f);
             }
             else
             {

@@ -4,8 +4,9 @@ EternityRevDifficulty: {
 	ExpandedDescription:
 		'''
 		Enables [c/00FFFF:Eternity Mode] and [c/880808:Revengeance Mode,] and enables Master Mode drops.
+		[c/00FFFF:This is the main intended experience.] 
 
-		Reworks the [c/00FFFF:Eternity Mode] behaviour for several Calamity bosses. Current reworks:
+		Adds [c/00FFFF:Eternity Mode] behaviour for several Calamity bosses. Current reworks:
 		-All bosses up to Calamitas Clone
 		-Old Duke
 		-Exo Mechs
@@ -20,28 +21,27 @@ EternityRevDifficulty: {
 	Deactivation: Eternity-Revengeance Mode has deactivated.
 }
 
-EternityDeathDifficulty: {
-	Name: Eternity-Death
+MasoDeathDifficulty: {
+	Name: Masochist-Death
 	ShortDescription: "[c/00FFFF:A challenging mode from Fargo's Mods that includes] [c/800080:Death Mode] [c/00FFFF:changes and extra Vanilla boss behavior.]"
 	ExpandedDescription:
 		'''
-		Enables [c/00FFFF:Eternity Mode] and [c/800080:Death Mode,] and enables Master Mode drops.
-		[c/00FFFF:This is the main intended experience.] 
+		Enables [c/00FFFF:Masochist Mode] and [c/800080:Death Mode,] and enables Master Mode.
+		[c/00FFFF:This is a harder mode for players seeking a greater challenge.] 
 
-		AReworks the [c/00FFFF:Eternity Mode] behaviour for several Calamity bosses. Current reworks:
+		Adds [c/00FFFF:Eternity Mode] behaviour for several Calamity bosses. Current reworks:
 		-All bosses up to Calamitas Clone
 		-Old Duke
 		-Exo Mechs
 		The remaining bosses are still being worked on!
-		Eternity-Death only: Expands behavior for vanilla [c/00FFFF:Eternity Mode] bosses, including parts of Calamity behavior or new Calamity-inspired behavior.
 
-		By default, [c/00FFFF:Eternity Mode] behaviour takes priority. This can be changed in the configs.
+		By default, [c/00FFFF:Masochist Mode] behaviour takes priority. This can be changed in the configs.
 		{$Mods.FargowiltasSouls.UI.ExpandedFeatures}
 		[i:1612][c/00ff00:Recommended to use Fargo's Mutant Mod Debuff Display (in config)]
 
 		'''
-	Activation: Eternity-Death Mode has activated!
-	Deactivation: Eternity-Death Mode has deactivated.
+	Activation: Masochist-Death Mode has activated!
+	Deactivation: Masochist-Death Mode has deactivated.
 }
 
 UI: {

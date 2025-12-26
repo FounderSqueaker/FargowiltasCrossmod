@@ -72,7 +72,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddIngredient<CalamityMod.Items.Armor.Statigel.StatigelGreaves>();
             recipe.AddIngredient<ShinobiBlade>();
             recipe.AddIngredient<CalamityMod.Items.Weapons.Ranged.OverloadedBlaster>();
-            recipe.AddIngredient<BouncySpikyBall>(300);
+            recipe.AddIngredient<GelDart>(300);
             recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
         }

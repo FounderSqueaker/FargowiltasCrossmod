@@ -9,7 +9,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
 {
     public class BrimstoneBall : ModProjectile
     {
-        public override string Texture => "CalamityMod/Projectiles/Boss/BrimstoneBall";
+        public override string Texture => "CalamityMod/Projectiles/Boss/CatastrophicCinder";
         public override void SetDefaults()
         {
             Projectile.width = 16;
