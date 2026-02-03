@@ -266,7 +266,6 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                 if (timer >= 300 && timer < 320)
                 {
                     NPC.scale += 0.05f;
-                    NPC.position.Y -= 15;
                 }
                 if (timer == 300)
                 {

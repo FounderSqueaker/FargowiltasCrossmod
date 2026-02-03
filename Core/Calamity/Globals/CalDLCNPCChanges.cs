@@ -610,12 +610,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             ModContent.NPCType<Toxicatfish>(),
             ModContent.NPCType<Trasher>(),
         ];
-        public static List<int> DropsTeslaPotion =
-        [
-            NPCID.GreenJellyfish,
-            ModContent.NPCType<BlindedAngler>(),
-            ModContent.NPCType<ShockstormShuttle>(),
-        ];
         public static List<int> DropsZenPotion =
         [
             ModContent.NPCType<Atlas>(),
@@ -1004,10 +998,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             {
                 TimsConcoctionDrop(ItemDropRule.Common(ModContent.ItemType<SulphurskinPotion>(), 1, 1, 6));
             }
-            //if (DropsTeslaPotion.Contains(npc.type))
-            //{
-            //    TimsConcoctionDrop(ItemDropRule.ByCondition(CalamityConditions.DownedHiveMindOrPerforator.ToDropCondition(ShowItemDropInUI.WhenConditionSatisfied), ModContent.ItemType<TeslaPotion>(), 1, 2, 6));
-            //}
             if (DropsZenPotion.Contains(npc.type))
             {
                 TimsConcoctionDrop(ItemDropRule.Common(ModContent.ItemType<ZenPotion>(), 1, 1, 1));
@@ -1112,7 +1102,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 doDeviText = true;
                 CalDLCWorldSavingSystem.downedCloudElemental = true;
             }
-            if (npc.type == ModContent.NPCType<Horse>() && !CalDLCWorldSavingSystem.downedEarthElemental)
+            if (npc.type == ModContent.NPCType<EarthElemental>() && !CalDLCWorldSavingSystem.downedEarthElemental)
             {
                 doDeviText = true;
                 CalDLCWorldSavingSystem.downedEarthElemental = true;

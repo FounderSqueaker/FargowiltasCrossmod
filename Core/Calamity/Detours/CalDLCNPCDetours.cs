@@ -21,6 +21,7 @@ using FargowiltasSouls.Core.Globals;
 using CalamityMod.Systems.Collections;
 using CalamityMod.NPCs.SlimeGod;
 using CalamityMod.NPCs.Leviathan;
+using UtfUnknown.Core.Models.SingleByte.Finnish;
 
 namespace FargowiltasCrossmod.Core.Calamity.Systems
 {
@@ -54,7 +55,11 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             HookHelper.ModifyMethodWithDetour(MediumPerforatorTailOnKill_Method, MediumPerforatorTailOnKill_Detour);
 
             HookHelper.ModifyMethodWithDetour(EmodeEditSpawnPool_Method, EmodeEditSpawnPool_Detour);
+            
         }
+        //private static readonly MethodInfo CalamityVanillaAIOverrideNPC_SetDefaultsMethod = typeof(CalamityVanillaAIOverrideNPC).GetMethod("SetDefaults", LumUtils.UniversalBindingFlags);
+        //public delegate bool Orig_CalamityVanillaAIOverrideNPC_SetDefaults(CalamityVanillaAIOverrideNPC self, NPC npc);
+
         private static readonly MethodInfo CalamityPreAIMethod = typeof(CalamityGlobalNPC).GetMethod("PreAI", LumUtils.UniversalBindingFlags);
         public delegate bool Orig_CalamityPreAI(CalamityGlobalNPC self, NPC npc);
         internal static bool CalamityPreAI_Detour(Orig_CalamityPreAI orig, CalamityGlobalNPC self, NPC npc)

@@ -83,7 +83,13 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
                 {
                     ModCompatibility.SoulsMod.Mod.Call("EternityVanillaBossBehaviour", CalDLCConfig.Instance.EternityPriorityOverRev);
                     if (CalDLCConfig.Instance.EternityPriorityOverRev && WorldSavingSystem.EternityMode)
+                    {
                         CalamityVanillaAIOverrideNPC.Enabled = false;
+                    }
+                    else
+                    {
+                        CalamityVanillaAIOverrideNPC.Enabled = true;
+                    }
                 }
             }
             if (ModCompatibility.WrathoftheGods.Loaded)

@@ -374,8 +374,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             ItemType<Greentide>(),ItemType<HellfireFlamberge>(),
             ItemType<LifehuntScythe>(),ItemType<LionHeart>(),
             ItemType<PerfectDark>(),
-            ItemType<RedSun>(),
-            ItemType<SeashineSword>(),ItemType<SolsticeClaymore>(),ItemType<SoulHarvester>(),
+            ItemType<RedSun>()
+            ,ItemType<SeashineSword>(),ItemType<SolsticeClaymore>(),ItemType<SoulHarvester>(),
             ItemType<StormRuler>(),ItemType<StormSaber>(),
             ItemType<Swordsplosion>(),ItemType<TaintedBlade>(),ItemType<TeardropCleaver>(),
             ItemType<TerrorBlade>(),ItemType<TheDarkMaster>(),

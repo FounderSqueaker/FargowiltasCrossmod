@@ -21,10 +21,19 @@ namespace FargowiltasCrossmod.Core.Calamity
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class EternityRevDifficulty : DifficultyMode
     {
+        public override Asset<Texture2D> OutlineTexture
+        {
+            get
+            {
+                _outlineTexture ??= ModContent.Request<Texture2D>("FargowiltasCrossmod/Assets/EternityRevIcon_Outline");
+
+                return _outlineTexture;
+            }
+        }
         public override LocalizedText Name => Language.GetText("Mods.FargowiltasCrossmod.EternityRevDifficulty.Name");
-        public override LocalizedText FTWName => Language.GetText("Mods.FargowiltasCrossmod.EternityRevDifficulty.Name");
+        public override LocalizedText FTWName => Language.GetText("Mods.FargowiltasCrossmod.MasoDeathDifficulty.Name");
         public override Color ChatTextColor => Color.Cyan;
-        public override Color FTWTextColor => Color.Cyan;
+        public override Color? FTWTextColor => Color.Cyan;
         public override SoundStyle ActivationSound => SoundID.Roar with { Pitch = -0.5f };
         public override int BackBoneGameModeID => GameModeID.Expert;
         public override LocalizedText ShortDescription => Language.GetText("Mods.FargowiltasCrossmod.EternityRevDifficulty.ShortDescription");
@@ -32,12 +41,12 @@ namespace FargowiltasCrossmod.Core.Calamity
         {
             get
             {
-                _textureDisabled ??= ModContent.Request<Texture2D>("FargowiltasCrossmod/Assets/EternityRevIcon");
+                _textureDisabled ??= ModContent.Request<Texture2D>("FargowiltasCrossmod/Assets/EternityRevIcon_Off");
 
                 return _textureDisabled;
             }
         }
-        public override float DifficultyScale => 2;
+        public override float DifficultyScale => 0.1f;
         public override bool Enabled
         {
             get => CalDLCWorldSavingSystem.EternityRev;
@@ -64,12 +73,10 @@ namespace FargowiltasCrossmod.Core.Calamity
                 if (ModCompatibility.InfernumMode.Loaded)
                     if (ModCompatibility.InfernumMode.InfernumDifficulty && CalDLCConfig.Instance.InfernumDisablesEternity)
                         emode = false;
-
-                if (Main.expertMode)
-                {
-                    WorldSavingSystem.EternityMode = emode;
-                    WorldSavingSystem.ShouldBeEternityMode = emode;
-                }
+                WorldSavingSystem.ShouldBeEternityMode = emode;
+                WorldSavingSystem.EternityMode = emode;
+                if (value)
+                    Main.GameMode = GameModeID.Expert;
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     PacketManager.SendPacket<EternityCalPacket>();
             }
@@ -95,11 +102,17 @@ namespace FargowiltasCrossmod.Core.Calamity
             List<int> list = new List<int>();
             for (int i = 0; i < tierList.Length; i++)
             {
-                if (tierList[i].Name.Value == "Revengeance")
+                if (tierList[i] is RevengeanceDifficulty)
                     list.Add(i);
             }
             if (list.Count <= 0) list.Add(0);
             return list.ToArray();
+        }
+        
+        public override bool IsBasedOn(DifficultyMode mode)
+        {
+            if (Main.getGoodWorld) return mode is DeathDifficulty;
+            return mode is RevengeanceDifficulty;
         }
     }
 }

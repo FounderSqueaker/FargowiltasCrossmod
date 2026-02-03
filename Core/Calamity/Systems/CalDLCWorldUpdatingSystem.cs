@@ -27,7 +27,13 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             {
                 ModCompatibility.SoulsMod.Mod.Call("EternityVanillaBossBehaviour", CalDLCConfig.Instance.EternityPriorityOverRev);
                 if (CalDLCConfig.Instance.EternityPriorityOverRev && WorldSavingSystem.EternityMode)
+                {
                     CalamityVanillaAIOverrideNPC.Enabled = false;
+                }
+                else
+                {
+                    CalamityVanillaAIOverrideNPC.Enabled = true;
+                }
             }
 
         }
@@ -55,6 +61,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
                         infernum = true;
                 if (CalDLCWorldSavingSystem.EternityRev && !WorldSavingSystem.EternityMode && !infernum && Main.expertMode)
                 {
+                    
                     WorldSavingSystem.ShouldBeEternityMode = true;
                     WorldSavingSystem.EternityMode = true;
                     if (Main.netMode != NetmodeID.SinglePlayer)

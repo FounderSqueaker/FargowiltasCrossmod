@@ -42,6 +42,7 @@ MasoDeathDifficulty: {
 		'''
 	Activation: Режим Вечная смерть включён!
 	Deactivation: Режим Вечная смерть выключен.
+	// FTWName: Masochist-Malice Mode
 }
 
 UI: {

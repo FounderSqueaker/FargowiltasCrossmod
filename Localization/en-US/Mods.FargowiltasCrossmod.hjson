@@ -42,6 +42,7 @@ MasoDeathDifficulty: {
 		'''
 	Activation: Masochist-Death Mode has activated!
 	Deactivation: Masochist-Death Mode has deactivated.
+	FTWName: Masochist-Malice Mode
 }
 
 UI: {
