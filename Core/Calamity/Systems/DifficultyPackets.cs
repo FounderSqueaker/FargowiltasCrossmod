@@ -1,4 +1,5 @@
-﻿using FargowiltasSouls.Core.Systems;
+﻿using CalamityMod.World;
+using FargowiltasSouls.Core.Systems;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -143,6 +144,17 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             WorldSavingSystem.ShouldBeEternityMode = containmentFlagWrapper[3];
             if (WorldSavingSystem.ShouldBeEternityMode)
                 WorldSavingSystem.SpawnedDevi = true;
+        }
+    }
+    public class DraedonMechPacket : BaseDLCPacket
+    {
+        public override void Write(ModPacket packet, params object[] context)
+        {
+            packet.Write7BitEncodedInt((int)CalamityWorld.DraedonMechToSummon);
+        }
+        public override void Read(BinaryReader reader)
+        {
+            CalamityWorld.DraedonMechToSummon = (CalamityMod.ExoMech)reader.Read7BitEncodedInt();
         }
     }
 }

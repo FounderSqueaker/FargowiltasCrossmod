@@ -127,10 +127,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.GraphicsReplaceme
             CalamityWorld.DraedonMechToSummon = mechToSummon;
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
-                var packet = ModCompatibility.Calamity.Mod.GetPacket();
-                packet.Write((byte)CalamityModMessageType.ExoMechSelection);
-                packet.Write((int)CalamityWorld.DraedonMechToSummon);
-                packet.Send();
+                PacketManager.SendPacket<DraedonMechPacket>();
             }
         }
     }

@@ -8,6 +8,7 @@ using FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Draedon.Dialogue;
 using FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.SpecificManagers;
 using FargowiltasCrossmod.Core;
 using FargowiltasCrossmod.Core.Calamity.Globals;
+using FargowiltasCrossmod.Core.Calamity.Systems;
 using Luminance.Common.Utilities;
 using Luminance.Core.Graphics;
 using Luminance.Core.Sounds;
@@ -129,11 +130,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Draedon
                     if (Main.netMode == NetmodeID.Server)
                     {
                         CalamityWorld.DraedonMechToSummon = ExoMech.None;
-
-                        ModPacket packet = ModCompatibility.Calamity.Mod.GetPacket();
-                        packet.Write((byte)CalamityModMessageType.ExoMechSelection);
-                        packet.Write((int)CalamityWorld.DraedonMechToSummon);
-                        packet.Send();
+                        //cal made this packet internal in 2.1 so i had to remake it.....
+                        PacketManager.SendPacket<DraedonMechPacket>();
                     }
                 }
 

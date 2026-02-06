@@ -293,6 +293,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Projectiles
             overloadShader.Apply();
 
             RenderLaser(start, end, Color.White, 1f);
+            Main.spriteBatch.ResetToDefault();
             return false;
         }
 

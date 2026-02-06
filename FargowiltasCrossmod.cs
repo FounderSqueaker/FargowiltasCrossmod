@@ -75,6 +75,7 @@ public class FargowiltasCrossmod : Mod
 
         #region difficultyWorldScreen
 
+        //doesnt work no idea why
         //Func<WorldFileData, bool> erevEnabled = data =>
         //{
         //    if (!data.TryGetHeaderData<CalDLCWorldSavingSystem>(out var tagData))
