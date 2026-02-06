@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Content.UI
         }
         public override void UpdateUI()
         {
-            if (!Main.playerInventory)
+            if (!Main.playerInventory && !Main.getGoodWorld)
                 FargoUIManager.Close<PriorityTogglerButton>();
             else
                 FargoUIManager.Open<PriorityTogglerButton>();
@@ -57,7 +57,7 @@ namespace FargowiltasSouls.Content.UI
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (Main.playerInventory)
+            if (Main.playerInventory && !Main.getGoodWorld)
             {
                 EmodePriority.Draw(spriteBatch);
                 CalamityPriority.Draw(spriteBatch);

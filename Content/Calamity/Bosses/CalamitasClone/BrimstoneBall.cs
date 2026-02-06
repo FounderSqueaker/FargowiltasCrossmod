@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Dusts;
+using CalamityMod.Graphics.Metaballs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -22,20 +23,20 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
 
         public override void AI()
         {
-            Projectile.rotation += 0.12f * Projectile.direction;
+            Projectile.rotation += 0.2f * Projectile.direction;
 
             if (Projectile.velocity.Length() < 17)
                 Projectile.velocity *= 1.1f;
 
             Lighting.AddLight(Projectile.Center, 0.25f, 0f, 0f);
 
-            for (int i = 0; i < 2; i++)
-            {
-                Vector2 dspeed = -Projectile.velocity * 0.7f;
-                int brimDust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, (int)CalamityDusts.Brimstone, 0f, 0f, 150, default, 1.1f);
-                Main.dust[brimDust].noGravity = true;
-                Main.dust[brimDust].velocity = dspeed;
-            }
+
+            var p = CatastropheMetaball.SpawnParticle(Projectile.Center + Projectile.velocity, -Projectile.velocity, Terraria.GameContent.TextureAssets.Projectile[Type].Width() * 2);
+            p.rotation = Projectile.rotation;
+            p.TextureToUse = Terraria.GameContent.TextureAssets.Projectile[Type].Value;
+            p.SizeScaling = 0.5f;
+
+            Projectile.Opacity = 0;
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
@@ -47,10 +48,13 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
         }
         public override bool PreDraw(ref Color lightColor)
         {
+            return false;
+            /*
             Color backglowColor = Color.Red;
 
             Projectile.DrawProjectileWithBackglow(backglowColor, lightColor, 2f);
             return false;
+            */
         }
     }
 }
