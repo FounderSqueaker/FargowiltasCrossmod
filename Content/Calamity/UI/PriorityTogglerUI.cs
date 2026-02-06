@@ -105,7 +105,7 @@ namespace FargowiltasSouls.Content.UI.Elements
                     spriteBatch.Draw(Texture, position + new Vector2(2) + afterimageOffset, Texture.Bounds, glowColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
                 }
             }
-            spriteBatch.Draw(Texture, position + new Vector2(2), Texture.Bounds, Color.White * (active ? 1f : 0.7f), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+            spriteBatch.Draw(Texture, position + new Vector2(2), Texture.Bounds, Color.White * (active ? 1f : 0.5f), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
 
         }
     }
