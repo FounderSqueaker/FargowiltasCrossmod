@@ -74,24 +74,24 @@ public class FargowiltasCrossmod : Mod
         }
 
         #region difficultyWorldScreen
-
+        /*
         //doesnt work no idea why
-        //Func<WorldFileData, bool> erevEnabled = data =>
-        //{
-        //    if (!data.TryGetHeaderData<CalDLCWorldSavingSystem>(out var tagData))
-        //        return false;
-        //    return tagData.GetList<string>("downed").Contains("EternityRevActive");
-        //};
-        //Func<WorldFileData, bool> masodeathEnabled = data =>
-        //{
-        //    if (!data.TryGetHeaderData<CalDLCWorldSavingSystem>(out var tagData))
-        //        return false;
-        //    return tagData.GetList<string>("downed").Contains("MasoDeathActive");
-        //};
-        //Mod luminance = ModLoader.GetMod("Luminance");
-        //luminance.Call("RegisterWorldInfoIcon", "FargowiltasCrossmod/Assets/EternityRevIcon", "Mods.FargowiltasCrossmod.EternityRevDifficulty.Name", erevEnabled, (byte)60);
-        //luminance.Call("RegisterWorldInfoIcon", "FargowiltasCrossmod/Assets/MasoDeathIcon", "Mods.FargowiltasCrossmod.MasoDeathDifficulty.Name", masodeathEnabled, (byte)60);
-
+        Func<WorldFileData, bool> erevEnabled = data =>
+        {
+            if (!data.TryGetHeaderData<CalDLCWorldSavingSystem>(out var tagData))
+                return false;
+            return tagData.GetList<string>("downed").Contains("EternityRevActive");
+        };
+        Func<WorldFileData, bool> masodeathEnabled = data =>
+        {
+            if (!data.TryGetHeaderData<CalDLCWorldSavingSystem>(out var tagData))
+                return false;
+            return tagData.GetList<string>("downed").Contains("MasoDeathActive");
+        };
+        Mod luminance = ModLoader.GetMod("Luminance");
+        luminance.Call("RegisterWorldInfoIcon", "FargowiltasCrossmod/Assets/EternityRevIcon", "Mods.FargowiltasCrossmod.EternityRevDifficulty.Name", erevEnabled, (byte)60);
+        luminance.Call("RegisterWorldInfoIcon", "FargowiltasCrossmod/Assets/MasoDeathIcon", "Mods.FargowiltasCrossmod.MasoDeathDifficulty.Name", masodeathEnabled, (byte)60);
+        */
         #endregion
     }
     //[JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
