@@ -1,21 +1,17 @@
 EternityRevDifficulty: {
 	Name: Eternity-Revengeance
-	ShortDescription: "[c/00FFFF:A challenging mode from Fargo's Mods that includes] [c/880808:Revengeance Mode] [c/00FFFF:changes.]"
+	ShortDescription: "[c/00FFFF:The intended Calamity-Souls experience. Can only be enabled in Expert Mode]"
 	ExpandedDescription:
 		'''
 		Enables [c/00FFFF:Eternity Mode] and [c/880808:Revengeance Mode,] and enables Master Mode drops.
-		[c/00FFFF:This is the main intended experience.] 
-
 		Adds [c/00FFFF:Eternity Mode] behaviour for several Calamity bosses. Current reworks:
 		-All bosses up to Calamitas Clone
 		-Old Duke
 		-Exo Mechs
-		The remaining bosses are still being worked on!
-
+		-The remaining bosses are still being worked on!
 		By default, [c/00FFFF:Eternity Mode] behaviour takes priority. This can be changed in the configs.
 		{$Mods.FargowiltasSouls.UI.ExpandedFeatures}
 		[i:1612][c/00ff00:Recommended to use Fargo's Mutant Mod Debuff Display (in config)]
-
 		'''
 	Activation: Eternity-Revengeance Mode has activated!
 	Deactivation: Eternity-Revengeance Mode has deactivated.
@@ -23,18 +19,15 @@ EternityRevDifficulty: {
 
 MasoDeathDifficulty: {
 	Name: Masochist-Death
-	ShortDescription: "[c/00FFFF:A challenging mode from Fargo's Mods that includes] [c/800080:Death Mode] [c/00FFFF:changes and extra Vanilla boss behavior.]"
+	ShortDescription: "[c/00FFFF:The Calamity-Souls experience for players seeking a greater challenge. Can only be enabled in Master Mode]"
 	ExpandedDescription:
 		'''
-		Enables [c/00FFFF:Masochist Mode] and [c/800080:Death Mode,] and enables Master Mode.
-		[c/00FFFF:This is a harder mode for players seeking a greater challenge.] 
-
+		Enables [c/00FFFF:Masochist Mode] and [c/800080:Death Mode.]
 		Adds [c/00FFFF:Eternity Mode] behaviour for several Calamity bosses. Current reworks:
 		-All bosses up to Calamitas Clone
 		-Old Duke
 		-Exo Mechs
-		The remaining bosses are still being worked on!
-
+		-The remaining bosses are still being worked on!
 		By default, [c/00FFFF:Masochist Mode] behaviour takes priority. This can be changed in the configs.
 		{$Mods.FargowiltasSouls.UI.ExpandedFeatures}
 		[i:1612][c/00ff00:Recommended to use Fargo's Mutant Mod Debuff Display (in config)]
