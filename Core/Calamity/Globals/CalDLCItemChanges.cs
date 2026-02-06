@@ -289,10 +289,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 //item.maxStack = 999;
                 item.consumable = false;
             }
-            if (item.type == ItemID.ReaverShark)
-            {
-                item.pick = 59;
-            }
         }
         public override void UpdateInventory(Item item, Player player)
         {

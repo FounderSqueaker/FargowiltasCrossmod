@@ -230,6 +230,13 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     case NPCID.SkeletronPrime:
                         npc.lifeMax = (int)(npc.lifeMax * 0.925f);
                         npc.damage = 80;
+                        npc.damage /= 2;
+                        break;
+                    case NPCID.PrimeCannon:
+                    case NPCID.PrimeLaser:
+                    case NPCID.PrimeSaw:
+                    case NPCID.PrimeVice:
+                        npc.damage /= 2;
                         break;
                     case NPCID.TheDestroyer:
                         npc.damage = 80;
