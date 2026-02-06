@@ -43,6 +43,10 @@ UI: {
 	HadesIconMessage: Hades, a serpentine terror with impervious armor and innumerable laser turrets.
 	AresIconMessage: Ares, a heavyweight, diabolical monstrosity with four detachable Exo superweapons.
 	ArtemisAndApolloIconMessage: Artemis and Apollo, a pair of extraordinarily nimble automatons with unstable energy reserves.
+	EternityPriority: Prioritize Eternity boss AI over Calamity
+	CalamityPriority: Prioritize Calamity boss AI over Eternity
+	EternityPriorityToggle: Boss priority set to Eternity
+	CalamityPriorityToggle: Boss priority set to Calamity
 }
 
 Buffs: {

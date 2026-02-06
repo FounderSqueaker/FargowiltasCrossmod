@@ -50,6 +50,10 @@ UI: {
 	HadesIconMessage: Аид, змеевидный ужас с непробиваемой бронёй и бесчисленными лазерными турелями.
 	AresIconMessage: Арес, дьявольское чудовище-тяжеловес с четырьмя отсоединяющимися экзо-суперорудиями.
 	ArtemisAndApolloIconMessage: Артемида и Аполлон, пара экстремально вёртких роботов с нестабильными запасами энергии.
+	// EternityPriority: Prioritize Eternity boss AI over Calamity
+	// CalamityPriority: Prioritize Calamity boss AI over Eternity
+	// EternityPriorityToggle: Boss priority set to Eternity
+	// CalamityPriorityToggle: Boss priority set to Calamity
 }
 
 Buffs: {
