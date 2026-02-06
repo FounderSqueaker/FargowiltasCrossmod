@@ -125,7 +125,6 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                 p = CalamitasMetaball.SpawnParticle(Projectile.Center, Main.rand.NextVector2Circular(3, 3), 24f);
                 p.SizeScaling = 0.8f;
             }
-
         }
 
         public override bool CanHitPlayer(Player target) => Projectile.Opacity == 1f;
