@@ -75,8 +75,14 @@ namespace FargowiltasCrossmod.Core.Calamity
                         emode = false;
                 WorldSavingSystem.ShouldBeEternityMode = emode;
                 WorldSavingSystem.EternityMode = emode;
-                if (value)
-                    Main.GameMode = GameModeID.Expert;
+                //if (value)
+                //{
+                //    if (Main.GameMode == GameModeID.Creative)
+                //    {
+                //        Main.
+                //    }
+                //    Main.GameMode = GameModeID.Expert;
+                //}
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     PacketManager.SendPacket<EternityCalPacket>();
             }
