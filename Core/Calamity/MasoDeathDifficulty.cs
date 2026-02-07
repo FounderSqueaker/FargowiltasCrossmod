@@ -31,9 +31,7 @@ namespace FargowiltasCrossmod.Core.Calamity
             }
         }
         public override LocalizedText Name => Language.GetText("Mods.FargowiltasCrossmod.MasoDeathDifficulty.Name");
-        public override LocalizedText FTWName => Language.GetText("Mods.FargowiltasCrossmod.MasoDeathDifficulty.FTWName");
         public override Color ChatTextColor => Color.DarkRed;
-        public override Color? FTWTextColor => Color.DarkRed;
         public override SoundStyle ActivationSound => SoundID.Roar with { Pitch = -0.5f };
         public override int BackBoneGameModeID => GameModeID.Master;
         public override LocalizedText ShortDescription => Language.GetText("Mods.FargowiltasCrossmod.MasoDeathDifficulty.ShortDescription");
@@ -75,11 +73,15 @@ namespace FargowiltasCrossmod.Core.Calamity
                         emode = false;
                 WorldSavingSystem.EternityMode = emode;
                 WorldSavingSystem.ShouldBeEternityMode = emode;
-                //if (value)
-                //{
-                //    Main.GameMode = GameModeID.Master;
-                //}
-                
+                if (value)
+                {
+                    if (Main.GameMode != GameModeID.Creative)
+                    {
+                        Main.GameMode = GameModeID.Master;
+                        if (Main.getGoodWorld) Main.GameMode = GameModeID.Expert;
+                    }
+                }
+
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     PacketManager.SendPacket<EternityCalPacket>();
             }

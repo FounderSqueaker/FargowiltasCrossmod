@@ -15,6 +15,7 @@ using Terraria.ModLoader;
 using static CalamityMod.Systems.DifficultyModeSystem;
 using Terraria.Audio;
 using System.Collections.Generic;
+using Terraria.GameContent.Creative;
 
 namespace FargowiltasCrossmod.Core.Calamity
 {
@@ -75,14 +76,14 @@ namespace FargowiltasCrossmod.Core.Calamity
                         emode = false;
                 WorldSavingSystem.ShouldBeEternityMode = emode;
                 WorldSavingSystem.EternityMode = emode;
-                //if (value)
-                //{
-                //    if (Main.GameMode == GameModeID.Creative)
-                //    {
-                //        Main.
-                //    }
-                //    Main.GameMode = GameModeID.Expert;
-                //}
+                if (value)
+                {
+                    if (Main.GameMode != GameModeID.Creative)
+                    {
+                        Main.GameMode = GameModeID.Expert;
+                        if (Main.getGoodWorld) Main.GameMode = GameModeID.Normal;
+                    }
+                }
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     PacketManager.SendPacket<EternityCalPacket>();
             }
