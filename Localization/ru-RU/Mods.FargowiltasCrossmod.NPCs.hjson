@@ -1,4 +1,4 @@
-FungalClump.DisplayName: Грибной комок
+﻿FungalClump.DisplayName: Грибной комок
 LargePerforatorBody.DisplayName: Большой Перфоратор
 LargePerforatorBody2.DisplayName: Большой Перфоратор
 LargePerforatorHead.DisplayName: Большой Перфоратор
@@ -7,8 +7,8 @@ PermafrostBoss.DisplayName: Пермафрост
 
 AresHand: {
 	DisplayName: Рука Ареса
-	EnergyKatanaDisplayName: Энергетическая катана ВУ-09 Ареса
-	PulseCannonDisplayName: Импульсная пушка ВУ-09 Ареса
+	EnergyKatanaDisplayName: Энергетическая катана КзС-09 Ареса
+	PulseCannonDisplayName: Импульсная пушка КзС-09 Ареса
 }
 
 Draedon: {
@@ -94,9 +94,9 @@ PermafrostChat: {
 	Defeat2: Ах, неплохой спарринг. Разминка — это полезно, спасибо за неё.
 }
 
-ThanatosRename: ВМ-04 Аид
-ApolloRename: ВП-11 Аполлон
-ExoTwinsRenameNormal: ВП-01 Артемида и ВП-11 Аполлон
+ThanatosRename: КсМ-04 Аид
+ApolloRename: КзЗ-11 Аполлон
+ExoTwinsRenameNormal: КзЗ-01 Артемида и КзЗ-11 Аполлон
 MutantBR.DisplayName: Мутант Б Р
 MediumWormBodySegment.DisplayName: Сегмент тела среднего червя
 MediumWormHeadSegment.DisplayName: Сегмент головы среднего червя

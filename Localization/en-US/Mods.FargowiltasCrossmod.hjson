@@ -1,4 +1,4 @@
-EternityRevDifficulty: {
+﻿EternityRevDifficulty: {
 	Name: Eternity-Revengeance
 	ShortDescription: "[c/00FFFF:The intended Calamity-Souls experience. Can only be enabled in Expert Mode]"
 	ExpandedDescription:
@@ -31,7 +31,6 @@ MasoDeathDifficulty: {
 		By default, [c/00FFFF:Masochist Mode] behaviour takes priority. This can be changed in the configs.
 		{$Mods.FargowiltasSouls.UI.ExpandedFeatures}
 		[i:1612][c/00ff00:Recommended to use Fargo's Mutant Mod Debuff Display (in config)]
-
 		'''
 	Activation: Masochist-Death Mode has activated!
 	Deactivation: Masochist-Death Mode has deactivated.

@@ -1,10 +1,10 @@
-CrossBalanceGeneric: "Баланс кросс-моддинга: "
+﻿CrossBalanceGeneric: "Баланс кросс-моддинга: "
 DamageUpGeneric: Урон увеличен на {0}%
 DamageDownGeneric: Урон уменьшен на {0}%
 PickPowerDownGeneric: Сила добычи уменьшена на {0}%
 MagicDagger: Урон уменьшен на 50% в пре-хардмоде
 ProfanedCrystal: Значительно уменьшает урон с любым призванным существом
-MythrilEnch: Менее эффективно на оружиях разбойника
+MythrilEnch: Менее эффективно на оружиях плута
 OrichalcumEnch: Эффективность уменьшена
 Daawnlight: Эффект выключен, пока активно зачарование олова
 SlimyShield: Не накладывает «В масле» на врагов
