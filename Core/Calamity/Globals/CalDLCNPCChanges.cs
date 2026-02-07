@@ -1114,11 +1114,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 doDeviText = true;
                 CalDLCWorldSavingSystem.downedEarthElemental = true;
             }
-            if (npc.type == ModContent.NPCType<Burrower>() && !CalDLCWorldSavingSystem.downedBurrower)
-            {
-                doDeviText = true;
-                CalDLCWorldSavingSystem.downedBurrower = true;
-            }
             if (doDeviText && Main.netMode != NetmodeID.Server)
             {
                 string seller = Language.GetTextValue($"Mods.Fargowiltas.NPCs.Deviantt.DisplayName");
