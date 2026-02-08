@@ -247,10 +247,6 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
                 Player.buffImmune[BuffType<CalamitousPresenceBuff>()] = true;
                 CalamitousPresence = false;
             }
-            if (Player.FargoSouls().MoonChalice) //vdm
-            {
-                Player.buffImmune[BuffType<RevealedBuff>()] = true;
-            }
         }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {

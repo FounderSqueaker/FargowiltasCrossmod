@@ -1,43 +1,44 @@
 ﻿using CalamityMod;
-using FargowiltasSouls.Core.Systems;
-using System.Reflection;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using FargowiltasSouls.Content.Items.Accessories.Enchantments;
-using FargowiltasSouls.Content.Items.Accessories.Forces;
-using FargowiltasSouls.Core.ModPlayers;
-using CalamityMod.Items.TreasureBags.MiscGrabBags;
-using CalamityMod.Items.Weapons.Rogue;
-using CalamityMod.Items.Weapons.Summon;
-using Terraria.GameContent.ItemDropRules;
 using CalamityMod.Items.Accessories.Vanity;
 using CalamityMod.Items.LoreItems;
 using CalamityMod.Items.Pets;
-using FargowiltasSouls.Content.Items.Misc;
-using Fargowiltas.Content.Items.Explosives;
-using FargowiltasSouls.Content.Items.Accessories;
-using Fargowiltas.Content.Items.Tiles;
-using CalamityMod.Walls;
+using CalamityMod.Items.Potions;
+using CalamityMod.Items.SummonItems;
+using CalamityMod.Items.TreasureBags.MiscGrabBags;
+using CalamityMod.Items.Weapons.Rogue;
+using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.Tiles.Abyss;
-using CalamityMod.Tiles.FurnitureAcidwood;
-using CalamityMod.Tiles.FurnitureAbyss;
 using CalamityMod.Tiles.Astral;
-using CalamityMod.Tiles.FurnitureMonolith;
 using CalamityMod.Tiles.Crags;
+using CalamityMod.Tiles.FurnitureAbyss;
+using CalamityMod.Tiles.FurnitureAcidwood;
 using CalamityMod.Tiles.FurnitureAshen;
+using CalamityMod.Tiles.FurnitureMonolith;
 using CalamityMod.Tiles.FurnitureNavystone;
 using CalamityMod.Tiles.SunkenSea;
-using Luminance.Core.Hooking;
-using FargowiltasSouls.Content.Items.Accessories.Souls;
-using Terraria.DataStructures;
-using System.Linq;
+using CalamityMod.Walls;
+using Fargowiltas.Content.Items.Explosives;
+using Fargowiltas.Content.Items.Tiles;
+using FargowiltasCrossmod.Content.Calamity.Buffs;
 using FargowiltasSouls;
 using FargowiltasSouls.Content.Items;
-using CalamityMod.Items.Potions;
-using FargowiltasSouls.Core.AccessoryEffectSystem;
+using FargowiltasSouls.Content.Items.Accessories;
+using FargowiltasSouls.Content.Items.Accessories.Enchantments;
 using FargowiltasSouls.Content.Items.Accessories.Eternity;
-using CalamityMod.Items.SummonItems;
+using FargowiltasSouls.Content.Items.Accessories.Forces;
+using FargowiltasSouls.Content.Items.Accessories.Souls;
+using FargowiltasSouls.Content.Items.Misc;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
+using FargowiltasSouls.Core.ModPlayers;
+using FargowiltasSouls.Core.Systems;
+using Luminance.Core.Hooking;
+using System.Linq;
+using System.Reflection;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace FargowiltasCrossmod.Core.Calamity.Detours
 {
@@ -86,6 +87,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             HookHelper.ModifyMethodWithDetour(TryUnlimBuffMethod, TryUnlimBuff_Detour);
 
             HookHelper.ModifyMethodWithDetour(ApprenticeSupportMethod, ApprenticeSupport_Detour);
+
+            HookHelper.ModifyMethodWithDetour(VerdantDoomsayerMask_UpdateAccessoryMethod, VerdantDoomsayerMask_UpdateAccessory_Detour);
         }
         private static readonly MethodInfo TungstenIncreaseWeaponSizeMethod = typeof(TungstenEffect).GetMethod("TungstenIncreaseWeaponSize", LumUtils.UniversalBindingFlags);
         public delegate float Orig_TungstenIncreaseWeaponSize(FargoSoulsPlayer modPlayer);
@@ -472,11 +475,18 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             var fargoPlayer = player.FargoSouls();
             if (heldItem.CountsAsClass(rog) && calPlayer.StealthStrikeAvailable() && player.HasEffect(apprenticeSupport))
             {
-                if (fargoPlayer.ApprenticeItemCD > 0)
-                    fargoPlayer.ApprenticeItemCD--; // account for cooldown not running on return while a stealth strike is available
+                player.IncrementCooldownTowards<ApprenticeSupport>(-1, 0); // account for cooldown not running on return while a stealth strike is available
                 return;
             }
             orig(self, player);
+        }
+
+        private static readonly MethodInfo VerdantDoomsayerMask_UpdateAccessoryMethod = typeof(VerdantDoomsayerMask).GetMethod("UpdateAccessory", LumUtils.UniversalBindingFlags);
+        public delegate void Orig_VerdantDoomsayerMask_UpdateAccessory(VerdantDoomsayerMask self, Player player, bool hideVisual);
+        internal static void VerdantDoomsayerMask_UpdateAccessory_Detour(Orig_VerdantDoomsayerMask_UpdateAccessory orig, VerdantDoomsayerMask self, Player player, bool hideVisual)
+        {
+            orig(self, player, hideVisual);
+            player.buffImmune[ModContent.BuffType<RevealedBuff>()] = true;
         }
     }
 }

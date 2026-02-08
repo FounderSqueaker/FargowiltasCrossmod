@@ -1011,7 +1011,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
         }
         public static List<int> PierceResistExclude =
         [
-            ModContent.ProjectileType<SproutingAcorn>()
+            //ModContent.ProjectileType<SproutingAcorn>()
         ];
         public void NullCoiledDamage(NPC.HitModifiers modifiers)
         {

@@ -320,7 +320,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             CalamityBuffSets.IsDebuff[BuffType<HexedBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<IvyVenomBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<JammedBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<LethargicBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<LightningRodBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<LowGroundBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<MarkedforDeathBuff>()] = true;
