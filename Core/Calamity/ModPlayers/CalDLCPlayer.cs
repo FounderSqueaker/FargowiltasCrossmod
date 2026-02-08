@@ -47,6 +47,7 @@ using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using static FargowiltasCrossmod.Core.ModCompatibility;
 using static Terraria.ModLoader.ModContent;
 
 namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
@@ -73,6 +74,18 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
             {
                 if (Player.whoAmI == Main.myPlayer)
                     InGameNotificationsTracker.AddNotification(new FTWNotification());
+            }
+
+            if (ModCompatibility.InfernumMode.Loaded)
+            {
+                if (Player.whoAmI == Main.myPlayer)
+                    InGameNotificationsTracker.AddNotification(new InfernumNotification());
+            }
+
+            if (ModCompatibility.CalamityOverhaul.Loaded)
+            {
+                if (Player.whoAmI == Main.myPlayer)
+                    InGameNotificationsTracker.AddNotification(new OverhaulNotification());
             }
         }
 

@@ -49,7 +49,17 @@ UI: {
 	WarningFTW:
 		'''
 		WARNING: Fargo's Souls DLC does NOT support the For the worthy seed!
-		Either disable the seed, or expect several bugs and broken interactions!
+		Either disable the seed, or expect several bugs, balance issues, and broken interactions!
+		'''
+	WarningInfernum:
+		'''
+		WARNING: Fargo's Souls DLC is NOT compatible with Infernum Mode!
+		Either disable Infernum Mode, or expect several bugs, balance issues, and broken interactions!
+		'''
+	WarningOverhaul:
+		'''
+		WARNING: Fargo's Souls DLC is NOT compatible with Calamity Overhaul!
+		Either disable Calamity Overhaul, or expect several bugs, balance issues, and broken interactions!
 		'''
 }
 

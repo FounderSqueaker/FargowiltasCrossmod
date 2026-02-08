@@ -1,5 +1,6 @@
 Patch 1.2.0.23
-- Added popup notification warning that FTW is unsupported when entering a world on FTW
+- Added popup notification warning that FTW is unsupported when entering world on FTW
+- Added popup notifications warning that Calamity Overhaul and Infernum are incompatible when entering a world with respective mod
 - Removed Abandoned Remote
 - Fixed Acidwood Sword and Driftwood Sword not receiving a reworked broadsword swing animation
 - Fixed various Mutant projectiles drawing incorrectly
