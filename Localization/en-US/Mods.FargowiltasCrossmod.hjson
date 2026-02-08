@@ -46,6 +46,11 @@ UI: {
 	CalamityPriority: Prioritize Calamity boss AI over Eternity
 	EternityPriorityToggle: Boss priority set to Eternity
 	CalamityPriorityToggle: Boss priority set to Calamity
+	WarningFTW:
+		'''
+		WARNING: Fargo's Souls DLC does NOT support the For the worthy seed!
+		Either disable the seed, or expect several bugs and broken interactions!
+		'''
 }
 
 Buffs: {

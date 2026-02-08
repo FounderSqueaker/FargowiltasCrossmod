@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CalamityMod;
+﻿using CalamityMod;
 using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Buffs.Summon;
@@ -20,6 +17,7 @@ using CalamityMod.Particles;
 using Fargowiltas.Common.Configs;
 using FargowiltasCrossmod.Content.Calamity.Buffs;
 using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments;
+using FargowiltasCrossmod.Content.Calamity.UI;
 using FargowiltasCrossmod.Core;
 using FargowiltasCrossmod.Core.Calamity;
 using FargowiltasCrossmod.Core.Calamity.Systems;
@@ -40,11 +38,15 @@ using log4net.Repository.Hierarchy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.UI;
 using static Terraria.ModLoader.ModContent;
 
 namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
@@ -67,7 +69,11 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
         }
         public override void OnEnterWorld()
         {
-
+            if (Main.getGoodWorld)
+            {
+                if (Player.whoAmI == Main.myPlayer)
+                    InGameNotificationsTracker.AddNotification(new FTWNotification());
+            }
         }
 
         public override void UpdateEquips()
