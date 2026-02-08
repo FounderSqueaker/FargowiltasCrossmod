@@ -1,33 +1,20 @@
-﻿using FargowiltasCrossmod.Core;
+﻿using System;
+using CalamityMod.Items.Accessories.Wings;
+using CalamityMod.Items.Armor.Daedalus;
+using CalamityMod.Items.Weapons.Ranged;
+using CalamityMod.Items.Weapons.Summon;
+using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces;
+using FargowiltasCrossmod.Content.Calamity.Projectiles;
+using FargowiltasCrossmod.Core;
+using FargowiltasCrossmod.Core.Calamity;
+using FargowiltasSouls;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
-using FargowiltasSouls.Core.Toggler.Content;
-using CalamityMod;
-using FargowiltasCrossmod.Content.Calamity.Projectiles;
-using Terraria.Audio;
-using FargowiltasCrossmod.Core.Calamity;
-using rail;
-using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces;
-using FargowiltasSouls;
-using Terraria.GameContent.ItemDropRules;
-using FargowiltasSouls.Content.UI.Elements;
-using FargowiltasSouls.Content.Items.Accessories.Forces;
-using Microsoft.Xna.Framework.Graphics;
-using CalamityMod.Projectiles.Ranged;
-using Mono.Cecil;
-using static System.Net.Mime.MediaTypeNames;
-using CalamityMod.Items.Weapons.Summon;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 {
@@ -62,11 +49,11 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             //recipe
             Recipe recipe = CreateRecipe();
             recipe.AddRecipeGroup("FargowiltasCrossmod:AnyDaedalusHelms", 1);
-            recipe.AddIngredient<CalamityMod.Items.Armor.Daedalus.DaedalusBreastplate>(1);
-            recipe.AddIngredient<CalamityMod.Items.Armor.Daedalus.DaedalusLeggings>(1);
-            recipe.AddIngredient(ItemID.FrozenCandle, 20);
-            recipe.AddIngredient<CalamityMod.Items.Accessories.Wings.SoulofCryogen>(1);
-            recipe.AddIngredient<AncientIceChunk>(1);
+            recipe.AddIngredient<DaedalusBreastplate>();
+            recipe.AddIngredient<DaedalusLeggings>();
+            recipe.AddIngredient<DarkechoGreatbow>();
+            recipe.AddIngredient<SoulofCryogen>();
+            recipe.AddIngredient<AncientIceChunk>();
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
         }

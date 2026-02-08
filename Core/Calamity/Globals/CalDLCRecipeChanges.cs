@@ -978,6 +978,18 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemID.CrimtaneBar
                 ));
 
+            RecipeGroup AcidFruitGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("AcidFruit")}",
+                ItemType<Jackfruit>(),
+                ItemType<Salak>());
+            RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyAcidFruit", AcidFruitGroup);
+
+            RecipeGroup AstralFruitGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("AstralFruit")}",
+                ItemType<Cometfruit>(),
+                ItemType<Barberry>(),
+                ItemType<Lotus>(),
+                ItemType<Mangosteen>());
+            RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyAstralFruit", AstralFruitGroup);
+
             //reaver head group
             RecipeGroup ReaverHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("ReaverHelmet")}",
                 ItemType<CalamityMod.Items.Armor.Reaver.ReaverHeadExplore>(),

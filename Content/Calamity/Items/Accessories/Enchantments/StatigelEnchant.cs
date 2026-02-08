@@ -1,38 +1,20 @@
-﻿using FargowiltasCrossmod.Core;
+﻿using System;
+using CalamityMod.Items.Armor.Statigel;
+using CalamityMod.Items.Weapons.Ranged;
+using CalamityMod.Items.Weapons.Rogue;
+using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces;
+using FargowiltasCrossmod.Content.Calamity.Toggles;
+using FargowiltasCrossmod.Core;
+using FargowiltasSouls;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
-using Microsoft.Xna.Framework;
+using FargowiltasSouls.Content.UI.Elements;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
-using FargowiltasSouls.Core.Toggler.Content;
-using System.Security.Policy;
-using Terraria.Graphics.Renderers;
-using CalamityMod.Graphics.Renderers;
-using Terraria.Graphics;
-using CalamityMod;
-using CalamityMod.Buffs.DamageOverTime;
-using FargowiltasCrossmod.Core.Calamity;
-using FargowiltasCrossmod.Content.Calamity.Projectiles;
-using CalamityMod.Projectiles.Turret;
-using CalamityMod.Particles;
-using Terraria.Audio;
-using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces;
-using FargowiltasSouls;
-using FargowiltasCrossmod.Core.Calamity.Globals;
-using FargowiltasCrossmod.Core.Common;
-using FargowiltasSouls.Content.Projectiles.BossWeapons;
-using FargowiltasCrossmod.Content.Calamity.Toggles;
-using CalamityMod.Items.Weapons.Rogue;
-using FargowiltasSouls.Content.UI.Elements;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 {
@@ -68,11 +50,11 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         {
             Recipe recipe = CreateRecipe();
             recipe.AddRecipeGroup("FargowiltasCrossmod:AnyStatisHelms");
-            recipe.AddIngredient<CalamityMod.Items.Armor.Statigel.StatigelArmor>();
-            recipe.AddIngredient<CalamityMod.Items.Armor.Statigel.StatigelGreaves>();
+            recipe.AddIngredient<StatigelArmor>();
+            recipe.AddIngredient<StatigelGreaves>();
             recipe.AddIngredient<ShinobiBlade>();
-            recipe.AddIngredient<CalamityMod.Items.Weapons.Ranged.OverloadedBlaster>();
-            recipe.AddIngredient<GelDart>(300);
+            recipe.AddIngredient<OverloadedBlaster>();
+            recipe.AddIngredient<GelDart>();
             recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
         }
