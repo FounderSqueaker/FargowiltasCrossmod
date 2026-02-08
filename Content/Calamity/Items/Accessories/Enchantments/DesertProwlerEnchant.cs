@@ -1,31 +1,21 @@
-﻿using FargowiltasCrossmod.Core;
-using FargowiltasSouls.Content.Items.Accessories.Enchantments;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
-using FargowiltasSouls.Core.AccessoryEffectSystem;
-using FargowiltasSouls.Core.Toggler.Content;
-using FargowiltasSouls.Core.Toggler;
-using FargowiltasCrossmod.Content.Calamity.Projectiles;
-using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces;
-using CalamityMod;
-using FargowiltasSouls.Common.Graphics.Particles;
-using CalamityMod.Particles;
-using Terraria.Audio;
-using FargowiltasSouls;
-using FargowiltasCrossmod.Core.Calamity.ModPlayers;
-using FargowiltasCrossmod.Content.Calamity.Toggles;
+﻿using System;
+using CalamityMod.Items.Armor.DesertProwler;
 using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Items.Weapons.Summon;
-using CalamityMod.Items.Weapons.Ranged;
-using CalamityMod.Items.Armor.DesertProwler;
+using CalamityMod.Particles;
+using FargowiltasCrossmod.Content.Calamity.Toggles;
+using FargowiltasCrossmod.Core;
 using FargowiltasCrossmod.Core.Calamity;
+using FargowiltasCrossmod.Core.Calamity.ModPlayers;
+using FargowiltasSouls;
+using FargowiltasSouls.Content.Items.Accessories.Enchantments;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
+using FargowiltasSouls.Core.Toggler;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 {
@@ -60,9 +50,9 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddIngredient<DesertProwlerHat>();
             recipe.AddIngredient<DesertProwlerShirt>();
             recipe.AddIngredient<DesertProwlerPants>();
-            recipe.AddIngredient(ItemID.ThunderSpear);
+            recipe.AddIngredient<AntlionSkewer>();
             recipe.AddIngredient<SunSpiritStaff>();
-            recipe.AddIngredient<StormjawStaff>();
+            recipe.AddIngredient<NastyCholla>();
             recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
         }

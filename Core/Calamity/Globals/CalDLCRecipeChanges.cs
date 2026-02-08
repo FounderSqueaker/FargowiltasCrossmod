@@ -520,6 +520,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             AddBannerToItemRecipe(ItemID.TombCrawlerBanner, ItemType<BurntSienna>());
             AddBannerToItemRecipe(ItemID.DemonBanner, ItemType<BladecrestOathsword>());
             AddBannerToItemRecipe(ItemID.GoblinSorcererBanner, ItemType<PlasmaRod>());
+            AddBannerToItemRecipe(ItemID.AntlionBanner, ItemType<AntlionSkewer>());
             AddBannerToItemRecipe(ItemType<BoxJellyfishBanner>(),
                 ItemType<AbyssShocker>(), 1, 1, ItemID.Bone);
             AddBannerToItemRecipe(ItemType<NuclearToadBanner>(),
@@ -976,6 +977,18 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemID.DemoniteBar,
                 ItemID.CrimtaneBar
                 ));
+
+            RecipeGroup AcidFruitGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("AcidFruit")}",
+                ItemType<Jackfruit>(),
+                ItemType<Salak>());
+            RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyAcidFruit", AcidFruitGroup);
+
+            RecipeGroup AstralFruitGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("AstralFruit")}",
+                ItemType<Cometfruit>(),
+                ItemType<Barberry>(),
+                ItemType<Lotus>(),
+                ItemType<Mangosteen>());
+            RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyAstralFruit", AstralFruitGroup);
 
             //reaver head group
             RecipeGroup ReaverHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("ReaverHelmet")}",

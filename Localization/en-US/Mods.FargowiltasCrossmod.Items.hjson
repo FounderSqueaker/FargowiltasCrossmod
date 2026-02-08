@@ -179,15 +179,6 @@ WormFoodofKos: {
 	Tooltip: Summons Storm Weaver
 }
 
-AbandonedRemote: {
-	DisplayName: Abandoned Remote
-	Tooltip:
-		'''
-		Summons Armored Digger
-		Can only be used underground
-		'''
-}
-
 ClamPearl: {
 	DisplayName: Clam Pearl
 	Tooltip:

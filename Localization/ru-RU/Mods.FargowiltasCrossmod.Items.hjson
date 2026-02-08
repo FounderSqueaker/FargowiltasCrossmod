@@ -179,15 +179,6 @@ WormFoodofKos: {
 	Tooltip: Призывает Ткача бурь
 }
 
-AbandonedRemote: {
-	DisplayName: Затерянный пульт управления
-	Tooltip:
-		'''
-		Призывает норовика
-		Можно использовать только под землёй
-		'''
-}
-
 ClamPearl: {
 	DisplayName: Жемчуг моллюска
 	Tooltip:

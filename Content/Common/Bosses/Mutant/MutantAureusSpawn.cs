@@ -94,11 +94,9 @@ namespace FargowiltasCrossmod.Content.Common.Bosses.Mutant
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            SpriteEffects spriteEffects = (SpriteEffects)0;
+            SpriteEffects spriteEffects = SpriteEffects.None;
             if (Projectile.spriteDirection == 1)
-            {
-                spriteEffects = (SpriteEffects)1;
-            }
+                spriteEffects = SpriteEffects.FlipHorizontally;
 
             Color backglowColor = Color.Lerp(Color.Cyan, Color.Orange, (float)Math.Sin((double)Main.GlobalTimeWrappedHourly) / 2f + 0.5f);
             backglowColor.A = 0;
