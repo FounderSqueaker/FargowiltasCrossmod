@@ -49,18 +49,18 @@ UI: {
 	WarningFTW:
 		'''
 		ВНИМАНИЕ: «Fargo's Souls DLC» НЕ поддерживает зерно мира «For the worthy»!
-		Либо не играйте на мире с данным зерном, либо ожидайте множество багов и сломанных моментов!
+		Либо не играйте на мире с данным зерном, либо ожидайте множество багов и проблем с балансом!
 		'''
-	/* WarningInfernum:
+	WarningInfernum:
 		'''
-		WARNING: Fargo's Souls DLC is NOT compatible with Infernum Mode!
-		Either disable Infernum Mode, or expect several bugs, balance issues, and broken interactions!
-		''' */
-	/* WarningOverhaul:
+		ВНИМАНИЕ: «Fargo's Souls DLC» НЕ совместим с режимом Инфернум!
+		Либо отключите режим Инфернум, либо ожидайте множество багов и проблем с балансом!
 		'''
-		WARNING: Fargo's Souls DLC is NOT compatible with Calamity Overhaul!
-		Either disable Calamity Overhaul, or expect several bugs, balance issues, and broken interactions!
-		''' */
+	WarningOverhaul:
+		'''
+		ВНИМАНИЕ: «Fargo's Souls DLC» НЕ совместим с модом «Calamity Overhaul»!
+		Либо отключите «Calamity Overhaul», либо ожидайте множество багов и проблем с балансом!
+		'''
 }
 
 Buffs: {
