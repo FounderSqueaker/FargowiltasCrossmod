@@ -1,5 +1,5 @@
 EternityRevDifficulty: {
-	Name: Вечная месть
+	Name: Вечное возмездие
 	ShortDescription: "[c/00FFFF:Предполагаемый опыт Calamity-Souls. Может быть включён только в режиме эксперта]"
 	ExpandedDescription:
 		'''
@@ -68,8 +68,8 @@ ExpandedTooltips: {
 RecipeGroups: {
 	GildedDagger: позолоченный кинжал
 	EvilBar: слиток зла
-	// AcidFruit: Sulphurous Sea Fruit
-	// AstralFruit: Astral Infection Fruit
+	AcidFruit: фрукт сернистого моря
+	AstralFruit: фрукт астральной инфекции
 	VictideHelmet: шлем прилива
 	AerospecHelmet: шлем аэрофаза
 	StatigelHelmet: статигелевый шлем
