@@ -371,7 +371,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             }
             //dragonfolly and minion
             if (npc.type == ModContent.NPCType<Dragonfolly>() || npc.type == ModContent.NPCType<DraconicSwarmer>())
-            if (npc.type == NPCType<Bumblefuck>() || npc.type == NPCType<Bumblefuck2>())
+            if (npc.type == NPCType<Dragonfolly>() || npc.type == NPCType<DraconicSwarmer>())
             {
                 //npc.lifeMax = (int)(npc.lifeMax * 1.2f);
             }
@@ -478,8 +478,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     npc.lifeMax = (int)(1000000 / 1.3f);
                 if (npc.type == NPCType<ProfanedGuardianCommander>())
                     npc.lifeMax = (int)(2000000 / 1.3f);
-                if (npc.type == ModContent.NPCType<Dragonfolly>())
-                if (npc.type == NPCType<Bumblefuck>())
+                if (npc.type == NPCType<Dragonfolly>())
                     npc.lifeMax = (int)(3000000 / 1.6f);
                 if (npc.type == NPCType<Providence>())
                     npc.lifeMax = (int)(9000000 / 1.3f);
@@ -523,15 +522,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             #endregion BRBalance
             #endregion
             #region Compatibility
-            if (CalDLCConfig.Instance.EternityPriorityOverRev)
-            {
-                if (npc.type >= NPCID.TheDestroyer && npc.type <= NPCID.TheDestroyerTail || npc.type == NPCID.Probe)
-                {
-                    if (WorldSavingSystem.EternityMode)
-                    //if (CalDLCWorldSavingSystem.EternityDeath)
-                    //    npc.scale = 1.4f;
-                }
-            }
             //setdefaultsbeforelookupsarebuilt error
             if (!Main.gameMenu && CalamityServerConfig.Instance != null && npc.boss && npc.ModNPC != null && npc.ModNPC.Mod != null && (npc.ModNPC.Mod == FargowiltasCrossmod.Instance || npc.ModNPC.Mod == ModCompatibility.SoulsMod.Mod))
             {

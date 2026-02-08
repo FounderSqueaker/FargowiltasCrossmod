@@ -9,7 +9,6 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using FargowiltasSouls;
 using Luminance.Core.Hooking;
-using Fargowiltas.NPCs;
 using FargowiltasSouls.Core.Toggler;
 using FargowiltasCrossmod.Content.Calamity.Items.Accessories;
 using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments;
@@ -29,6 +28,7 @@ using CalamityMod.Items.LoreItems;
 using FargowiltasCrossmod.Core.Calamity.Globals;
 using Terraria.GameContent;
 using CalamityMod.Items.Accessories;
+using Fargowiltas.Content.NPCs;
 
 namespace FargowiltasCrossmod.Core.Calamity.Detours
 {

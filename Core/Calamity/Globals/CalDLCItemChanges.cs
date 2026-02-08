@@ -216,7 +216,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     if (player.IsUnderwater())
                     {
                         calPlayer.abyssalDivingSuit = true;
-                        calPlayer.abyssalDivingSuitHide = hideVisual;
                     }
                     /*
                     player.buffImmune[ModContent.BuffType<AbyssalDivingSuitPlates>()] = true;
@@ -256,7 +255,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             }
             if (item.type == ModContent.ItemType<SnipersSoul>() || uniSoul)
             {
-                calPlayer.rangedAmmoCost *= 0.8f;
+                calPlayer.ammoCost *= 0.8f;
             }
             if (item.type == ModContent.ItemType<ArchWizardsSoul>() || uniSoul)
             {
@@ -358,7 +357,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 //item.maxStack = 999;
                 item.consumable = false;
             }
-        }
             if (CalDLCSets.GetValue(CalDLCSets.Items.MarniteExclude, item.type) && !FargoGlobalItem.TungstenAlwaysAffects.Contains(item.type))
             {
                 FargoGlobalItem.TungstenAlwaysAffects.Add(item.type);

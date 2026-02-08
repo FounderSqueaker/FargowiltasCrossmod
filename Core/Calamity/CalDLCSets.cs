@@ -28,6 +28,22 @@ using FargowiltasSouls.Content.Bosses.Champions.Cosmos;
 using CalamityMod.Items.Tools;
 using CalamityMod.Items.Weapons.Typeless;
 using CalamityMod.Items.Placeables;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
+using Terraria.ID;
+using FargowiltasSouls.Content.Items.Weapons.FinalUpgrades;
+using FargowiltasSouls.Content.Buffs.Eternity;
+using FargowiltasSouls.Content.Buffs;
+using FargowiltasSouls.Content.Buffs.Souls;
+using FargowiltasSouls.Content.Projectiles.Accessories.VerdantDoomsayerMask;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.MechanicalBosses;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.WallOfFlesh;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.Plantera;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.Golem;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.DukeFishron;
+using FargowiltasSouls.Content.Projectiles.Eternity;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.MoonLord;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.LunaticCultist;
 
 namespace FargowiltasCrossmod.Core.Calamity
 {
