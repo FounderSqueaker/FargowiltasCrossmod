@@ -312,34 +312,22 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             CalamityBuffSets.IsDebuff[BuffType<BloodthirstyBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<BaronsBurdenBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<ClippedWingsBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<CrippledBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<CurseoftheMoonBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<DefenselessBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<FlamesoftheUniverseBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<FlippedBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<FusedBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<GodEaterBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<GuiltyBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<HexedBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<HypothermiaBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<InfestedBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<IvyVenomBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<JammedBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<LethargicBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<LightningRodBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<LivingWastelandBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<LovestruckBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<LowGroundBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<MarkedforDeathBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<MidasBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<MutantNibbleBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<NanoInjectionBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<NeurotoxinBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<NullificationCurseBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<OceanicMaulBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<OiledBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<PurgedBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<PurifiedBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<ReverseManaFlowBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<RottingBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<SmiteBuff>()] = true;
@@ -351,22 +339,12 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             CalamityBuffSets.IsDebuff[BuffType<UnluckyBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<UnstableBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<BerserkerInstallBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<HolyPriceBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<BrainOfConfusionBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<LihzahrdCurseBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<RushJobBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<TwinsInstallBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<SnowstormCDBuff>()] = true;
-            CalamityBuffSets.IsDebuff[BuffType<HellFireBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<LeadPoisonBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<OriPoisonBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<PungentGazeBuff>()] = true;
             CalamityBuffSets.IsDebuff[BuffType<SolarFlareBuff>()] = true;
-            CalamityLists.debuffList.Add(BuffType<SolarFlareBuff>());
-            FieldInfo debuffIDs = typeof(FargowiltasSouls.FargowiltasSouls).GetField("DebuffIDs", LumUtils.UniversalBindingFlags);
-            List<int> newDebuffIDs = (List<int>)debuffIDs.GetValue(null);
-            newDebuffIDs.AddRange(calamityDebuffs);
-            debuffIDs.SetValue(null, newDebuffIDs);
             #endregion CalDebuffListCompat
             #region SwordRework
             int[] CalSwordsToApplyRework = [ItemType<AbsoluteZero>(),ItemType<AcidwoodSword>(),

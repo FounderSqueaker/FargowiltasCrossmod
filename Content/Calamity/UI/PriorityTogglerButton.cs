@@ -1,4 +1,5 @@
 ﻿using CalamityMod.UI.ModeIndicator;
+using Fargowiltas.Content.UI;
 using FargowiltasSouls.Content.UI.Elements;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using Microsoft.Xna.Framework;

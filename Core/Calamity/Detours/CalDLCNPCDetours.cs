@@ -36,12 +36,13 @@ using FargowiltasSouls.Content.Bosses.Champions.Nature;
 using FargowiltasSouls.Content.Bosses.Champions.Terra;
 using FargowiltasSouls.Content.Bosses.VanillaEternity;
 using CalamityMod.NPCs.Perforator;
-using FargowiltasSouls.Content.Buffs.Masomode;
 using FargowiltasSouls.Core.Globals;
 using CalamityMod.Systems.Collections;
 using CalamityMod.NPCs.SlimeGod;
 using CalamityMod.NPCs.Leviathan;
 using UtfUnknown.Core.Models.SingleByte.Finnish;
+using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasCrossmod.Core.Calamity.Systems
 {

@@ -55,6 +55,7 @@ using static Terraria.ModLoader.ModContent;
 using FargowiltasSouls.Content.Items.Accessories.Eternity;
 using Fargowiltas.Common.Systems.Recipes;
 using CalamityMod.Enums;
+using CalamityMod.Items.Tools.SpawnBlocker;
 
 namespace FargowiltasCrossmod.Core.Calamity.Globals
 {
@@ -589,7 +590,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<BrokenWaterFilter>(),
                 ItemType<EffigyOfDecay>(),
                 ItemType<RustyBeaconPrototype>(),
-                ItemType<RustyMedallion>()
+                ItemType<ScionsCurio>()
             ], ItemType<HydrothermalCrate>(), 3);
 
             CreateCrateRecipes(
@@ -597,7 +598,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<BrokenWaterFilter>(),
                 ItemType<EffigyOfDecay>(),
                 ItemType<RustyBeaconPrototype>(),
-                ItemType<RustyMedallion>()
+                ItemType<ScionsCurio>()
             ], ItemType<SulphurousCrate>(), 3);
 
             void CreateCrateRecipes(int[] results, int crate, int crateAmount, int hardmodeCrate = -1, int extraItem = -1)
@@ -634,7 +635,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             Recipe.Create(ItemType<FlightMasterySoul>())
             .AddIngredient(ItemID.EmpressFlightBooster) // Soaring Insignia
             .AddIngredient(ItemID.GravityGlobe)
-            .AddIngredient<TracersSeraph>()
+            .AddIngredient<SeraphTracers>()
             .AddIngredient(ItemID.LongRainbowTrailWings) // Celestial Starboard
             .AddTile<CrucibleCosmosSheet>()
             .Register();
@@ -924,12 +925,12 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             RecipeGroup SulphCrate = new(() => ItemXOrY(ItemType<SulphurousCrate>(), ItemType<HydrothermalCrate>()), ItemType<SulphurousCrate>(), ItemType<HydrothermalCrate>());
             RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnySulphCrate", SulphCrate);
 
-            RecipeGroup AcidFruitGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("AcidFruit")}",
+            RecipeGroup AcidFruitGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroupKey("AcidFruit")}",
                 ItemType<Jackfruit>(),
                 ItemType<Salak>());
             RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyAcidFruit", AcidFruitGroup);
 
-            RecipeGroup AstralFruitGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("AstralFruit")}",
+            RecipeGroup AstralFruitGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroupKey("AstralFruit")}",
                 ItemType<Cometfruit>(),
                 ItemType<Barberry>(),
                 ItemType<Lotus>(),
@@ -967,7 +968,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<CalamityMod.Items.Armor.Victide.VictideHeadRogue>());
             RecipeGroup.RegisterGroup("FargowiltasCrossmod:AnyVictideHelms", VictideHelmsGroup);
             //aerospec head group
-            RecipeGroup AerospecHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroups("AerospecHelmet")}",
+            RecipeGroup AerospecHelmsGroup = new(() => $"{Language.GetTextValue("LegacyMisc.37")} {RecipeGroupKey("AerospecHelmet")}",
                 ItemType<CalamityMod.Items.Armor.Aerospec.AerospecHeadMelee>(),
                 ItemType<CalamityMod.Items.Armor.Aerospec.AerospecHeadMagic>(),
                 ItemType<CalamityMod.Items.Armor.Aerospec.AerospecHeadRanged>(),

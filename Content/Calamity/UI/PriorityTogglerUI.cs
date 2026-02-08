@@ -1,6 +1,4 @@
 ﻿using Fargowiltas.Common.Configs;
-using Fargowiltas.NPCs;
-using Fargowiltas.Projectiles;
 using FargowiltasCrossmod.Core.Calamity;
 using FargowiltasCrossmod.Core.Calamity.Systems;
 using FargowiltasSouls.Content.Items;

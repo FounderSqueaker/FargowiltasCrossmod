@@ -115,10 +115,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
         internal static float OriDotModifier_Detour(Orig_OriDotModifier orig, NPC npc, FargoSoulsPlayer modPlayer)
         {
             float value = orig(npc, modPlayer);
-
-            //value = modPlayer.Player.ForceEffect<OrichalcumEffect>() ? 2f : 1.5f;
-            if (npc.Calamity().shellfishVore > 0)
-                value = ((value - 1) / 2) + 1; // halved bonus
             return value;
         }
 
