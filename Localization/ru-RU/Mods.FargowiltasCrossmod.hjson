@@ -1,4 +1,4 @@
-EternityRevDifficulty: {
+﻿EternityRevDifficulty: {
 	Name: Вечное возмездие
 	ShortDescription: "[c/00FFFF:Предполагаемый опыт Calamity-Souls. Может быть включён только в режиме эксперта]"
 	ExpandedDescription:
@@ -46,6 +46,11 @@ UI: {
 	CalamityPriority: Приоритет ИИ боссов Calamity над Вечностью
 	EternityPriorityToggle: ИИ боссов Вечности берёт приоритет
 	CalamityPriorityToggle: ИИ боссов Calamity берёт приоритет
+	WarningFTW:
+		'''
+		ВНИМАНИЕ: «Fargo's Souls DLC» НЕ поддерживает зерно мира «For the worthy»!
+		Либо не играйте на мире с данным зерном, либо ожидайте множество багов и сломанных моментов!
+		'''
 }
 
 Buffs: {
