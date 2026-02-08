@@ -35,6 +35,7 @@ using CalamityMod.Particles;
 using FargowiltasSouls.Core.Systems;
 using FargowiltasCrossmod.Core.Calamity;
 using FargowiltasCrossmod.Core.Common;
+using CalamityMod.NPCs.DesertScourge;
 
 namespace FargowiltasCrossmod.Content.Calamity.Bosses.AquaticScourge
 {
@@ -537,7 +538,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.AquaticScourge
                 }
 
                 //Main.NewText(Vars[9]);
-                SoundStyle DSroar = new("CalamityMod/Sounds/Custom/DesertScourgeRoar");
+                SoundStyle DSroar = DesertScourgeHead.RoarSound;
                 SoundStyle Mroar = Mauler.RoarSound;
 
 

@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Dusts;
+using CalamityMod.Graphics.Metaballs;
 using CalamityMod.NPCs.CalClone;
 using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.Projectiles.Boss;
@@ -76,10 +77,15 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                 Projectile.localAI[0] += 1f;
             }
 
-            int brimDust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, (int)CalamityDusts.Brimstone, 0f, 0f, 170, default, 1.1f);
-            Main.dust[brimDust].noGravity = true;
-            Main.dust[brimDust].velocity *= 0.5f;
-            Main.dust[brimDust].velocity += Projectile.velocity * 0.1f;
+
+            var brimDust = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(32, 32), (int)CalamityDusts.Brimstone, null, 170, default, 1.1f);
+            brimDust.noGravity = true;
+            brimDust.velocity *= 0.5f;
+            brimDust.velocity += Projectile.velocity * 0.1f;
+            for (var i = 0; i < 1; i++)
+            {
+                CalamitasMetaball.SpawnParticle(Projectile.Center + Projectile.velocity, Main.rand.NextVector2Circular(2, 2), 64f * Projectile.scale);
+            }
         }
         public virtual void Movement()
         {
@@ -107,7 +113,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
 
         public override bool PreDraw(ref Color lightColor)
         {
-            CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Projectile.type], lightColor, 1);
+            //CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Projectile.type], lightColor, 1);
             return false;
         }
 

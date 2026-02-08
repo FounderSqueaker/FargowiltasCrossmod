@@ -1,33 +1,18 @@
-﻿using FargowiltasCrossmod.Core;
+﻿using System.Collections.Generic;
+using CalamityMod.Items.Armor.Sulphurous;
+using CalamityMod.Items.Weapons.Rogue;
+using CalamityMod.Items.Weapons.Summon;
+using FargowiltasCrossmod.Content.Calamity.Projectiles;
+using FargowiltasCrossmod.Content.Calamity.Toggles;
+using FargowiltasCrossmod.Core;
+using FargowiltasSouls;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
-using Microsoft.Xna.Framework;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
-using FargowiltasSouls.Core.Toggler.Content;
-using System.Security.Policy;
-using Terraria.Graphics.Renderers;
-using CalamityMod.Graphics.Renderers;
-using Terraria.Graphics;
-using CalamityMod;
-using CalamityMod.Buffs.DamageOverTime;
-using FargowiltasCrossmod.Core.Calamity;
-using FargowiltasCrossmod.Content.Calamity.Projectiles;
-using CalamityMod.Projectiles.Turret;
-using CalamityMod.Particles;
-using Terraria.Audio;
-using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces;
-using FargowiltasSouls;
-using CalamityMod.Buffs.StatDebuffs;
-using FargowiltasCrossmod.Content.Calamity.Toggles;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 {
@@ -66,12 +51,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient<CalamityMod.Items.Armor.Sulphurous.SulphurousHelmet>();
-            recipe.AddIngredient<CalamityMod.Items.Armor.Sulphurous.SulphurousBreastplate>();
-            recipe.AddIngredient<CalamityMod.Items.Armor.Sulphurous.SulphurousLeggings>();
-            recipe.AddIngredient<CalamityMod.Items.Weapons.Rogue.ContaminatedBile>();
-            recipe.AddIngredient<CalamityMod.Items.Weapons.Summon.CausticCroakerStaff>();
-            recipe.AddIngredient<CalamityMod.Items.Weapons.Summon.RustyBeaconPrototype>();
+            recipe.AddIngredient<SulphurousHelmet>();
+            recipe.AddIngredient<SulphurousBreastplate>();
+            recipe.AddIngredient<SulphurousLeggings>();
+            recipe.AddIngredient<ContaminatedBile>();
+            recipe.AddIngredient<CausticCroakerStaff>();
+            recipe.AddRecipeGroup("FargowiltasCrossmod:AnyAcidFruit");
             recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
         }

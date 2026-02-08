@@ -24,7 +24,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.LoreItems
         {
             Item.width = 20;
             Item.height = 20;
-            Item.rare = ModContent.RarityType<Violet>();
+            Item.rare = ModContent.RarityType<CalamityMod.Rarities.CosmicPurple>();
             Item.consumable = false;
         }
 

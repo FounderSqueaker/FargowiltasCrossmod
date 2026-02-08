@@ -10,7 +10,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Summons
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class QuakeIdol : BaseSummon
     {
-        public override int NPCType => ModContent.NPCType<Horse>();
+        public override int NPCType => ModContent.NPCType<EarthElemental>();
         public override void AddRecipes()
         {
         }

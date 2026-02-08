@@ -1,38 +1,18 @@
-﻿using FargowiltasCrossmod.Core;
+﻿using CalamityMod;
+using CalamityMod.CalPlayer;
+using CalamityMod.Items.Armor.TitanHeart;
+using CalamityMod.Items.Tools;
+using CalamityMod.Items.Weapons.Rogue;
+using FargowiltasCrossmod.Core;
+using FargowiltasSouls;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
-using Microsoft.Xna.Framework;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
-using FargowiltasSouls.Core.Toggler.Content;
-using System.Security.Policy;
-using Terraria.Graphics.Renderers;
-using CalamityMod.Graphics.Renderers;
-using Terraria.Graphics;
-using CalamityMod;
-using CalamityMod.Buffs.DamageOverTime;
-using FargowiltasCrossmod.Core.Calamity;
-using FargowiltasCrossmod.Content.Calamity.Projectiles;
-using CalamityMod.Projectiles.Turret;
-using CalamityMod.Particles;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.Audio;
-using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces;
-using FargowiltasSouls;
-using CalamityMod.Items.Armor.TitanHeart;
-using CalamityMod.Items.Fishing.AstralCatches;
-using CalamityMod.Items.Weapons.Melee;
-using CalamityMod.Items.Weapons.Rogue;
-using CalamityMod.CalPlayer;
-using CalamityMod.Dusts;
-using CalamityMod.Items.Accessories;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 {
@@ -63,12 +43,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient<TitanHeartMask>(1);
-            recipe.AddIngredient<TitanHeartMantle>(1);
-            recipe.AddIngredient<TitanHeartBoots>(1);
-            recipe.AddIngredient<StressPills>(1);
-            recipe.AddIngredient<GacruxianMollusk>(1);
-            recipe.AddIngredient<UrsaSergeant>(1);
+            recipe.AddIngredient<TitanHeartMask>();
+            recipe.AddIngredient<TitanHeartMantle>();
+            recipe.AddIngredient<TitanHeartBoots>();
+            recipe.AddIngredient<MonolithHammer>();
+            recipe.AddIngredient<GacruxianMollusk>();
+            recipe.AddRecipeGroup("FargowiltasCrossmod:AnyAstralFruit");
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
         }

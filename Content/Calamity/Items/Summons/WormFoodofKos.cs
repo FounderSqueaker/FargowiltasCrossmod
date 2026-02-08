@@ -17,8 +17,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Summons
         public override int NPCType => ModContent.NPCType<StormWeaverHead>();
         public override void AddRecipes()
         {
-            Recipe.Create(Type).AddIngredient<RuneofKos>().AddTile(TileID.WorkBenches).Register();
-            Recipe.Create(ModContent.ItemType<RuneofKos>()).AddIngredient(Type).AddTile(TileID.WorkBenches).Register();
+            Recipe.Create(Type).AddIngredient<MarkofProvidence>().AddTile(TileID.WorkBenches).Register();
+            Recipe.Create(ModContent.ItemType<MarkofProvidence>()).AddIngredient(Type).AddTile(TileID.WorkBenches).Register();
         }
         public override bool? UseItem(Player player)
         {

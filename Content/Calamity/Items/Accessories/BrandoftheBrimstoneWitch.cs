@@ -43,7 +43,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories
             Item.height = 20;
             Item.accessory = true;
             Item.value = 1000000;
-            Item.rare = ModContent.RarityType<Violet>();
+            Item.rare = ModContent.RarityType<CalamityMod.Rarities.CalamityRed>();
 
         }
         public override void SafeModifyTooltips(List<TooltipLine> tooltips)

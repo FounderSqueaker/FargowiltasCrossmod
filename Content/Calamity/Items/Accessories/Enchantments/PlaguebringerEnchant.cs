@@ -100,7 +100,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             for (int i = 0; i < Main.npc.Length; i++)
             {
                 NPC npc = Main.npc[i];
-                if (npc != null && npc.active && npc.Calamity().pFlames > 0 && npc.Distance(player.Center) < (player.ForceEffect<PlaguebringerEffect>() ? 450 : 250) && player.ownedProjectileCounts[ModContent.ProjectileType<PlagueCloud>()] < 2)
+                if (npc != null && npc.active && npc.Calamity().plague && npc.Distance(player.Center) < (player.ForceEffect<PlaguebringerEffect>() ? 450 : 250) && player.ownedProjectileCounts[ModContent.ProjectileType<PlagueCloud>()] < 2)
                 {
                     player.CalamityAddon().PlagueCharge++;
                 }

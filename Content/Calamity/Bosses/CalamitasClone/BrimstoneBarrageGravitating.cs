@@ -1,18 +1,21 @@
-﻿using CalamityMod.Buffs.DamageOverTime;
+﻿using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Events;
-using CalamityMod.NPCs.SupremeCalamitas;
+using CalamityMod.Graphics.Metaballs;
 using CalamityMod.NPCs;
+using CalamityMod.NPCs.CalClone;
+using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.Particles;
-using CalamityMod;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Terraria.ID;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
@@ -106,13 +109,22 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
             if (Projectile.localAI[0] == 0f)
             {
                 Projectile.localAI[0] = 1f;
-
                 if (Projectile.ai[0] == 0f)
-                    Projectile.damage = Projectile.GetProjectileDamage(ModContent.NPCType<CalamityMod.NPCs.CalClone.CalamitasClone>());
+                    Projectile.damage = CalamityMod.NPCs.CalClone.CalamitasClone.FireblastDamage;
             }
 
             Lighting.AddLight(Projectile.Center, 0.75f * Projectile.Opacity, 0f, 0f);
             time++;
+
+            for (var i = 0; i < 1; i++)
+            {
+                var p = CalamitasMetaball.SpawnParticle(Projectile.Center + Projectile.velocity * 2, Vector2.Zero, 40 * Projectile.scale);
+                p.rotation = Projectile.rotation;
+                p.TextureToUse = ModContent.Request<Texture2D>("CalamityMod/Particles/PointParticle").Value;
+                p.SizeScaling = 0.65f;
+                p = CalamitasMetaball.SpawnParticle(Projectile.Center, Main.rand.NextVector2Circular(3, 3), 24f);
+                p.SizeScaling = 0.8f;
+            }
         }
 
         public override bool CanHitPlayer(Player target) => Projectile.Opacity == 1f;
@@ -130,6 +142,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
 
         public override bool PreDraw(ref Color lightColor)
         {
+            return false;
+            /*
             lightColor.R = (byte)(255 * Projectile.Opacity);
 
             if (CalamityGlobalNPC.SCal != -1 && NPC.AnyNPCs(ModContent.NPCType<SupremeCalamitas>()) == true)
@@ -143,6 +157,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
 
             CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Projectile.type], lightColor, 1);
             return false;
+            */
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) => CalamityUtils.CircularHitboxCollision(Projectile.Center, 18 * Projectile.scale, targetHitbox);
     }

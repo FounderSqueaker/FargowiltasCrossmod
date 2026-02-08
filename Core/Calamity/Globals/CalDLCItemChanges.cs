@@ -10,6 +10,7 @@ using CalamityMod.CalPlayer.Dashes;
 using CalamityMod.Items;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Items.PermanentBoosters;
+using CalamityMod.Items.Placeables;
 using CalamityMod.Items.Placeables.Furniture;
 using CalamityMod.Items.Placeables.Furniture.Fountains;
 using CalamityMod.Items.Potions;
@@ -75,14 +76,15 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             }
             if (item.type == ModContent.ItemType<DeathFruit>())
             {
-                if (cplayer.dFruit)
+                if (cplayer.sStrawberry)
                 {
-                    cplayer.dFruit = false;
+                    cplayer.sStrawberry = false;
                     player.ConsumedLifeFruit = 20;
                 }
-                else if (cplayer.eBerry)
+                
+                else if (cplayer.tCloudberry)
                 {
-                    cplayer.eBerry = false;
+                    cplayer.tCloudberry = false;
                     player.ConsumedLifeFruit = 20;
                 }
                 else if (cplayer.mFruit)
@@ -90,9 +92,9 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     cplayer.mFruit = false;
                     player.ConsumedLifeFruit = 20;
                 }
-                else if (cplayer.bOrange)
+                else if (cplayer.sTangerine)
                 {
-                    cplayer.bOrange = false;
+                    cplayer.sTangerine = false;
                     player.ConsumedLifeFruit = 20;
                 }
             }
@@ -356,12 +358,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 //item.maxStack = 999;
                 item.consumable = false;
             }
-            if (item.type == ItemID.ReaverShark)
-            {
-                item.pick = 59;
-                item.useAnimation = 22;
-                item.useTime = 13;
-            }
+        }
             if (CalDLCSets.GetValue(CalDLCSets.Items.MarniteExclude, item.type) && !FargoGlobalItem.TungstenAlwaysAffects.Contains(item.type))
             {
                 FargoGlobalItem.TungstenAlwaysAffects.Add(item.type);

@@ -78,7 +78,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddIngredient<EmpyreanMask>(1);
             recipe.AddIngredient<EmpyreanCloak>(1);
             recipe.AddIngredient<EmpyreanCuisses>(1);
-            recipe.AddIngredient<TomeofFates>(1);
+            recipe.AddIngredient<Apathanull>(1);
             recipe.AddIngredient<StarofDestruction>(1);
             recipe.AddIngredient<UtensilPoker>(1);
             recipe.AddTile(TileID.LunarCraftingStation);

@@ -63,6 +63,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
+
             recipe.AddRecipeGroup("FargowiltasCrossmod:AnyAerospecHelms");
             recipe.AddIngredient<CalamityMod.Items.Armor.Aerospec.AerospecBreastplate>(1);
             recipe.AddIngredient<CalamityMod.Items.Armor.Aerospec.AerospecLeggings>(1);

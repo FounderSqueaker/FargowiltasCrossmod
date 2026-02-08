@@ -81,6 +81,21 @@ public static class ModCompatibility
         }
         public static bool InfernumDifficulty => Loaded && (bool)Mod.Call("GetInfernumActive");
     }
+    public static class CalamityOverhaul
+    {
+        public const string Name = "CWRMod";
+        public static bool Loaded => ModLoader.HasMod(Name);
+        private static Mod mod = null;
+        public static Mod Mod
+        {
+            get
+            {
+                mod ??= ModLoader.GetMod(Name);
+                return mod;
+            }
+        }
+        public static bool InfernumDifficulty => Loaded && (bool)Mod.Call("GetInfernumActive");
+    }
     public static class WrathoftheGods
     {
         public const string Name = "NoxusBoss";

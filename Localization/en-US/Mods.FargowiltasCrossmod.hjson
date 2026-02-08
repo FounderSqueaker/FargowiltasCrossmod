@@ -1,46 +1,40 @@
-EternityRevDifficulty: {
+﻿EternityRevDifficulty: {
 	Name: Eternity-Revengeance
-	ShortDescription: "[c/00FFFF:A challenging mode from Fargo's Mods that includes] [c/880808:Revengeance Mode] [c/00FFFF:changes.]"
+	ShortDescription: "[c/00FFFF:The intended Calamity-Souls experience. Can only be enabled in Expert Mode]"
 	ExpandedDescription:
 		'''
 		Enables [c/00FFFF:Eternity Mode] and [c/880808:Revengeance Mode,] and enables Master Mode drops.
-
-		Reworks the [c/00FFFF:Eternity Mode] behaviour for several Calamity bosses. Current reworks:
+		Adds [c/00FFFF:Eternity Mode] behaviour for several Calamity bosses. Current reworks:
 		-All bosses up to Calamitas Clone
 		-Old Duke
 		-Exo Mechs
-		The remaining bosses are still being worked on!
-
+		-The remaining bosses are still being worked on!
 		By default, [c/00FFFF:Eternity Mode] behaviour takes priority. This can be changed in the configs.
 		{$Mods.FargowiltasSouls.UI.ExpandedFeatures}
 		[i:1612][c/00ff00:Recommended to use Fargo's Mutant Mod Debuff Display (in config)]
-
 		'''
 	Activation: Eternity-Revengeance Mode has activated!
 	Deactivation: Eternity-Revengeance Mode has deactivated.
 }
 
-EternityDeathDifficulty: {
-	Name: Eternity-Death
-	ShortDescription: "[c/00FFFF:A challenging mode from Fargo's Mods that includes] [c/800080:Death Mode] [c/00FFFF:changes.]"
+MasoDeathDifficulty: {
+	Name: Masochist-Death
+	ShortDescription: "[c/00FFFF:The Calamity-Souls experience for players seeking a greater challenge. Can only be enabled in Master Mode]"
 	ExpandedDescription:
 		'''
-		Enables [c/00FFFF:Eternity Mode] and [c/800080:Death Mode,] and enables Master Mode drops.
-		[c/00FFFF:This is the main intended experience.] 
-
-		Reworks the [c/00FFFF:Eternity Mode] behaviour for several Calamity bosses. Current reworks:
+		Enables [c/00FFFF:Masochist Mode] and [c/800080:Death Mode.]
+		Adds [c/00FFFF:Eternity Mode] behaviour for several Calamity bosses. Current reworks:
 		-All bosses up to Calamitas Clone
 		-Old Duke
 		-Exo Mechs
-		The remaining bosses are still being worked on!
-
-		By default, [c/00FFFF:Eternity Mode] behaviour takes priority. This can be changed in the configs.
+		-The remaining bosses are still being worked on!
+		By default, [c/00FFFF:Masochist Mode] behaviour takes priority. This can be changed in the configs.
 		{$Mods.FargowiltasSouls.UI.ExpandedFeatures}
 		[i:1612][c/00ff00:Recommended to use Fargo's Mutant Mod Debuff Display (in config)]
-
 		'''
-	Activation: Eternity-Death Mode has activated!
-	Deactivation: Eternity-Death Mode has deactivated.
+	Activation: Masochist-Death Mode has activated!
+	Deactivation: Masochist-Death Mode has deactivated.
+	FTWName: Masochist-Malice Mode
 }
 
 UI: {
@@ -48,6 +42,25 @@ UI: {
 	HadesIconMessage: Hades, a serpentine terror with impervious armor and innumerable laser turrets.
 	AresIconMessage: Ares, a heavyweight, diabolical monstrosity with four detachable Exo superweapons.
 	ArtemisAndApolloIconMessage: Artemis and Apollo, a pair of extraordinarily nimble automatons with unstable energy reserves.
+	EternityPriority: Prioritize Eternity boss AI over Calamity
+	CalamityPriority: Prioritize Calamity boss AI over Eternity
+	EternityPriorityToggle: Boss priority set to Eternity
+	CalamityPriorityToggle: Boss priority set to Calamity
+	WarningFTW:
+		'''
+		WARNING: Fargo's Souls DLC does NOT support the For the worthy seed!
+		Either disable the seed, or expect several bugs, balance issues, and broken interactions!
+		'''
+	WarningInfernum:
+		'''
+		WARNING: Fargo's Souls DLC is NOT compatible with Infernum Mode!
+		Either disable Infernum Mode, or expect several bugs, balance issues, and broken interactions!
+		'''
+	WarningOverhaul:
+		'''
+		WARNING: Fargo's Souls DLC is NOT compatible with Calamity Overhaul!
+		Either disable Calamity Overhaul, or expect several bugs, balance issues, and broken interactions!
+		'''
 }
 
 Buffs: {
@@ -73,6 +86,10 @@ ExpandedTooltips: {
 }
 
 RecipeGroups: {
+	GildedDagger: Gilded Dagger
+	EvilBar: Evil Bar
+	AcidFruit: Sulphurous Sea Fruit
+	AstralFruit: Astral Infection Fruit
 	VictideHelmet: Victide Headpiece
 	AerospecHelmet: Aerospec Headpiece
 	StatigelHelmet: Statigel Headpiece

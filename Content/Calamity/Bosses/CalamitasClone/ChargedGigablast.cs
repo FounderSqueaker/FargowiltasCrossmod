@@ -1,18 +1,19 @@
-﻿using System;
+﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Graphics.Metaballs;
+using CalamityMod.NPCs.CalClone;
+using CalamityMod.Particles;
+using CalamityMod.Projectiles.Boss;
+using FargowiltasCrossmod.Core;
+using FargowiltasCrossmod.Core.Calamity;
+using FargowiltasSouls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using CalamityMod.Particles;
-using FargowiltasSouls;
-using CalamityMod.NPCs.CalClone;
-using CalamityMod;
-using CalamityMod.Projectiles.Boss;
-using FargowiltasCrossmod.Core.Calamity;
-using FargowiltasCrossmod.Core;
 
 namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
 {
@@ -121,16 +122,18 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                 if (Projectile.velocity.Length() < 20)
                     Projectile.velocity *= 1.02f;
             }
+
+
+            var p = SeekersMetaball.SpawnParticle(Projectile.Center + Projectile.velocity * Projectile.MaxUpdates, Vector2.Zero, Terraria.GameContent.TextureAssets.Projectile[ModContent.ProjectileType<SCalBrimstoneGigablast>()].Width() * Projectile.scale);
+            p.rotation = Projectile.rotation;
+            p.CurrentFrame = Projectile.frame;
+            p.MaxFrames = Main.projFrames[Type];
+            p.TextureToUse = Terraria.GameContent.TextureAssets.Projectile[ModContent.ProjectileType<SCalBrimstoneGigablast>()].Value;
+            p.SizeScaling = 0f;
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
-            int frameHeight = texture.Height / Main.projFrames[Projectile.type];
-            int drawStart = frameHeight * Projectile.frame;
-            lightColor.R = (byte)(255 * Projectile.Opacity);
-
-            Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(new Rectangle(0, drawStart, texture.Width, frameHeight)), Projectile.GetAlpha(lightColor), Projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, SpriteEffects.None, 0);
             return false;
         }
 

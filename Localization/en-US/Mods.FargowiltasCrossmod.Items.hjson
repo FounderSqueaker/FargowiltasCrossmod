@@ -165,15 +165,6 @@ WormFoodofKos: {
 	Tooltip: Summons Storm Weaver
 }
 
-AbandonedRemote: {
-	DisplayName: Abandoned Remote
-	Tooltip:
-		'''
-		Summons Armored Digger
-		Can only be used underground
-		'''
-}
-
 ClamPearl: {
 	DisplayName: Clam Pearl
 	Tooltip:
@@ -445,7 +436,12 @@ VictideEnchant: {
 		'''
 }
 
-Lore.LoreDraedon.DisplayName: Draedon
+Lore: {
+	LoreDraedon: {
+		DisplayName: Draedon
+		Tooltip: ""
+	}
+}
 
 FathomSwarmerEnchant: {
 	DisplayName: Fathom Swarmer Enchantment

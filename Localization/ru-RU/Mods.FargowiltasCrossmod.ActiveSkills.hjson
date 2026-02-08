@@ -1,5 +1,5 @@
-ReaverEffect: {
-	DisplayName: Адаптивность разорителя
+﻿ReaverEffect: {
+	DisplayName: Адаптивность расхитителя
 	Tooltip:
 		'''
 		Переключает между покрытым и облегчённым режимами

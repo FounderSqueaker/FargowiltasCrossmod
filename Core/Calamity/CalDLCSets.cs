@@ -25,25 +25,9 @@ using FargowiltasSouls.Content.Bosses.DeviBoss;
 using FargowiltasSouls.Content.Bosses.BanishedBaron;
 using FargowiltasSouls.Content.Bosses.Lifelight;
 using FargowiltasSouls.Content.Bosses.Champions.Cosmos;
-using static FargowiltasSouls.Content.Items.EmodeItemBalance;
-using FargowiltasSouls.Content.Buffs;
-using FargowiltasSouls.Content.Buffs.Eternity;
-using FargowiltasSouls.Content.Buffs.Souls;
-using FargowiltasSouls.Content.Items;
-using FargowiltasSouls.Content.Items.Weapons.FinalUpgrades;
-using FargowiltasSouls.Content.Projectiles.Accessories.VerdantDoomsayerMask;
-using FargowiltasSouls.Content.Projectiles.Eternity;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.DukeFishron;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.Golem;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.LunaticCultist;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.MechanicalBosses;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.MoonLord;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.Plantera;
-using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.WallOfFlesh;
-using System.Linq;
-using Terraria.ID;
-using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
+using CalamityMod.Items.Tools;
+using CalamityMod.Items.Weapons.Typeless;
+using CalamityMod.Items.Placeables;
 
 namespace FargowiltasCrossmod.Core.Calamity
 {
@@ -135,7 +119,7 @@ namespace FargowiltasCrossmod.Core.Calamity
                 ItemType<ProfanedShard>(),
                 ItemType<ExoticPheromones>(),
                 ItemType<ProfanedCore>(),
-                ItemType<RuneofKos>(),
+                ItemType<MarkofProvidence>(),
                 ItemType<NecroplasmicBeacon>(),
                 ItemType<CosmicWorm>(),
                 ItemType<YharonEgg>(),
@@ -146,11 +130,10 @@ namespace FargowiltasCrossmod.Core.Calamity
                 ItemType<CausticTear>(),
                 ItemType<MartianDistressRemote>()
                 );
-
             Items.AdamantiteExclude = itemFactory.CreateBoolSet(false,
                 ItemType<HeavenlyGale>(),
                 ItemType<TheSevensStriker>(),
-                ItemType<Phangasm>(),
+                //ItemType<Phangasm>(),
                 ItemType<TheJailor>(),
                 ItemType<AetherfluxCannon>(),
                 ItemType<TheAnomalysNanogun>(),
@@ -309,10 +292,8 @@ namespace FargowiltasCrossmod.Core.Calamity
 
             #region Projectiles
             SetFactory projectileFactory = ProjectileID.Sets.Factory;
-
-            Projectiles.TungstenExclude = projectileFactory.CreateBoolSet(false,
-                    ProjectileType<BladecrestOathswordProj>(),
-                    ProjectileType<OldLordClaymoreProj>()
+            //empty because cal fixed the projs here
+            Projectiles.TungstenExclude = projectileFactory.CreateBoolSet(false
                 );
 
             Projectiles.MultipartShredder = projectileFactory.CreateBoolSet(false,

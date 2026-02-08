@@ -24,7 +24,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ProvidenceBossRush
         public override bool InstancePerEntity => true;
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
         {
-            return entity.type == ModContent.NPCType<CalamityMod.NPCs.Bumblebirb.Bumblefuck>();
+            return entity.type == ModContent.NPCType<CalamityMod.NPCs.Bumblebirb.Dragonfolly>();
         }
         public int attackTimer = 0;
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CalamityMod;
+﻿using CalamityMod;
 using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Buffs.Summon;
@@ -15,10 +12,12 @@ using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
 using CalamityMod.Items.Weapons.Rogue;
+using CalamityMod.NPCs;
 using CalamityMod.Particles;
 using Fargowiltas.Common.Configs;
 using FargowiltasCrossmod.Content.Calamity.Buffs;
 using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments;
+using FargowiltasCrossmod.Content.Calamity.UI;
 using FargowiltasCrossmod.Core;
 using FargowiltasCrossmod.Core.Calamity;
 using FargowiltasCrossmod.Core.Calamity.Systems;
@@ -39,11 +38,16 @@ using log4net.Repository.Hierarchy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.UI;
+using static FargowiltasCrossmod.Core.ModCompatibility;
 using static Terraria.ModLoader.ModContent;
 
 namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
@@ -68,7 +72,23 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
         }
         public override void OnEnterWorld()
         {
+            if (Main.getGoodWorld)
+            {
+                if (Player.whoAmI == Main.myPlayer)
+                    InGameNotificationsTracker.AddNotification(new FTWNotification());
+            }
 
+            if (ModCompatibility.InfernumMode.Loaded)
+            {
+                if (Player.whoAmI == Main.myPlayer)
+                    InGameNotificationsTracker.AddNotification(new InfernumNotification());
+            }
+
+            if (ModCompatibility.CalamityOverhaul.Loaded)
+            {
+                if (Player.whoAmI == Main.myPlayer)
+                    InGameNotificationsTracker.AddNotification(new OverhaulNotification());
+            }
         }
 
         public override void UpdateEquips()
@@ -84,7 +104,13 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
                 {
                     ModCompatibility.SoulsMod.Mod.Call("EternityVanillaBossBehaviour", CalDLCConfig.Instance.EternityPriorityOverRev);
                     if (CalDLCConfig.Instance.EternityPriorityOverRev && WorldSavingSystem.EternityMode)
-                        CalamityMod.CalamityMod.ExternalFlag_DisableNonRevBossAI = true;
+                    {
+                        CalamityVanillaAIOverrideNPC.Enabled = false;
+                    }
+                    else
+                    {
+                        CalamityVanillaAIOverrideNPC.Enabled = true;
+                    }
                 }
             }
             if (ModCompatibility.WrathoftheGods.Loaded)

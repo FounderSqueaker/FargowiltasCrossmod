@@ -134,7 +134,7 @@ namespace FargowiltasCrossmod.Content.Common.Bosses.Mutant
             {
                 num805 = 2400f;
             }
-            int dustType = ProvUtils.GetDustID(Projectile.maxPenetrate);
+            int dustType = ProvUtils.GetDustID(false);
             float amount = 0.5f;
             Projectile.localAI[1] = MathHelper.Lerp(Projectile.localAI[1], num805, amount);
             Vector2 vector79 = Projectile.Center + Projectile.velocity * (Projectile.localAI[1] - 14f);
@@ -181,7 +181,7 @@ namespace FargowiltasCrossmod.Content.Common.Bosses.Mutant
             Texture2D texture2D20 = (num225 ? ModContent.Request<Texture2D>("CalamityMod/ExtraTextures/Lasers/ProvidenceHolyRayMid", (AssetRequestMode)1).Value : ModContent.Request<Texture2D>("CalamityMod/ExtraTextures/Lasers/ProvidenceHolyRayMidNight", (AssetRequestMode)1).Value);
             Texture2D texture2D21 = (num225 ? ModContent.Request<Texture2D>("CalamityMod/ExtraTextures/Lasers/ProvidenceHolyRayEnd", (AssetRequestMode)1).Value : ModContent.Request<Texture2D>("CalamityMod/ExtraTextures/Lasers/ProvidenceHolyRayEndNight", (AssetRequestMode)1).Value);
             float num223 = Projectile.localAI[1];
-            Color color44 = ProvUtils.GetProjectileColor(Projectile.maxPenetrate, 0) * 0.9f;
+            Color color44 = ProvUtils.GetProjectileColor(Lighting.GetColor(Projectile.Center.ToTileCoordinates()), false) * 0.9f;
             Vector2 vector = Projectile.Center - Main.screenPosition;
             Main.spriteBatch.Draw(texture2D19, vector, (Rectangle?)null, color44, Projectile.rotation, Utils.Size(texture2D19) / 2f, Projectile.scale, (SpriteEffects)0, 0f);
             num223 -= (float)(texture2D19.Height / 2 + texture2D21.Height) * Projectile.scale;
@@ -259,7 +259,7 @@ namespace FargowiltasCrossmod.Content.Common.Bosses.Mutant
             target.AddBuff(ModContent.BuffType<HolyFlames>(), 60 * 5);
             if ((info.Damage > 0 || Projectile.maxPenetrate >= 1) && !target.creativeGodMode)
             {
-                ProvUtils.ApplyHitEffects(target, Projectile.maxPenetrate, 400, 20);
+                ProvUtils.ApplyDebuffs(target, 400, 20);
             }
         }
 

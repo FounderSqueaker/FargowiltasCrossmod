@@ -11,7 +11,7 @@ INCOMPATIBLE mods:
 -Other major content mods, such as Thorium
 -Basically anything else that changes Boss AI
 
--Adds the Eternity-Revengeance and Eternity-Death difficulties, that seamlessly merges Eternity and Revengeance/Death mode together! Available in Calamity's difficulty selector.
+-Adds the Eternity-Revengeance and Masochist-Death difficulties, that seamlessly merges Eternity/Masochist and Revengeance/Death modes together! Available in Calamity's difficulty selector.
 -Expands and adds new Eternity AI of Vanilla and Calamity bosses in the new difficulties
 -Adds new accessories in Fargo's accessory style that make use of Calamity items, mechanics, and the Rogue class
 -Countless balance and progression changes to make the mods' content work well together

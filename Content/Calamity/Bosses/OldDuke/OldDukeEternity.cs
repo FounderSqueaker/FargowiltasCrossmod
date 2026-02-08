@@ -216,7 +216,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.OldDuke
         public override void SetDefaults()
         {
             base.SetDefaults();
-            NPC.DR_NERD(0.0f, null, null, null, true);
+            NPC.DR_NERD(0.0f, null, null, null);
         }
 
         public override void SendExtraAI(BitWriter bitWriter, BinaryWriter binaryWriter)

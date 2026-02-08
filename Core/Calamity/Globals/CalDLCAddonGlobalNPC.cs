@@ -41,70 +41,18 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
         {
             if (PBGDebuffTag > 0) PBGDebuffTag--;
         }
-        //return time buff has left, -1 if doesnt have buff
         public static bool HasAnyDoTDebuff(NPC npc)
         {
             for (int i = 0; i < BuffLoader.BuffCount; i++)
             {
-                if (HasDoTBuff(npc, i) > 0)
+                if (CalDLCSets.Buffs.DoTDebuff[i] && npc.HasBuff(i))
                 {
                     return true;
                 }
             }
             return false;
         }
-        public static int HasDoTBuff(NPC npc, int buffID)
-        {
-            if (!CalDLCSets.Buffs.DoTDebuff[buffID])
-            {
-                return -1;
-            }
-            else if (npc.HasBuff(buffID))
-            {
-                return npc.buffTime[npc.FindBuffIndex(buffID)];
-            }
-            if (buffID == ModContent.BuffType<Plague>() && npc.Calamity().pFlames > 0)
-                return npc.Calamity().pFlames;
-            if (buffID == ModContent.BuffType<BrainRot>() && npc.Calamity().brainRot > 0)
-                return npc.Calamity().brainRot;
-            if (buffID == ModContent.BuffType<BurningBlood>() && npc.Calamity().bBlood > 0)
-                return npc.Calamity().bBlood;
-            if (buffID == ModContent.BuffType<Nightwither>() && npc.Calamity().nightwither > 0)
-                return npc.Calamity().nightwither;
-            if (buffID == ModContent.BuffType<BanishingFire>() && npc.Calamity().banishingFire > 0)
-                return npc.Calamity().banishingFire;
-            if (buffID == ModContent.BuffType<BrimstoneFlames>() && npc.Calamity().bFlames > 0)
-                return npc.Calamity().bFlames;
-            if (buffID == ModContent.BuffType<VulnerabilityHex>() && npc.Calamity().vulnerabilityHex > 0)
-                return npc.Calamity().vulnerabilityHex;
-            if (buffID == ModContent.BuffType<GodSlayerInferno>() && npc.Calamity().gsInferno > 0)
-                return npc.Calamity().gsInferno;
-            if (buffID == ModContent.BuffType<HolyFlames>() && npc.Calamity().hFlames > 0)
-                return npc.Calamity().hFlames;
-            if (buffID == ModContent.BuffType<Dragonfire>() && npc.Calamity().dragonFire > 0)
-                return npc.Calamity().dragonFire;
-            if (buffID == ModContent.BuffType<AbsorberAffliction>() && npc.Calamity().absorberAffliction > 0)
-                return npc.Calamity().absorberAffliction;
-            if (buffID == ModContent.BuffType<AstralInfectionDebuff>() && npc.Calamity().astralInfection > 0)
-                return npc.Calamity().astralInfection;
-            if (buffID == ModContent.BuffType<SulphuricPoisoning>() && npc.Calamity().sulphurPoison > 0)
-                return npc.Calamity().sulphurPoison;
-            if (buffID == ModContent.BuffType<SagePoison>() && npc.Calamity().sagePoisonTime > 0)
-                return npc.Calamity().sagePoisonTime;
-            if (buffID == ModContent.BuffType<CrushDepth>() && npc.Calamity().cDepth > 0)
-                return npc.Calamity().cDepth;
-            if (buffID == ModContent.BuffType<RiptideDebuff>() && npc.Calamity().rTide > 0)
-                return npc.Calamity().rTide;
-            if (buffID == ModContent.BuffType<Irradiated>() && npc.Calamity().irradiated > 0)
-                return npc.Calamity().irradiated;
-            if (buffID == ModContent.BuffType<MiracleBlight>() && npc.Calamity().miracleBlight > 0)
-                return npc.Calamity().miracleBlight;
-            if (buffID == ModContent.BuffType<ElementalMix>() && npc.Calamity().elementalMix > 0)
-                return npc.Calamity().elementalMix;
-            if (buffID == ModContent.BuffType<Vaporfied>() && npc.Calamity().vaporfied > 0)
-                return npc.Calamity().vaporfied;
-            return -1;
-        }
+
         //Hardmode enchant. not in release.
         public override bool PreAI(NPC npc)
         {
@@ -123,11 +71,11 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
                         for (int i = 0; i < BuffLoader.BuffCount; i++)
                         {
-
-                            if (HasDoTBuff(npc, i) >= 0 && HasDoTBuff(target, i) == -1)
-                            {
-                                target.AddBuff(i, HasDoTBuff(npc, i));
-                            }
+                            //what?
+                            //if (HasDoTBuff(npc, i) >= 0 && HasDoTBuff(target, i) == -1)
+                            //{
+                            //    target.AddBuff(i, HasDoTBuff(npc, i));
+                            //}
                         }
                     }
                 }

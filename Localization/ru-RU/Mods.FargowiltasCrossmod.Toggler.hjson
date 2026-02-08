@@ -1,4 +1,4 @@
-CalamitySoulHeader: Душа бедствия
+﻿CalamitySoulHeader: Душа бедствия
 VagabondsSoulHeader: Душа беглеца
 NanotechEffect: Нанотехнология
 EclipseMirrorEffect: Зеркало затмения
@@ -36,9 +36,9 @@ GaleJumpEffect: Бесконечные прыжки
 // elements
 ElementsHeader: Артефакт Элементов
 DaedalusEffect: Стрелы Дедала
-ReaverEffect: Характеристики разорителя
+ReaverEffect: Характеристики расхитителя
 HydrothermicEffect: Перегрев
-AerospecJumpEffect: Эффект аэрофаза
+AerospecJumpEffect: Эффект аэропризрака
 // world shaper
 MarniteRepulsionEffect: Мранитовая репульсия
 MarniteLasersEffect: Мранитовые лазеры

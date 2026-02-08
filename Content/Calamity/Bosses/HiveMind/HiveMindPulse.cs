@@ -17,7 +17,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     public class HiveMindPulse : ModProjectile
     {
-        public override string Texture => "CalamityMod/Projectiles/Typeless/ChlorophyteLifePulse";
+        public override string Texture => "Terraria/Images/Extra_59";
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
@@ -34,7 +34,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
         public override bool PreDraw(ref Color lightColor)
         {
             Asset<Texture2D> t = TextureAssets.Projectile[Type];
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+          
             Main.EntitySpriteDraw(t.Value, Projectile.Center - Main.screenPosition, null, GlowColor * 0.4f * Projectile.Opacity, 0, t.Size() / 2, Projectile.scale, SpriteEffects.None);
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
             return false;
         }
         public override void AI()

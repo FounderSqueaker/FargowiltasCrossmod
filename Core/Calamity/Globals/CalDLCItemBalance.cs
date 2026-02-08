@@ -1,6 +1,7 @@
 ﻿using CalamityMod.Items;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Mounts;
+using CalamityMod.Items.Tools;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
@@ -47,22 +48,18 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
             //Shadowspec items and such
             // Melee
-            if (item.type == ItemType<IridescentExcalibur>()) return 0.6f;
             if (item.type == ItemType<IllustriousKnives>()) return 1f;
             if (item.type == ItemType<NanoCore>() && item.DamageType.CountsAsClass(DamageClass.Melee)) return 2f;
             if (item.type == ItemType<Ozzathoth>()) return 1f;
             if (item.type == ItemType<RedSun>()) return 0.85f;
             if (item.type == ItemType<GaelsGreatsword>()) return 0.75f;
             // Ranged
-            if (item.type == ItemType<SomaPrime>()) return 1.2f;
-            if (item.type == ItemType<Svantechnical>()) return 1.1f;
             if (item.type == ItemType<Voidragon>()) return 1.1f;
             // Magic
             if (item.type == ItemType<Apotheosis>()) return 0.75f;
             if (item.type == ItemType<StaffofBlushie>()) return 1f;
             if (item.type == ItemType<Eternity>()) return 0.7f;
             if (item.type == ItemType<TheDanceofLight>()) return 0.8f;
-            if (item.type == ItemType<RainbowPartyCannon>()) return 0.7f;
             if (item.type == ItemType<Sylvestaff>()) return 1.2f;
             // Summoner
             if (item.type == ItemType<AngelicAlliance>()) return 0.2f;
@@ -70,7 +67,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (item.type == ItemType<TemporalUmbrella>()) return 0.35f;
             if (item.type == ItemType<Endogenesis>()) return 0.35f;
             if (item.type == ItemType<Metastasis>()) return 0.5f;
-            if (item.type == ItemType<UniverseSplitter>()) return 0.5f;
             if (item.type == ItemType<ProfanedSoulCrystal>()) return 0.4f;
             // Rogue
             if (item.type == ItemType<NanoblackReaper>()) return 0.4f;
@@ -186,11 +182,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
             if (item.type is ItemID.CobaltSword or ItemID.PalladiumSword or ItemID.OrichalcumSword or ItemID.MythrilSword)
                 NerfTooltip("HardmodeSwords");
-            if (item.type == ItemID.ReaverShark)
-            {
-                tooltips.Add(new TooltipLine(Mod, "PPDown", $"{BalanceDownLine}" + Language.GetText($"Mods.FargowiltasCrossmod.EModeBalance.PickPowerDownGeneric").Format(41)));
-                tooltips.Add(new TooltipLine(Mod, "PSUp", $"{BalanceUpLine}" + Language.GetText($"Mods.FargowiltasCrossmod.EModeBalance.PickSpeedUpGeneric").Format(23)));
-            }
 
             CalamityGlobalItem calItem = item.GetGlobalItem<CalamityGlobalItem>();
             if (!item.IsAir && calItem.AppliedEnchantment.HasValue)

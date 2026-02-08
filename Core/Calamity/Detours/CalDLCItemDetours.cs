@@ -26,7 +26,7 @@ using CalamityMod.Tiles.Astral;
 using CalamityMod.Tiles.FurnitureMonolith;
 using CalamityMod.Tiles.Crags;
 using CalamityMod.Tiles.FurnitureAshen;
-using CalamityMod.Tiles.FurnitureEutrophic;
+using CalamityMod.Tiles.FurnitureNavystone;
 using CalamityMod.Tiles.SunkenSea;
 using Luminance.Core.Hooking;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
@@ -230,14 +230,14 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             itemLoot.AddIf(getsHapuFruit, ModContent.ItemType<HapuFruit>());
 
             // Apelusa dev item
-            // Name specific: "Pelusa"
+            // Name specific: "Dandy"
             static bool getsRedBow(DropAttemptInfo info)
             {
                 string playerName = info.player.name;
-                return playerName == "Pelusa";
+                return playerName == "Dandy";
             }
 
-            itemLoot.AddIf(getsRedBow, ModContent.ItemType<RedBow>());
+            itemLoot.AddIf(getsRedBow, ModContent.ItemType<GhostBracelet>());
 
             // Mishiro dev vanity
             // Name specific: "Amber" or "Mishiro"
@@ -293,7 +293,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             {
                 wallType = ModContent.WallType<SmoothNavystoneWall>();
                 tileType = ModContent.TileType<SmoothNavystone>();
-                platformStyle = ModContent.TileType<EutrophicPlatform>();
+                platformStyle = ModContent.TileType<NavystonePlatform>();
                 moddedPlatform = true;
             }
         }
@@ -314,7 +314,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
                 doorStyle = ModContent.TileType<AbyssDoorClosed>();
                 chairStyle = ModContent.TileType<AbyssChair>();
                 tableStyle = ModContent.TileType<AbyssTable>();
-                torchStyle = ModContent.TileType<AbyssTorch>();
+                torchStyle = ModContent.TileType<KelpTorch>();
             }
             if (player.Calamity().ZoneAstral)
             {
@@ -332,9 +332,9 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             }
             if (player.Calamity().ZoneSunkenSea)
             {
-                doorStyle = ModContent.TileType<EutrophicDoorClosed>();
-                chairStyle = ModContent.TileType<EutrophicChair>();
-                tableStyle = ModContent.TileType<EutrophicTable>();
+                doorStyle = ModContent.TileType<NavystoneDoorClosed>();
+                chairStyle = ModContent.TileType<NavystoneChair>();
+                tableStyle = ModContent.TileType<NavystoneTable>();
                 torchStyle = ModContent.TileType<NavyPrismTorch>();
             }
         }

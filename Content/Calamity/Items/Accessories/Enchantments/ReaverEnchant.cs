@@ -68,7 +68,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.Reaver.ReaverCuisses>(), 1);
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Tools.BeastialPickaxe>(), 1);
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Accessories.NecklaceofVexation>(), 1);
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Placeables.PlantyMush>(), 50);
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Placeables.Abyss.PlantyMush>(), 50);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
         }

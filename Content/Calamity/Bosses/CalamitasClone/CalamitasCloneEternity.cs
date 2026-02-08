@@ -21,7 +21,7 @@ using FargowiltasSouls.Content.Patreon.DanielTheRobot;
 using FargowiltasSouls.Content.WorldGeneration;
 using FargowiltasSouls.Core.NPCMatching;
 using FargowiltasSouls.Core.Systems;
-using Luminance.Common.Utilities;
+
 using Luminance.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

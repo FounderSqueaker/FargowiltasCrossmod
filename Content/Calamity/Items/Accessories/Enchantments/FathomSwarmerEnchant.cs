@@ -62,7 +62,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddIngredient<FathomSwarmerBoots>(1);
             recipe.AddIngredient<DreadmineStaff>(1);
             recipe.AddIngredient<OrthoceraShell>(1);
-            recipe.AddIngredient<LumenousAmulet>(1);
+            //recipe.AddIngredient<LumenousAmulet>(1); //item was renamed and retiered idc to find a replacement for it rn because this enchant isnt real
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
         }

@@ -18,7 +18,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.BrimstoneElemental
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     public class BrimstonePulse : ModProjectile
     {
-        public override string Texture => "CalamityMod/Projectiles/Typeless/ChlorophyteLifePulse";
+        public override string Texture => "Terraria/Images/Extra_59";
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
@@ -34,7 +34,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.BrimstoneElemental
         public override bool PreDraw(ref Color lightColor)
         {
             Asset<Texture2D> t = TextureAssets.Projectile[Type];
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+            Main.instance.LoadProjectile(Type);
             Main.EntitySpriteDraw(t.Value, Projectile.Center - Main.screenPosition, null, Color.Red * Projectile.Opacity, 0, t.Size() / 2, Projectile.scale, SpriteEffects.None);
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
             return false;
         }
         public override void AI()
@@ -43,7 +48,6 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.BrimstoneElemental
                 
             Projectile.scale = MathHelper.Lerp(0, Projectile.ai[1], 1 - (1 - x) * (1 - x));
             Projectile.Opacity = MathHelper.Lerp(1, 0, 1 - (float)Math.Cos((x * Math.PI) / 2));
-
             base.AI();
         }
     }

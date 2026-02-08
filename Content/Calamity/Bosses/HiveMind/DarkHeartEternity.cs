@@ -102,7 +102,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                     int shaderainXPos = (int)(NPC.position.X + 10f + Main.rand.Next(NPC.width - 20));
                     int shaderainYos = (int)(NPC.position.Y + NPC.height + 4f);
                     int type = ModContent.ProjectileType<ShaderainHostile>();
-                    int damage = NPC.GetProjectileDamage(type);
+                    int damage = CalamityMod.NPCs.HiveMind.HiveMind.ShaderainDamage;
                     float randomXVelocity = (CalamityWorld.LegendaryMode && CalamityWorld.revenge) ? Main.rand.NextFloat() * 5f : 0f;
                     Projectile.NewProjectile(NPC.GetSource_FromAI(), shaderainXPos, shaderainYos, randomXVelocity, 4f, type, damage, 0f, Main.myPlayer);
                 }

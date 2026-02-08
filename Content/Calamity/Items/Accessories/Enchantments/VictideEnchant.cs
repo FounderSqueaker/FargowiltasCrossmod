@@ -66,12 +66,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddRecipeGroup("FargowiltasCrossmod:AnyVictideHelms", 1);
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.Victide.VictideBreastplate>(), 1);
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.Victide.VictideGreaves>(), 1);
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.SnapClam>(), 1);
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.UrchinMace>(), 1);
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.UrchinStinger>(), 200);
+            recipe.AddRecipeGroup("FargowiltasCrossmod:AnyVictideHelms");
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.Victide.VictideBreastplate>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.Victide.VictideGreaves>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.SnapClam>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.UrchinMace>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.UrchinStinger>());
             recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
         }

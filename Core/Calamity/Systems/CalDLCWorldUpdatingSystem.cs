@@ -1,7 +1,9 @@
 ﻿using CalamityMod;
 using CalamityMod.Events;
+using CalamityMod.NPCs;
 using CalamityMod.Skies;
 using Fargowiltas.Content.NPCs;
+using CalamityMod.Systems;
 using FargowiltasCrossmod.Core.Calamity;
 using FargowiltasCrossmod.Core.Common;
 using FargowiltasSouls.Core.Systems;
@@ -25,7 +27,13 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             {
                 ModCompatibility.SoulsMod.Mod.Call("EternityVanillaBossBehaviour", CalDLCConfig.Instance.EternityPriorityOverRev);
                 if (CalDLCConfig.Instance.EternityPriorityOverRev && WorldSavingSystem.EternityMode)
-                    CalamityMod.CalamityMod.ExternalFlag_DisableNonRevBossAI = true;
+                {
+                    CalamityVanillaAIOverrideNPC.Enabled = false;
+                }
+                else
+                {
+                    CalamityVanillaAIOverrideNPC.Enabled = true;
+                }
             }
 
         }
@@ -34,10 +42,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
         {
             if (ModCompatibility.Calamity.Loaded)
             {
-                if (!Main.expertMode && (CalDLCWorldSavingSystem.EternityRev || CalDLCWorldSavingSystem.EternityDeath))
+                if (!Main.expertMode && (CalDLCWorldSavingSystem.EternityRev || CalDLCWorldSavingSystem.MasoDeath))
                 {
                     CalDLCWorldSavingSystem.EternityRev = false;
-                    CalDLCWorldSavingSystem.EternityDeath = false;
+                    CalDLCWorldSavingSystem.MasoDeath = false;
                     if (Main.netMode != NetmodeID.SinglePlayer)
                         PacketManager.SendPacket<EternityCalPacket>();
                 }
@@ -53,6 +61,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
                         infernum = true;
                 if (CalDLCWorldSavingSystem.EternityRev && !WorldSavingSystem.EternityMode && !infernum && Main.expertMode)
                 {
+                    
                     WorldSavingSystem.ShouldBeEternityMode = true;
                     WorldSavingSystem.EternityMode = true;
                     if (Main.netMode != NetmodeID.SinglePlayer)

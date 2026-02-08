@@ -1,20 +1,21 @@
-﻿using System;
+﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Graphics.Metaballs;
+using CalamityMod.NPCs.CalClone;
+using CalamityMod.NPCs.SupremeCalamitas;
+using CalamityMod.Particles;
+using CalamityMod.Projectiles.Boss;
+using FargowiltasCrossmod.Core;
+using FargowiltasCrossmod.Core.Calamity;
+using FargowiltasSouls;
+using FargowiltasSouls.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using CalamityMod.Particles;
-using FargowiltasSouls;
-using CalamityMod.NPCs.CalClone;
-using CalamityMod;
-using CalamityMod.Projectiles.Boss;
-using FargowiltasCrossmod.Core.Calamity;
-using FargowiltasCrossmod.Core;
-using CalamityMod.NPCs.SupremeCalamitas;
-using FargowiltasSouls.Core.Systems;
 
 namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
 {
@@ -116,10 +117,19 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                 if (Projectile.velocity.Length() < 20)
                     Projectile.velocity *= 1.02f;
             }
+
+
+            var p = SeekersMetaball.SpawnParticle(Projectile.Center + Projectile.velocity * Projectile.MaxUpdates, Vector2.Zero, Terraria.GameContent.TextureAssets.Projectile[ModContent.ProjectileType<SCalBrimstoneGigablast>()].Width() * Projectile.scale);
+            p.rotation = Projectile.rotation;
+            p.CurrentFrame = Projectile.frame;
+            p.MaxFrames = Main.projFrames[Type];
+            p.TextureToUse = Terraria.GameContent.TextureAssets.Projectile[ModContent.ProjectileType<SCalBrimstoneGigablast>()].Value;
+            p.SizeScaling = 0f;
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
+            return false;
             Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
             int frameHeight = texture.Height / Main.projFrames[Projectile.type];
             int drawStart = frameHeight * Projectile.frame;

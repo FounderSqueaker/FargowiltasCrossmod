@@ -176,6 +176,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
     }
     public abstract class CalDLCEDeathBehavior : CalDLCEmodeBehavior
     {
-        public override bool ExtraRequirements() => CalDLCWorldSavingSystem.EternityDeath;
+        public override bool ExtraRequirements() => CalDLCWorldSavingSystem.MasoDeath;
     }
 }

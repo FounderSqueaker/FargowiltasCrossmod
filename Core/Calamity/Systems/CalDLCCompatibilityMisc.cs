@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using CalamityMod;
@@ -45,6 +46,7 @@ using CalamityMod.NPCs.TownNPCs;
 using CalamityMod.NPCs.Yharon;
 using CalamityMod.Projectiles;
 using CalamityMod.Systems;
+using CalamityMod.Systems.Collections;
 using CalamityMod.UI.DraedonSummoning;
 using CalamityMod.World;
 using Fargowiltas.Content.Items.CaughtNPCs;
@@ -78,6 +80,7 @@ using FargowiltasSouls.Content.Items;
 using FargowiltasSouls.Content.NPCs.EternityModeNPCs;
 using FargowiltasSouls.Content.Projectiles.Masomode;
 using FargowiltasSouls.Core.Systems;
+using Luminance;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mono.Cecil;
@@ -87,9 +90,12 @@ using MonoMod.RuntimeDetour;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
+using Terraria.IO;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using static CalamityMod.Events.BossRushEvent;
 using static FargowiltasCrossmod.Core.Common.Globals.DevianttGlobalNPC;
 using static Terraria.ModLoader.ModContent;
@@ -136,10 +142,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
         #endregion summonloadingbullshit
         public override void Load()
         {
-            Add("Archmage", NPCType<DILF>());
-            Add("SeaKing", NPCType<SEAHOE>());
-            Add("Bandit", NPCType<THIEF>());
-            Add("BrimstoneWitch", NPCType<WITCH>());
+            Add("Archmage", NPCType<Archmage>());
+            Add("SeaKing", NPCType<SeaKing>());
+            Add("Bandit", NPCType<Bandit>());
+            Add("BrimstoneWitch", NPCType<BrimstoneWitch>());
         }
         public static void Add(string internalName, int id)
         {
@@ -232,7 +238,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
                     
                 },permittedNPCs: new int[] { NPCID.BlueSlime, NPCID.YellowSlime, NPCID.PurpleSlime, NPCID.RedSlime, NPCID.GreenSlime, NPCID.RedSlime,
                     NPCID.IceSlime, NPCID.UmbrellaSlime, NPCID.Pinky, NPCID.SlimeSpiked, NPCID.RainbowSlime, NPCType<KingSlimeJewelRuby>(),
-                    NPCType<KingSlimeJewelSapphire>(), NPCType<KingSlimeJewelEmerald>() }),
+                     }),
 
                 new Boss(NPCID.MoonLordCore, spawnContext: type =>{
                     NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, type);
@@ -258,14 +264,14 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
                 new Boss(NPCType<DevourerofGodsHead>(), spawnContext: type => {
                     SoundEngine.PlaySound(DevourerofGodsHead.SpawnSound, Main.player[ClosestPlayerToWorldCenter].Center);
                     NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, type);
-                }, usesSpecialSound: true, permittedNPCs: [NPCType<DevourerofGodsBody>(), NPCType<DevourerofGodsTail>(), NPCType<CosmicGuardianBody>(), NPCType<CosmicGuardianHead>(), NPCType<CosmicGuardianTail>(), 
+                }, usesSpecialSound: true, permittedNPCs: [NPCType<DevourerofGodsBody>(), NPCType<DevourerofGodsTail>(), 
                 NPCType<Signus>(), NPCType<CeaselessVoid>(), NPCType<StormWeaverHead>(), NPCType<StormWeaverBody>(), NPCType<StormWeaverTail>()]),
                 new Boss(NPCType<CosmosChampion>(), spawnContext: type => {
                     int erd = NPC.NewNPC(new EntitySource_WorldEvent(), (int)(Main.player[ClosestPlayerToWorldCenter].Center.X), (int)(Main.player[ClosestPlayerToWorldCenter].Center.Y - 400), type, 1);
                     Main.npc[erd].timeLeft *= 20;
                     CalamityUtils.BossAwakenMessage(erd);
                 }),
-                new Boss(NPCType<Yharon>(), permittedNPCs: NPCType<Bumblefuck>()),
+                new Boss(NPCType<Yharon>(), permittedNPCs: NPCType<Dragonfolly>()),
                 new Boss(NPCType<AbomBoss>()),
                 new Boss(NPCType<Draedon>(), spawnContext: type =>
                 {
@@ -296,50 +302,66 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             Mod cal = ModCompatibility.Calamity.Mod;
             cal.Call("RegisterModCooldowns", FargowiltasCrossmod.Instance);
             cal.Call("AddDifficultyToUI", new EternityRevDifficulty());
-            cal.Call("AddDifficultyToUI", new EternityDeathDifficulty());
+            cal.Call("AddDifficultyToUI", new MasoDeathDifficulty());
 
             #region CalDebuffListCompat
-            List<int> calamityDebuffs = CalamityLists.debuffList.Where(i => i >= BuffID.Count).ToList();
-            CalamityLists.debuffList.Add(BuffType<AnticoagulationBuff>());
-            CalamityLists.debuffList.Add(BuffType<AntisocialBuff>());
-            CalamityLists.debuffList.Add(BuffType<AtrophiedBuff>());
-            CalamityLists.debuffList.Add(BuffType<BerserkedBuff>());
-            CalamityLists.debuffList.Add(BuffType<BloodthirstyBuff>());
-            CalamityLists.debuffList.Add(BuffType<BaronsBurdenBuff>());
-            CalamityLists.debuffList.Add(BuffType<ClippedWingsBuff>());
-            CalamityLists.debuffList.Add(BuffType<CurseoftheMoonBuff>());
-            CalamityLists.debuffList.Add(BuffType<DefenselessBuff>());
-            CalamityLists.debuffList.Add(BuffType<FlamesoftheUniverseBuff>());
-            CalamityLists.debuffList.Add(BuffType<FusedBuff>());
-            CalamityLists.debuffList.Add(BuffType<GodEaterBuff>());
-            CalamityLists.debuffList.Add(BuffType<HexedBuff>());
-            CalamityLists.debuffList.Add(BuffType<IvyVenomBuff>());
-            CalamityLists.debuffList.Add(BuffType<JammedBuff>());
-            CalamityLists.debuffList.Add(BuffType<LethargicBuff>());
-            CalamityLists.debuffList.Add(BuffType<LightningRodBuff>());
-            CalamityLists.debuffList.Add(BuffType<LowGroundBuff>());
-            CalamityLists.debuffList.Add(BuffType<MarkedforDeathBuff>());
-            CalamityLists.debuffList.Add(BuffType<MidasBuff>());
-            CalamityLists.debuffList.Add(BuffType<NeurotoxinBuff>());
-            CalamityLists.debuffList.Add(BuffType<OceanicMaulBuff>());
-            CalamityLists.debuffList.Add(BuffType<OiledBuff>());
-            CalamityLists.debuffList.Add(BuffType<ReverseManaFlowBuff>());
-            CalamityLists.debuffList.Add(BuffType<RottingBuff>());
-            CalamityLists.debuffList.Add(BuffType<SmiteBuff>());
-            CalamityLists.debuffList.Add(BuffType<ShadowflameBuff>());
-            CalamityLists.debuffList.Add(BuffType<SqueakyToyBuff>());
-            CalamityLists.debuffList.Add(BuffType<StunnedBuff>());
-            CalamityLists.debuffList.Add(BuffType<SwarmingBuff>());
-            CalamityLists.debuffList.Add(BuffType<TimeFrozenBuff>());
-            CalamityLists.debuffList.Add(BuffType<UnluckyBuff>());
-            CalamityLists.debuffList.Add(BuffType<UnstableBuff>());
-            CalamityLists.debuffList.Add(BuffType<BerserkerInstallBuff>());
-            CalamityLists.debuffList.Add(BuffType<RushJobBuff>());
-            CalamityLists.debuffList.Add(BuffType<TwinsInstallBuff>());
-            CalamityLists.debuffList.Add(BuffType<BlackInfernoBuff>());
-            CalamityLists.debuffList.Add(BuffType<LeadPoisonBuff>());
-            CalamityLists.debuffList.Add(BuffType<OriPoisonBuff>());
-            CalamityLists.debuffList.Add(BuffType<PungentGazeBuff>());
+            CalamityBuffSets.IsDebuff[BuffType<AnticoagulationBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<AntisocialBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<AtrophiedBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<BerserkedBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<BloodthirstyBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<BaronsBurdenBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<ClippedWingsBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<CrippledBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<CurseoftheMoonBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<DefenselessBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<FlamesoftheUniverseBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<FlippedBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<FusedBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<GodEaterBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<GuiltyBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<HexedBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<HypothermiaBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<InfestedBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<IvyVenomBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<JammedBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<LethargicBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<LightningRodBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<LivingWastelandBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<LovestruckBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<LowGroundBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<MarkedforDeathBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<MidasBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<MutantNibbleBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<NanoInjectionBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<NeurotoxinBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<NullificationCurseBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<OceanicMaulBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<OiledBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<PurgedBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<PurifiedBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<ReverseManaFlowBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<RottingBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<SmiteBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<ShadowflameBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<SqueakyToyBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<StunnedBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<SwarmingBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<TimeFrozenBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<UnluckyBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<UnstableBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<BerserkerInstallBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<HolyPriceBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<BrainOfConfusionBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<LihzahrdCurseBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<RushJobBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<TwinsInstallBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<SnowstormCDBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<HellFireBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<LeadPoisonBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<OriPoisonBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<PungentGazeBuff>()] = true;
+            CalamityBuffSets.IsDebuff[BuffType<SolarFlareBuff>()] = true;
             CalamityLists.debuffList.Add(BuffType<SolarFlareBuff>());
             FieldInfo debuffIDs = typeof(FargowiltasSouls.FargowiltasSouls).GetField("DebuffIDs", LumUtils.UniversalBindingFlags);
             List<int> newDebuffIDs = (List<int>)debuffIDs.GetValue(null);
@@ -347,35 +369,32 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             debuffIDs.SetValue(null, newDebuffIDs);
             #endregion CalDebuffListCompat
             #region SwordRework
-            int[] CalSwordsToApplyRework = [ItemType<GaussDagger>(), ItemType<AbsoluteZero>(), ItemType<AegisBlade>(),
-            ItemType<Aftershock>(), ItemType<AnarchyBlade>(), ItemType<AstralBlade>(),
+            int[] CalSwordsToApplyRework = [ItemType<AbsoluteZero>(),ItemType<AcidwoodSword>(),
+            ItemType<AegisBlade>(),ItemType<AnarchyBlade>(),
             ItemType<AstralScythe>(),ItemType<Ataraxia>(),ItemType<Avalanche>(),
-            ItemType<BalefulHarvester>(),ItemType<Basher>(),
             ItemType<BlightedCleaver>(),ItemType<Brimlash>(),ItemType<BrimstoneSword>(),
             ItemType<BrinyBaron>(),ItemType<BurntSienna>(),ItemType<Carnage>(),
-            ItemType<CatastropheClaymore>(),ItemType<TrueCausticEdge>(),ItemType<CelestialClaymore>(),
-            ItemType<CometQuasher>(),ItemType<DarklightGreatsword>(),ItemType<DefiledGreatsword>(),
-            ItemType<DevilsDevastation>(),ItemType<DraconicDestruction>(),
-            ItemType<Earth>(),ItemType<EntropicClaymore>(),ItemType<EssenceFlayer>(),
-            ItemType<EutrophicScimitar>(),ItemType<EvilSmasher>(),ItemType<ExaltedOathblade>(),
-            ItemType<Excelsus>(),ItemType<FeralthornClaymore>(),ItemType<FlarefrostBlade>(),
-            ItemType<Floodtide>(),ItemType<ForbiddenOathblade>(),ItemType<ForsakenSaber>(),
-            ItemType<GaelsGreatsword>(),ItemType<GalactusBlade>(),ItemType<GeliticBlade>(),
-            ItemType<GrandGuardian>(),ItemType<GreatswordofJudgement>(),
-            ItemType<Greentide>(),ItemType<HellfireFlamberge>(),ItemType<Hellkite>(),
-            ItemType<HolyCollider>(),ItemType<IridescentExcalibur>(),
-            ItemType<LifehuntScythe>(),ItemType<LionHeart>(),ItemType<MajesticGuard>(),
-            ItemType<MirrorBlade>(),ItemType<Orderbringer>(),ItemType<PerfectDark>(),
-            ItemType<PlagueKeeper>(),ItemType<RedSun>(),
+            ItemType<TrueCausticEdge>(),ItemType<CelestialClaymore>(),
+            ItemType<DarklightGreatsword>(),ItemType<DefiledGreatsword>(),
+            ItemType<DraconicDestruction>(),ItemType<DriftwoodSword>(),
+            ItemType<EssenceFlayer>(),
+            ItemType<EvilSmasher>(),
+            ItemType<FeralthornClaymore>(),ItemType<FlarefrostBlade>(),
+            ItemType<Floodtide>(),ItemType<ForsakenSaber>(),
+            ItemType<GaelsGreatsword>(),ItemType<GeliticBlade>(),
+            ItemType<Greentide>(),ItemType<HellfireFlamberge>(),
+            ItemType<LifehuntScythe>(),ItemType<LionHeart>(),
+            ItemType<PerfectDark>(),ItemType<RedSun>(),
             ItemType<SeashineSword>(),ItemType<SolsticeClaymore>(),ItemType<SoulHarvester>(),
-            ItemType<StellarStriker>(),ItemType<StormRuler>(),ItemType<StormSaber>(),
+            ItemType<StormRuler>(),ItemType<StormSaber>(),
             ItemType<Swordsplosion>(),ItemType<TaintedBlade>(),ItemType<TeardropCleaver>(),
-            ItemType<TerrorBlade>(),ItemType<TheDarkMaster>(),ItemType<TheEnforcer>(),
-            ItemType<TheLastMourning>(),ItemType<TheMutilator>(),ItemType<TitanArm>(),
+            ItemType<TerrorBlade>(),ItemType<TheDarkMaster>(),
+            ItemType<TheLastMourning>(),ItemType<TitanArm>(),
             ItemType<UltimusCleaver>(),ItemType<VeinBurster>(),ItemType<Virulence>(),
-            ItemType<VoidEdge>(),ItemType<WindBlade>(), ItemType<MantisClaws>()];
+            ItemType<VoidEdge>(),ItemType<WindBlade>()];
             SwordGlobalItem.AllowedModdedSwords = SwordGlobalItem.AllowedModdedSwords.Union(CalSwordsToApplyRework).ToArray();
             #endregion
+            
         }
         //make this a property instead of directly using it so tml doesnt shit itself trying to load it
         public ref Dictionary<int, Action<NPC>> DeathEffectsList => ref BossRushEvent.BossDeathEffects;

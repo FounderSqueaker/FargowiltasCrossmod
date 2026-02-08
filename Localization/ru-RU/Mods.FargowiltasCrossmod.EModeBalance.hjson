@@ -1,9 +1,9 @@
-CrossBalanceGeneric: "Баланс кросс-моддинга: "
+﻿CrossBalanceGeneric: "Баланс кросс-моддинга: "
 DamageUpGeneric: Урон увеличен на {0}%
 DamageDownGeneric: Урон уменьшен на {0}%
 PickPowerDownGeneric: Сила добычи уменьшена на {0}%
 ProfanedCrystal: Значительно уменьшает урон с любым призванным существом
-MythrilEnch: Менее эффективно на оружиях разбойника
+MythrilEnch: Менее эффективно на оружиях плута
 OrichalcumEnch: Эффективность уменьшена
 FlightMastery: Полёт ослаблен при битвах с боссами не из мода «Fargo's Souls»
 EarthForce: Увеличение постепенного урона уменьшено до 2-кратного

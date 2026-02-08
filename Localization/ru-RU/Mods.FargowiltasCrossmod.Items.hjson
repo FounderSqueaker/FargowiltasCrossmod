@@ -1,4 +1,4 @@
-AddedEffects: {
+﻿AddedEffects: {
 	AngelTreads: Эффекты ангельских ботфортов
 	AeolusBoots: Эффекты ботинок Эола
 	NoStack: ", не увеличивается с улучшениями"
@@ -47,7 +47,7 @@ AstrumCor: {
 
 BirbPheromones: {
 	DisplayName: Феромоны птичбки
-	Tooltip: Призывает Псевдодракона
+	Tooltip: Призывает Дуракона
 }
 
 BlightedEye: {
@@ -57,7 +57,7 @@ BlightedEye: {
 
 BloodyWorm: {
 	DisplayName: Кровяной червь
-	Tooltip: Призывает Старого Герцога
+	Tooltip: Призывает Старого герцога
 }
 
 ChunkyStardust: {
@@ -92,7 +92,7 @@ PortableCodebreaker: {
 
 EyeofExtinction: {
 	DisplayName: Глаз вымирания
-	Tooltip: Призывает Высшую Каламитас
+	Tooltip: Призывает Каламитас
 }
 
 FriedDoll: {
@@ -102,7 +102,7 @@ FriedDoll: {
 
 HiveTumor: {
 	DisplayName: Опухоль улья
-	Tooltip: Призывает Разум улья
+	Tooltip: Призывает Разум порчи
 }
 
 LetterofKos: {
@@ -142,7 +142,7 @@ RedStainedWormFood: {
 
 RiftofKos: {
 	DisplayName: Раскол Кос
-	Tooltip: Призывает Нескончаемую пустоту
+	Tooltip: Призывает Неусмиримую пустоту
 }
 
 SeeFood: {
@@ -157,21 +157,12 @@ SirensPearl: {
 
 SomeKindofSpaceWorm: {
 	DisplayName: Какой-то космический червь
-	Tooltip: Призывает Пожирателя богов
+	Tooltip: Призывает Пожирателя Богов
 }
 
 WormFoodofKos: {
 	DisplayName: Корм для червя Кос
-	Tooltip: Призывает Штормового ткача
-}
-
-AbandonedRemote: {
-	DisplayName: Затерянный пульт управления
-	Tooltip:
-		'''
-		Призывает бронированного копателя
-		Можно использовать только под землёй
-		'''
+	Tooltip: Призывает Ткача бурь
 }
 
 ClamPearl: {
@@ -187,7 +178,7 @@ ColossalTentacle: {
 	DisplayName: Громадное щупальце
 	Tooltip:
 		'''
-		Призывает громадного кальмара
+		Призывает колоссального кальмара
 		Можно использовать только в бездне
 		'''
 }
@@ -202,10 +193,10 @@ DeepseaProteinShake: {
 }
 
 MaulerSkull: {
-	DisplayName: Череп мучителя
+	DisplayName: Череп терзателя
 	Tooltip:
 		'''
-		Призывает мучителя
+		Призывает терзателя
 		Можно использовать только в сернистом море
 		'''
 }
@@ -214,7 +205,7 @@ NuclearChunk: {
 	DisplayName: Ядерный комок
 	Tooltip:
 		'''
-		Призывает ядерный террор
+		Призывает ядерный ужас
 		Можно использовать только в сернистом море
 		'''
 }
@@ -223,7 +214,7 @@ PlaguedWalkieTalkie: {
 	DisplayName: Чумная рация
 	Tooltip:
 		'''
-		Призывает разносчика чумы
+		Призывает разносчицу чумы
 		Можно использовать только в джунглях
 		'''
 }
@@ -246,16 +237,16 @@ SulphurBearTrap: {
 	DisplayName: Сернистый капкан
 	Tooltip:
 		'''
-		Призывает болотистого скалозева
+		Призывает скалопастного болотника
 		Можно использовать только в сернистом море
 		'''
 }
 
 WyrmTablet: {
-	DisplayName: Скрижаль змия
+	DisplayName: Скрижаль змея
 	Tooltip:
 		'''
-		Призывает эйдолонского змия
+		Призывает Первородного змея
 		Можно использовать только в бездне
 		'''
 }
@@ -274,7 +265,7 @@ BrandoftheBrimstoneWitch: {
 }
 
 AerospecEnchant: {
-	DisplayName: Зачарование аэрофаза
+	DisplayName: Зачарование аэропризрака
 	Tooltip:
 		'''
 		Даёт +5% шанса критического удара и урона призывателя
@@ -296,7 +287,7 @@ MarniteEnchant: {
 }
 
 DesertProwlerEnchant: {
-	DisplayName: Зачарование пустынного мародёра
+	DisplayName: Зачарование пустынного бродяги
 	Tooltip:
 		'''
 		Удерживайте ВВЕРХ, чтобы зарядить мощный прыжок, который также увеличивает вашу горизонтальную скорость
@@ -336,7 +327,7 @@ GaleForce: {
 }
 
 SnowRuffianEnchant: {
-	DisplayName: Зачарование снежного бандита
+	DisplayName: Зачарование снежного хулигана
 	Tooltip:
 		'''
 		Позволяет парить в воздухе, даже если на вас нет крыльев
@@ -373,7 +364,7 @@ PlaguebringerEnchant: {
 }
 
 ReaverEnchant: {
-	DisplayName: Зачарование разорителя
+	DisplayName: Зачарование расхитителя
 	Tooltip: ""
 }
 
@@ -404,7 +395,7 @@ ElementsForce: {
 }
 
 UmbraphileEnchant: {
-	DisplayName: Зачарование фанатика тени
+	DisplayName: Зачарование охотника на тень
 	Tooltip: ""
 }
 
@@ -419,7 +410,7 @@ TitanHeartEnchant: {
 }
 
 StatigelEnchant: {
-	DisplayName: Зачарование статигеля
+	DisplayName: Зачарование геля Статиса
 	Tooltip:
 		'''
 		Увеличивает максимальную скорость передвижения
@@ -438,7 +429,7 @@ SulphurEnchant: {
 }
 
 VictideEnchant: {
-	DisplayName: Зачарование прилива
+	DisplayName: Зачарование прилива победы
 	Tooltip:
 		'''
 		Даёт морские иглы, которые торчат из вашего тела
@@ -447,7 +438,12 @@ VictideEnchant: {
 		'''
 }
 
-Lore.LoreDraedon.DisplayName: Дрэйдон
+Lore: {
+	LoreDraedon: {
+		DisplayName: Дрэйдон
+		// Tooltip: ""
+	}
+}
 
 FathomSwarmerEnchant: {
 	// DisplayName: Fathom Swarmer Enchantment
@@ -490,7 +486,7 @@ MolluskEnchant: {
 // NotConsumable: Not consumable
 
 EmpyreanEnchant: {
-	DisplayName: Зачарование возвышения
+	DisplayName: Зачарование эмпирея
 	Tooltip:
 		'''
 		Если вы медленно двигаетесь или стоите 2 секунды, следующая ваша атака будет усилена

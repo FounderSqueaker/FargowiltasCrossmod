@@ -70,7 +70,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
         internal static bool SunkenSeaActive_Detour(Orig_SunkenSeaActive orig, SunkenSeaBiome self, Player player)
         {
             bool result = orig(self, player);
-            if (FargoServerConfig.Instance.Fountains && Main.SceneMetrics.ActiveFountainColor == ModContent.Find<ModWaterStyle>("CalamityMod/SunkenSeaWater").Slot)
+            if (FargoServerConfig.Instance.Fountains && Main.SceneMetrics.ActiveFountainColor == ModContent.Find<ModWaterStyle>("CalamityMod/SunkenSeaPolypWater").Slot)
                 return true;
             return result;
         }

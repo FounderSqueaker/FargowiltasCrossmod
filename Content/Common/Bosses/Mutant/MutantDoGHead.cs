@@ -24,8 +24,6 @@ namespace FargowiltasCrossmod.Content.Common.Bosses.Mutant
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class MutantDoGHead : ModProjectile
     {
-        public override string Texture => "CalamityMod/NPCs/DevourerofGods/DevourerofGodsHead";
-
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("The Destroyer");

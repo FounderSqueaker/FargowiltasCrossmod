@@ -382,7 +382,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
             }
             if (ai[3] == -2) //telegraph spit followup
             {
-                SoundEngine.PlaySound(new SoundStyle("CalamityMod/Sounds/Custom/DesertScourgeRoar") with { Volume = 0.5f, Pitch = 0.2f });
+                
+                SoundEngine.PlaySound(CalamityMod.NPCs.DesertScourge.DesertScourgeHead.RoarSound with { Volume = 0.5f, Pitch = 0.2f });
             }
             if (ai[3] % 70 == 0 && ai[3] < 0)
             {
@@ -469,7 +470,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
                             }
                             else
                             {
-                                SoundEngine.PlaySound(new SoundStyle("CalamityMod/Sounds/Custom/DesertScourgeRoar") with { Volume = 0.5f, Pitch = -0.3f });
+                                SoundEngine.PlaySound(CalamityMod.NPCs.DesertScourge.DesertScourgeHead.RoarSound with { Volume = 0.5f, Pitch = -0.3f });
                                 timer = 1;
                             }
                         }
@@ -559,6 +560,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
                         }
                     }
                     break;
+                default: // sum ting wong
+                    attackStep = 0;
+                    timer = 0;
+                    NetSync(NPC);
+                    NPC.netUpdate = true;
+                    break;
             }
             timer++;
         }
@@ -624,7 +631,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
             //play sound at start only once
             if (lungeInfo[0] == 0)
             {
-                SoundEngine.PlaySound(new SoundStyle("CalamityMod/Sounds/Custom/DesertScourgeRoar") with { Volume = 0.5f });
+                SoundEngine.PlaySound(CalamityMod.NPCs.DesertScourge.DesertScourgeHead.RoarSound with { Volume = 0.5f });
                 lungeInfo[0]++;
 
             }

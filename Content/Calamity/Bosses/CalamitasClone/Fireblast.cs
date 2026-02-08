@@ -1,22 +1,22 @@
-﻿using System;
+﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Dusts;
 using CalamityMod.Events;
+using CalamityMod.Graphics.Metaballs;
 using CalamityMod.NPCs;
 using CalamityMod.NPCs.SupremeCalamitas;
+using CalamityMod.Particles;
+using CalamityMod.Projectiles.Boss;
 using CalamityMod.World;
+using FargowiltasSouls;
+using FargowiltasSouls.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using CalamityMod.Particles;
-using CalamityMod;
-using CalamityMod.Projectiles.Boss;
-using FargowiltasSouls;
-using Luminance.Common.Utilities;
-using FargowiltasSouls.Core.Systems;
 
 namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
 {
@@ -158,10 +158,18 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                     GeneralParticleHandler.SpawnParticle(bloom);
                 }
             }
+            var p = SeekersMetaball.SpawnParticle(Projectile.Center + Projectile.velocity * Projectile.MaxUpdates, Vector2.Zero, Terraria.GameContent.TextureAssets.Projectile[ModContent.ProjectileType<SCalBrimstoneFireblast>()].Width() * Projectile.scale);
+            p.rotation = Projectile.rotation;
+            p.CurrentFrame = Projectile.frame;
+            p.MaxFrames = Main.projFrames[Type];
+            p.TextureToUse = Terraria.GameContent.TextureAssets.Projectile[ModContent.ProjectileType<SCalBrimstoneFireblast>()].Value;
+            p.SizeScaling = 0f;
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
+            return false;
+            /*
             Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
             int frameHeight = texture.Height / Main.projFrames[Projectile.type];
             int drawStart = frameHeight * Projectile.frame;
@@ -169,6 +177,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
 
             Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(new Rectangle(0, drawStart, texture.Width, frameHeight)), Projectile.GetAlpha(lightColor), Projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, SpriteEffects.None, 0);
             return false;
+            */
         }
 
         public override bool CanHitPlayer(Player target) => Projectile.Opacity == 1f;
