@@ -1,3 +1,20 @@
-Patch 1.2.0.20
-- Ported to Calamity Mod v2.1
-- Added buttons for toggling between Eternity and Calamity boss AI priority, next to the Calamity difficulty UI
+Patch 1.2.0.23
+- Added popup notification warning that FTW is unsupported when entering a world on FTW
+- Removed Abandoned Remote
+- Fixed Acidwood Sword and Driftwood Sword not receiving a reworked broadsword swing animation
+- Fixed various Mutant projectiles drawing incorrectly
+
+- Recipe changes:
+- - All recipes that previously required multiple consumable rogue weapons now only use 1 copy of each weapon due to them becoming non-consumable.
+- - Added Banner Recipe for Antlion Skewer.
+- -  Desert Prowler Enchantment now uses Antlion Skewer and Nasty Cholla instead of Storm Spear and Stormjaw Staff.
+- - Sulphurous Enchantment now uses Any Sulphurous Sea Fruit instead of Rusty Beacon Prototype.
+- - Titan Heart Enchantment now uses Monolith Hammer and Any Astral Fruit instead of Stress Pills and Ursa Sergeant.
+- - Daedalus Enchantment now uses Darkecho Greatbow instead of 20 Frozen Candles.
+- - Outlaw's Essence now uses Spore Knife instead of Feather Knife, and no longer uses Sludge Spotch.
+
+- Removed the following balance changes to items:
+- - Soma Prime: Increased damage by 20%
+- - Svantechnical: Increased damage by 10%
+- - Rainbow Party Cannon: Decreased damage by 30%
+- - Universe Splitter: Decreased damage by 50%.
