@@ -58,7 +58,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             HookHelper.ModifyMethodWithDetour(DropSummon_Int_Method, DropSummon_Int_Detour);
             HookHelper.ModifyMethodWithDetour(DropSummon_String_Method, DropSummon_String_Detour);
 
-            HookHelper.ModifyMethodWithDetour(GetBestClassDamage_Method, GetBestClassDamage_Detour);
+            //HookHelper.ModifyMethodWithDetour(GetBestClassDamage_Method, GetBestClassDamage_Detour);
 
             HookHelper.ModifyMethodWithDetour(FargoSoulsUtil_HighestDamageTypeScaling_Method, HighestDamageTypeScaling_Detour);
         }
@@ -229,7 +229,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
         }
 
 
-        private static readonly MethodInfo GetBestClassDamage_Method = typeof(CalamityUtils).GetMethod("GetBestClassDamage", LumUtils.UniversalBindingFlags);
+        /*private static readonly MethodInfo GetBestClassDamage_Method = typeof(CalamityUtils).GetMethod("GetBestClassDamage", LumUtils.UniversalBindingFlags);
         public delegate StatModifier Orig_GetBestClassDamage(Player player);
         internal static StatModifier GetBestClassDamage_Detour(Orig_GetBestClassDamage orig, Player player)
         {
@@ -250,7 +250,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             ];
             ret += bestClass.Max() - 1f;
             return ret;
-        }
+        }*/
         private static readonly MethodInfo FargoSoulsUtil_HighestDamageTypeScaling_Method = typeof(FargoSoulsUtil).GetMethod("HighestDamageTypeScaling", LumUtils.UniversalBindingFlags);
         public delegate int Orig_FargoSoulsUtil_HighestDamageTypeScaling(Player player, int dmg);
         internal static int HighestDamageTypeScaling_Detour(Orig_FargoSoulsUtil_HighestDamageTypeScaling orig, Player player, int dmg)
