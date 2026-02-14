@@ -78,12 +78,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
         internal static float TungstenIncreaseWeaponSize_Detour(Orig_TungstenIncreaseWeaponSize orig, FargoSoulsPlayer modPlayer)
         {
             float value = orig(modPlayer);
-            if (modPlayer.Player.HeldItem == null)
+            /*if (modPlayer.Player.HeldItem == null)
                 return value;
-            if (CalDLCSets.Items.TungstenExclude[modPlayer.Player.HeldItem.type])
-                return 1f;
             //if (modPlayer.Player.HeldItem.DamageType.CountsAsClass(DamageClass.Melee))
-            //    value -= (value - 1f) * 0.5f;
+            //    value -= (value - 1f) * 0.5f;*/
             return value;
         }
         private static readonly MethodInfo TungstenNeverAffectsProjMethod = typeof(TungstenEffect).GetMethod("TungstenNeverAffectsProj", LumUtils.UniversalBindingFlags);

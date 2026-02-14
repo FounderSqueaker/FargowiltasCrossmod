@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using CalamityMod;
 using CalamityMod.Events;
 using CalamityMod.NPCs.CeaselessVoid;
@@ -13,26 +11,19 @@ using CalamityMod.Projectiles.Ranged;
 using CalamityMod.Projectiles.Summon;
 using CalamityMod.Projectiles.Typeless;
 using CalamityMod.World;
-using Fargowiltas.NPCs;
-using Fargowiltas;
 using FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind;
-using FargowiltasCrossmod.Content.Calamity.Projectiles;
-using FargowiltasCrossmod.Core;
-using FargowiltasCrossmod.Core.Calamity;
 using FargowiltasCrossmod.Core.Calamity.Systems;
 using FargowiltasSouls;
 using FargowiltasSouls.Content.Bosses.AbomBoss;
 using FargowiltasSouls.Content.Bosses.DeviBoss;
 using FargowiltasSouls.Content.Bosses.MutantBoss;
-using FargowiltasSouls.Content.Items.Accessories.Enchantments;
-using FargowiltasSouls.Content.Projectiles;
 using FargowiltasSouls.Content.Projectiles.BossWeapons;
 using FargowiltasSouls.Content.Projectiles.Deathrays;
 using FargowiltasSouls.Content.Projectiles.Masomode;
 using FargowiltasSouls.Content.Projectiles.Souls;
-using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Globals;
 using FargowiltasSouls.Core.ModPlayers;
+using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -97,8 +88,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     typeof(SlimeBall).GetField("oil", LumUtils.UniversalBindingFlags).SetValue(projectile.ModProjectile, false);
                 }
             }
-            
-
+        
         }
         public bool Ricoshot = false;
         [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
@@ -204,38 +194,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             }
 
         }
-        public override bool PreDraw(Projectile projectile, ref Color lightColor)
-        {
-            /*
-            if (projectile.type == ModContent.ProjectileType<FragmentRitual>())
-            {
-                EDeathMLCore ml = Main.npc[(int)projectile.ai[1]].GetGlobalNPC<EDeathMLCore>();
-                MoonLordCore ml2 = Main.npc[(int)projectile.ai[1]].GetGlobalNPC<MoonLordCore>();
-                if (ml != null && ml2 != null && ml.roguePhase == true && ml2.VulnerabilityState == 4)
-                {
-                    Texture2D texture2D13 = ModContent.Request<Texture2D>("CalamityMod/Items/Materials/MeldConstruct").Value;
-                    int num156 = ModContent.Request<Texture2D>("CalamityMod/Items/Materials/MeldConstruct").Value.Height; //ypos of lower right corner of sprite to draw
-                    int y3 = 0; //ypos of upper left corner of sprite to draw
-                    Rectangle rectangle = new(0, y3, texture2D13.Width, num156);
-                    Vector2 origin2 = rectangle.Size() / 2f;
 
-                    Color color26 = projectile.GetAlpha(lightColor);
-
-                    const int max = 32;
-                    for (int x = 0; x < max; x++)
-                    {
-                        if (x < projectile.localAI[0])
-                            continue;
-                        Vector2 drawOffset = new(600 * projectile.scale / 2f, 0);//.RotatedBy(Projectile.ai[0]);
-                        drawOffset = drawOffset.RotatedBy(2f * Math.PI / max * (x + 1) - Math.PI / 2);
-                        Main.EntitySpriteDraw(texture2D13, projectile.Center + drawOffset - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0);
-                    }
-                    return false;
-                }
-            }
-            */
-            return base.PreDraw(projectile, ref lightColor);
-        }
         public override void AI(Projectile projectile)
         {
             if (CalDLCConfig.Instance.EternityPriorityOverRev)
@@ -270,6 +229,39 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                         break;
                 }
             }
+
+            if (projectile.type == ModContent.ProjectileType<DeathsAscensionSwing>() && projectile.FargoSouls().TungstenScale != 1)
+            {
+                projectile.position -= new Vector2(50 * projectile.direction, 0);
+            }
+        }
+
+
+        public static List<int> CalSwordProjsWithHoldoutStyle =
+        [
+            // ONLY insert projectiles here that derive from BaseCustomUseStyleProjectile
+            ModContent.ProjectileType<BasherHoldout>(), ModContent.ProjectileType<DevilsDevastationHoldout>(), ModContent.ProjectileType<MantisClawHoldout>(),
+            ModContent.ProjectileType<ExaltedOathbladeHoldout>(), ModContent.ProjectileType<SkytideDragoonHoldout>(), ModContent.ProjectileType<OldLordClaymoreHoldout>(),
+            ModContent.ProjectileType<MajesticGuardHoldout>(), ModContent.ProjectileType<EarthHoldout>(), ModContent.ProjectileType<HolyColliderHoldout>(),
+            ModContent.ProjectileType<ForbiddenOathbladeHoldout>(), ModContent.ProjectileType<StellarStrikerHoldout>(), ModContent.ProjectileType<HellkiteHoldout>(),
+            ModContent.ProjectileType<TruePureClarity>(), ModContent.ProjectileType<GrandGuardianHoldout>(), ModContent.ProjectileType<GrandDadHoldout>(),
+            ModContent.ProjectileType<BalefulHarvesterHoldout>(), ModContent.ProjectileType<PureClarity>(), ModContent.ProjectileType<CometQuasherHoldout>()
+        ];
+        public override void ModifyDamageHitbox(Projectile projectile, ref Rectangle hitbox)
+        {
+            //tungsten fixes
+            if (CalSwordProjsWithHoldoutStyle.Contains(projectile.type))
+            {
+                Vector2 outset = new(projectile.As<BaseCustomUseStyleProjectile>().HitboxOutset, 0);
+                Vector2 size = projectile.As<BaseCustomUseStyleProjectile>().HitboxSize * projectile.FargoSouls().TungstenScale;
+                Vector2 cen = projectile.Center + outset.RotatedBy(projectile.As<BaseCustomUseStyleProjectile>().FinalRotation + projectile.As<BaseCustomUseStyleProjectile>().HitboxRotationOffset);
+                hitbox = new Rectangle((int)cen.X - (int)(size.X / 2), (int)cen.Y - (int)(size.Y / 2), (int)size.X, (int)size.Y);
+            }
+        }
+
+        public override bool PreDraw(Projectile projectile, ref Color lightColor)
+        {
+            return base.PreDraw(projectile, ref lightColor);
         }
     }
 }

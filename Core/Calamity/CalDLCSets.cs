@@ -56,7 +56,6 @@ namespace FargowiltasCrossmod.Core.Calamity
             public static bool[] CalBossSummon;
 
             public static bool[] AdamantiteExclude;
-            public static bool[] TungstenExclude;
             public static bool[] MarniteExclude;
 
             /// <summary>
@@ -144,17 +143,13 @@ namespace FargowiltasCrossmod.Core.Calamity
                 ItemType<ClockworkBow>(),
                 ItemType<NebulousCataclysm>(),
                 ItemType<Eternity>(), //fargo reference
-                ItemType<CalamityMod.Items.Weapons.Magic.Vehemence>(),
+                ItemType<Vehemence>(),
                 ItemType<Phaseslayer>(),
                 ItemType<FracturedArk>(),
                 ItemType<TrueArkoftheAncients>(),
                 ItemType<ArkoftheElements>(),
                 ItemType<ArkoftheCosmos>(),
                 ItemType<Animosity>()
-            );
-            Items.TungstenExclude = itemFactory.CreateBoolSet(false,
-                ItemType<OldLordClaymore>(),
-                ItemType<BladecrestOathsword>()
             );
             Items.MarniteExclude = itemFactory.CreateBoolSet(false,  // set of boss viable tools
               //ItemID.RodofDiscord, // this is intentional
@@ -286,7 +281,14 @@ namespace FargowiltasCrossmod.Core.Calamity
             #region Projectiles
             SetFactory projectileFactory = ProjectileID.Sets.Factory;
             //empty because cal fixed the projs here
-            Projectiles.TungstenExclude = projectileFactory.CreateBoolSet(false
+            Projectiles.TungstenExclude = projectileFactory.CreateBoolSet(false,
+                ProjectileType<BladecrestOathswordThrownBlade>(), 
+                ProjectileType<ForbiddenOathbladeThrownBlade>(),
+                ProjectileType<ExaltedOathbladeThrownBlade>(),
+                ProjectileType<DevilsDevastationThrownBlade>(),
+                ProjectileType<DepthCrusherProjectile>(),
+                ProjectileType<AbyssBladeProjectile>(),
+                ProjectileType<NeptunesBountyProjectile>()
                 );
 
             Projectiles.MultipartShredder = projectileFactory.CreateBoolSet(false,
