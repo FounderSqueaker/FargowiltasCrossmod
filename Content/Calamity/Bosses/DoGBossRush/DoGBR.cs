@@ -60,7 +60,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ProvidenceBossRush
             FieldInfo alphagatevalue = typeof(DevourerofGodsHead).GetField("alphaGateValue", LumUtils.UniversalBindingFlags);
             //Main.NewText(laserwallphase.GetValue(dog));
             //Main.NewText(alphagatevalue.GetValue(dog));
-            if (SentinelSpawnCounter < 4 && npc.GetLifePercent() < 0.6f)
+            if (SentinelSpawnCounter < 4 && npc.GetLifePercent() < 0.65f)
             {
                 DontDoLaserWalls(npc);
             }
@@ -102,7 +102,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ProvidenceBossRush
 
             CalamityGlobalNPC calnpc = npc.Calamity();
             DevourerofGodsHead dog = (DevourerofGodsHead)npc.ModNPC;
-            FieldInfo alphagatevalue = typeof(DevourerofGodsHead).GetField("alphaGateValue", LumUtils.UniversalBindingFlags);
+            FieldInfo alphagatevalue = typeof(DevourerofGodsHead).GetField("AlphaGateValue", LumUtils.UniversalBindingFlags);
             if (NPC.AnyNPCs(ModContent.NPCType<Signus>()) || NPC.AnyNPCs(ModContent.NPCType<CeaselessVoid>()) || NPC.AnyNPCs(ModContent.NPCType<StormWeaverHead>()))
             {
                 for (int i = 0; i < Main.maxNPCs; i++)
@@ -140,7 +140,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ProvidenceBossRush
         public void DontDoLaserWalls(NPC npc)
         {
             CalamityGlobalNPC calnpc = npc.Calamity();
-            calnpc.newAI[3] = 100;
+            FieldInfo alphagatevalue = typeof(DevourerofGodsHead).GetField("AlphaGateValue", LumUtils.UniversalBindingFlags);
+            calnpc.newAI[3] = (float)alphagatevalue.GetValue((DevourerofGodsHead)npc.ModNPC) - 2;
         }
         public void ForceDocileState(NPC npc)
         {
