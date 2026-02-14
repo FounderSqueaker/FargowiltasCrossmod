@@ -27,6 +27,8 @@ using CalamityMod.Items.LoreItems;
 using FargowiltasCrossmod.Core.Calamity.Globals;
 using Terraria.GameContent;
 using CalamityMod.Items.Accessories;
+using Microsoft.Xna.Framework.Graphics;
+using FargowiltasSouls.Content.UI.Elements;
 
 namespace FargowiltasCrossmod.Core.Calamity.Detours
 {
@@ -50,6 +52,9 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             HookHelper.ModifyMethodWithDetour(BRDialogueTick_Method, DialogueReplacement);
 
             HookHelper.ModifyMethodWithDetour(CanToggleEternity_Method, CanToggleEternity_Detour);
+
+            HookHelper.ModifyMethodWithDetour(UIOncomingMutantUpdate_Method, UIOncomingMutantUpdate_Detour);
+            HookHelper.ModifyMethodWithDetour(UIOncomingMutantDrawSelf_Method, UIOncomingMutantDrawSelf_Detour);
 
             HookHelper.ModifyMethodWithDetour(SoulTogglerOnActivate_Method, SoulTogglerOnActivate_Detour);
 
@@ -197,6 +202,20 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
         {
             orig();
             return false;
+        }
+        //make the button do nothing
+        private static readonly MethodInfo UIOncomingMutantUpdate_Method = typeof(UIOncomingMutant).GetMethod("Update", LumUtils.UniversalBindingFlags);
+        public delegate void Orig_UIOncomingMutantUpdate(UIOncomingMutant self, GameTime gameTime);
+        internal static void UIOncomingMutantUpdate_Detour(Orig_UIOncomingMutantUpdate orig, UIOncomingMutant self, GameTime gameTime)
+        {
+            return;
+        }
+        //prevent all the drawing of said button
+        private static readonly MethodInfo UIOncomingMutantDrawSelf_Method = typeof(UIOncomingMutant).GetMethod("DrawSelf", LumUtils.UniversalBindingFlags);
+        public delegate void Orig_UIOncomingMutantDrawSelf(UIOncomingMutant self, SpriteBatch spriteBatch);
+        internal static void UIOncomingMutantDrawSelf_Detour(Orig_UIOncomingMutantDrawSelf orig, UIOncomingMutant self, SpriteBatch spriteBatch)
+        {
+            return;
         }
         private static readonly MethodInfo SoulTogglerOnActivate_Method = typeof(SoulTogglerButton).GetMethod("OnActivate", LumUtils.UniversalBindingFlags);
         public delegate void Orig_SoulTogglerOnActivate(SoulTogglerButton self);
