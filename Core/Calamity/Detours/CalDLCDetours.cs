@@ -29,6 +29,9 @@ using FargowiltasCrossmod.Core.Calamity.Globals;
 using Terraria.GameContent;
 using CalamityMod.Items.Accessories;
 using Fargowiltas.Content.NPCs;
+using rail;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace FargowiltasCrossmod.Core.Calamity.Detours
 {
@@ -52,6 +55,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             HookHelper.ModifyMethodWithDetour(BRDialogueTick_Method, DialogueReplacement);
 
             HookHelper.ModifyMethodWithDetour(CanToggleEternity_Method, CanToggleEternity_Detour);
+
+            HookHelper.ModifyMethodWithDetour(SoulTogglerDraw_Method, SoulTogglerDraw_Detour);
 
             HookHelper.ModifyMethodWithDetour(SoulTogglerOnActivate_Method, SoulTogglerOnActivate_Detour);
 
@@ -195,6 +200,12 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
         {
             orig();
             return false;
+        }
+        private static readonly MethodInfo SoulTogglerDraw_Method = typeof(OncomingMutantManager).GetMethod("Draw", LumUtils.UniversalBindingFlags);
+        public delegate void Orig_SoulTogglerDraw(OncomingMutantManager self, SpriteBatch spriteBatch);
+        internal static void SoulTogglerDraw_Detour(Orig_SoulTogglerDraw orig, OncomingMutantManager self, SpriteBatch spriteBatch)
+        {
+            return;
         }
         private static readonly MethodInfo SoulTogglerOnActivate_Method = typeof(OncomingMutantManager).GetMethod("OnActivate", LumUtils.UniversalBindingFlags);
         public delegate void Orig_SoulTogglerOnActivate(OncomingMutantManager self);

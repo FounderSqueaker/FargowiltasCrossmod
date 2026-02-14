@@ -7,6 +7,7 @@ using CalamityMod;
 using CalamityMod.CalPlayer;
 using CalamityMod.Enums;
 using CalamityMod.Events;
+using CalamityMod.Items.PermanentBoosters;
 using CalamityMod.Items.SummonItems;
 using CalamityMod.Items.Tools;
 using CalamityMod.Items.Weapons.DraedonsArsenal;
@@ -219,6 +220,26 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             mutant.Call("AddSummon", 18.014f, "FargowiltasCrossmod", "EyeofExtinction",
                 () => DownedScal, Item.buyPrice(platinum: 3));
             #endregion summons
+
+            #region stat sheet
+            //Cal Health Upgrades
+            
+            //Cal Mana Upgrades
+
+            //Rage Upgardes
+            mutant.Call("AddPermaUpgrade", new Item(ItemType<MushroomPlasmaRoot>()), () => Main.LocalPlayer.Calamity().rageBoostOne);
+            mutant.Call("AddPermaUpgrade", new Item(ItemType<InfernalBlood>()), () => Main.LocalPlayer.Calamity().rageBoostTwo);
+            mutant.Call("AddPermaUpgrade", new Item(ItemType<RedLightningContainer>()), () => Main.LocalPlayer.Calamity().rageBoostThree); //doesn't draw black since it has an item animation. probs something to fix in mutant mod tho
+
+            //Adrenaline Upgrades
+            mutant.Call("AddPermaUpgrade", new Item(ItemType<ElectrolyteGelPack>()), () => Main.LocalPlayer.Calamity().adrenalineBoostOne);
+            mutant.Call("AddPermaUpgrade", new Item(ItemType<StarlightFuelCell>()), () => Main.LocalPlayer.Calamity().adrenalineBoostTwo);
+            mutant.Call("AddPermaUpgrade", new Item(ItemType<Ectoheart>()), () => Main.LocalPlayer.Calamity().adrenalineBoostThree); // same as red lightning container
+
+            //Other
+            mutant.Call("AddPermaUpgrade", new Item(ItemType<CelestialOnion>()), () => Main.LocalPlayer.Calamity().extraAccessoryML);
+            #endregion stat sheet
+
             #region bossrush
             //EXPLANATION OF TUPLES
             //int: npc id
