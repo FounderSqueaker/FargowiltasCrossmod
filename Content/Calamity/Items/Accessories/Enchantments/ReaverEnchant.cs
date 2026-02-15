@@ -97,7 +97,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             var addon = player.CalamityAddon();
             if (addon.ReaverToggle) // swift mode
             {
-                player.lifeRegen += force ? 15 : 8;
+                player.lifeRegen += force ? 12 : 6;
                 player.moveSpeed += force ? 0.3f : 0.15f;
                 if (player.miscCounter % 3 == 2 && player.dashDelay > 0)
                     player.dashDelay--;
@@ -105,8 +105,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             }
             else // plated mode
             {
-                player.statDefense += force ? 30 : 15;
-                player.endurance += force ? 0.3f : 0.15f;
+                player.statDefense += force ? 20 : 10;
+                //player.endurance += force ? 0.3f : 0.15f;
             }
             Color color = addon.ReaverToggle ? Color.Red : Color.Green;
             if (Main.rand.NextBool(6))
@@ -134,14 +134,14 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             else
             {
                 player.AddBuff(ModContent.BuffType<ReaverRage>(), 60 * (force ? 5 : 10));
-                var source = player.GetSource_Misc("23");
+                /*var source = player.GetSource_Misc("23");
                 if (hurtInfo.Damage > 0)
                 {
                     int rDamage = FargoSoulsUtil.HighestDamageTypeScaling(player, force ? 700 : 400);
 
                     if (player.whoAmI == Main.myPlayer)
                         Projectile.NewProjectile(source, player.Center.X, player.position.Y + 36f, 0f, -18f, ModContent.ProjectileType<ReaverThornBase>(), rDamage, 0f, player.whoAmI, 0f, 0f);
-                }
+                }*/
             }
         }
     }
