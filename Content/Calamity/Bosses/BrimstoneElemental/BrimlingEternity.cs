@@ -1,4 +1,5 @@
-﻿using CalamityMod;
+﻿using System;
+using CalamityMod;
 using CalamityMod.NPCs.BrimstoneElemental;
 using CalamityMod.Projectiles.Boss;
 using FargowiltasCrossmod.Core;
@@ -8,17 +9,11 @@ using FargowiltasCrossmod.Core.Calamity.Systems;
 using FargowiltasCrossmod.Core.Common;
 using FargowiltasSouls;
 using FargowiltasSouls.Common.Graphics.Particles;
-using FargowiltasSouls.Core.NPCMatching;
 using FargowiltasSouls.Core.Systems;
 using Luminance.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -35,8 +30,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.BrimstoneElemental
         public override int NPCOverrideID => ModContent.NPCType<CalamityMod.NPCs.BrimstoneElemental.Brimling>();
         public override void SetDefaults()
         {
-            NPC.damage = WorldSavingSystem.MasochistModeReal ? 80 : 65;
-            base.SetDefaults();
+            NPC.damage = 40;
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -107,7 +101,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.BrimstoneElemental
                 {
                     NPC.ai[2] = Main.rand.Next(0, 360);
                     NPC.ai[3] = Main.rand.NextFloat(3, 4f);
-                    Projectile.NewProjectileDirect(NPC.GetSource_FromAI(), shootPos, Aim, ModContent.ProjectileType<BrimstoneBarrage>(), NPC.damage, 0);
+                    Projectile.NewProjectileDirect(NPC.GetSource_FromAI(), shootPos, Aim, ModContent.ProjectileType<BrimstoneBarrage>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage), 0, ai0: 1);
                 }
                 SoundEngine.PlaySound(SoundID.Item20 with { Pitch = 0.3f, Volume = 0.8f }, NPC.Center);
                 NetSync(NPC);

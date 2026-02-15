@@ -1,17 +1,12 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using CalamityMod.Events;
 using CalamityMod.NPCs.Crabulon;
-using CalamityMod.Projectiles.Ranged;
 using FargowiltasCrossmod.Core;
 using FargowiltasCrossmod.Core.Calamity.Globals;
 using FargowiltasCrossmod.Core.Common;
 using FargowiltasSouls;
-using FargowiltasSouls.Assets.Sounds;
 using FargowiltasSouls.Content.Buffs.Masomode;
-using FargowiltasSouls.Core.Globals;
-using FargowiltasSouls.Core.NPCMatching;
 using FargowiltasSouls.Core.Systems;
 using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
@@ -31,7 +26,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Crabulon
     public class CrabulonEternity : CalDLCEmodeBehavior
     {
         public override int NPCOverrideID => ModContent.NPCType<CalamityMod.NPCs.Crabulon.Crabulon>();
-
+        public static readonly SoundStyle JumpSound = new("CalamityMod/Sounds/Custom/Crabulon/CrabJump");
+        public static readonly SoundStyle SlamSound = new("CalamityMod/Sounds/Custom/Crabulon/CrabSlam", 2);
         public override void SetDefaults()
         {
             NPC.lifeMax = (int)Math.Round(NPC.lifeMax * 1.2f);
@@ -39,7 +35,6 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Crabulon
             {
                 NPC.lifeMax = 5000000;
             }
-            NPC.damage = 55;
         }
         public override void OnSpawn(IEntitySource source)
         {
@@ -263,7 +258,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Crabulon
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    Projectile.NewProjectileDirect(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<MushroomSpear2>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.damage), 1, -1, NPC.whoAmI, MathHelper.ToRadians(360f / 10 * i + 15));
+                    Projectile.NewProjectileDirect(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<MushroomSpear2>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage), 1, -1, NPC.whoAmI, MathHelper.ToRadians(360f / 10 * i + 15));
                 }
                 NPC.velocity.X = 0;
             }
@@ -298,7 +293,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Crabulon
             }
             if (ai_Timer == 1000)
             {
-                SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
+                SoundEngine.PlaySound(SlamSound, NPC.Center);
                 SoundEngine.PlaySound(new SoundStyle("FargowiltasSouls/Assets/Sounds/Debuffs/DizzyBird"), NPC.Center);
                 foreach (var proj in Main.ActiveProjectiles)
                 {
@@ -452,7 +447,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Crabulon
                     }
                 }
 
-                SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
+                SoundEngine.PlaySound(SlamSound, NPC.Center);
                 NPC.velocity.X = 0;
                 ai_Timer = 0;
                 IncrementCycle();
@@ -542,7 +537,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Crabulon
                 NPC.noTileCollide = true;
 
                 NPC.velocity.X = ai_JumpDirection;
-
+                SoundEngine.PlaySound(JumpSound, NPC.Center);
                 NetSync(NPC);
             }
             if (enrageJumping && DLCUtils.HostCheck)
@@ -561,7 +556,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Crabulon
                 {
                     Dust.NewDustDirect(NPC.BottomLeft, NPC.width, 6, DustID.MushroomSpray, Alpha: 200, Scale: 2).noGravity = true;
                 }
-                SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
+                SoundEngine.PlaySound(SlamSound, NPC.Center);
                 if (type == 1)
                 {
                     if (DLCUtils.HostCheck)

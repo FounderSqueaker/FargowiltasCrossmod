@@ -194,8 +194,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 switch (npc.type)
                 {
                     case NPCID.EyeofCthulhu:
-                        if (npc.damage < 26)
-                            npc.damage = 26;
+                        if (npc.damage < 20)
+                            npc.damage = 20;
                         break;
                     case NPCID.SkeletronHead:
                         npc.lifeMax = (int)Math.Round(npc.lifeMax * 0.8f);
@@ -204,7 +204,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                         if (CalDLCWorldSavingSystem.E_EternityRev)
                         {
                             npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5f);
-                            npc.damage = 36;
                         }
                         break;
                     case NPCID.DungeonGuardian:
@@ -225,25 +224,16 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     case NPCID.Spazmatism:
                     case NPCID.Retinazer:
                         npc.lifeMax = (int)(npc.lifeMax * 0.925f);
-                        npc.damage = 80;
+                        npc.damage = 60;
                         break;
                     case NPCID.SkeletronPrime:
                         npc.lifeMax = (int)(npc.lifeMax * 0.925f);
-                        npc.damage = 80;
-                        npc.damage /= 2;
-                        break;
-                    case NPCID.PrimeCannon:
-                    case NPCID.PrimeLaser:
-                    case NPCID.PrimeSaw:
-                    case NPCID.PrimeVice:
-                        npc.damage /= 2;
                         break;
                     case NPCID.TheDestroyer:
-                        npc.damage = 80;
                         npc.lifeMax = (int)(npc.lifeMax * 0.925f);
                         break;
                     case NPCID.Plantera:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.375f);
+                        npc.lifeMax = (int)(npc.lifeMax * 0.6f);
                         break;
                     case NPCID.Golem:
                         npc.lifeMax = (int)(npc.lifeMax * 0.25f);
@@ -258,14 +248,14 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                         npc.lifeMax = (int)(npc.lifeMax * 0.45f);
                         break;
                     case NPCID.CultistBoss:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.6f);
+                        npc.lifeMax = (int)(npc.lifeMax * 0.45f);
                         break;
                     case NPCID.MoonLordHead:
                     case NPCID.MoonLordHand:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.75f);
+                        npc.lifeMax = (int)(npc.lifeMax * 0.9f);
                         break;
                     case NPCID.MoonLordCore:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.4f);
+                        npc.lifeMax = (int)(npc.lifeMax * 0.6f);
                         break;
                 }
             }
@@ -288,7 +278,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == ModContent.NPCType<CursedCoffin>() || npc.type == ModContent.NPCType<CursedSpirit>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.3f);
-                npc.damage = 55;
                 calNPC.VulnerableToCold = true;
                 calNPC.VulnerableToSickness = false;
             }
@@ -297,7 +286,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == ModContent.NPCType<DeviBoss>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.3f);
-                npc.damage = 70;
                 calNPC.VulnerableToSickness = true;
             }
 
@@ -305,7 +293,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == ModContent.NPCType<BanishedBaron>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.3f);
-                npc.damage = 77;
                 calNPC.VulnerableToElectricity = true;
                 calNPC.VulnerableToWater = false;
                 calNPC.VulnerableToCold = false;
@@ -315,7 +302,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == ModContent.NPCType<LifeChallenger>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.3f);
-                npc.damage = 85;
                 calNPC.VulnerableToCold = false;
                 calNPC.VulnerableToElectricity = false;
                 calNPC.VulnerableToHeat = false;

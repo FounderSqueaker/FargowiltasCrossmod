@@ -320,7 +320,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                             int type = ModContent.ProjectileType<BrimstoneFireball>();
                             Vector2 fireballVelocity = Vector2.Normalize(Target.Center - NPC.Center) * projectileVelocity;
                             Vector2 balloffset = Vector2.Normalize(fireballVelocity) * 40f;
-                            int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + balloffset, fireballVelocity, type, FargoSoulsUtil.ScaledProjectileDamage(NPC.damage, 1f), 0f, Main.myPlayer, Target.position.X, Target.position.Y);
+                            int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + balloffset, fireballVelocity, type, FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage, 1f), 0f, Main.myPlayer, Target.position.X, Target.position.Y);
                             Main.projectile[proj].netUpdate = true;
                         }
                     }
@@ -359,7 +359,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                     {
                         Vector2 projPos = NPC.Center;
 
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos, dir * 2f, ModContent.ProjectileType<ChargedGigablast>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.damage, 1.25f), 1f, Main.myPlayer, ai2: Target.whoAmI);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos, dir * 2f, ModContent.ProjectileType<ChargedGigablast>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage, 1.25f), 1f, Main.myPlayer, ai2: Target.whoAmI);
                     }
                     NPC.velocity -= dir * 10;
                 }
@@ -539,7 +539,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                     if (DLCUtils.HostCheck)
                     {
                         Vector2 projPos = NPC.Center;
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos, dir * 2f, ModContent.ProjectileType<Gigablast>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.damage, 1f), 1f, Main.myPlayer, ai2: Target.whoAmI);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos, dir * 2f, ModContent.ProjectileType<Gigablast>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage, 1f), 1f, Main.myPlayer, ai2: Target.whoAmI);
                     }
                     NPC.velocity -= dir * 10;
                 }
@@ -553,7 +553,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                             int type = ModContent.ProjectileType<BrimstoneFireball>();
                             Vector2 fireballVelocity = Vector2.Normalize(Target.Center - NPC.Center) * projectileVelocity;
                             Vector2 balloffset = Vector2.Normalize(fireballVelocity) * 40f;
-                            int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + balloffset, fireballVelocity, type, FargoSoulsUtil.ScaledProjectileDamage(NPC.damage, 1f), 0f, Main.myPlayer, Target.position.X, Target.position.Y);
+                            int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + balloffset, fireballVelocity, type, FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage, 1f), 0f, Main.myPlayer, Target.position.X, Target.position.Y);
                             Main.projectile[proj].netUpdate = true;
                         }
                     }
@@ -619,7 +619,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                     if (DLCUtils.HostCheck)
                     {
                         Vector2 projPos = NPC.Center;
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos, dir * 7f, ModContent.ProjectileType<Fireblast>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.damage, 1f), 1f, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos, dir * 7f, ModContent.ProjectileType<Fireblast>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage, 1f), 1f, Main.myPlayer);
                     }
                     for (int i = 0; i < 50; i++)
                     {
@@ -639,7 +639,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                         {
                             Vector2 projPos = NPC.Center;
                             Vector2 dir = (NPC.rotation + MathHelper.PiOver2 + i * MathHelper.PiOver4 * 1.4f).ToRotationVector2();
-                            Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos, dir * 5f, ModContent.ProjectileType<Fireblast>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.damage, 1f), 1f, Main.myPlayer);
+                            Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos, dir * 5f, ModContent.ProjectileType<Fireblast>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage, 1f), 1f, Main.myPlayer);
                         }
                     }
                     */

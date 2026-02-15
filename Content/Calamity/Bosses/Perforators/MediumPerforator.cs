@@ -1,26 +1,18 @@
-﻿using CalamityMod;
-using CalamityMod.Events;
+﻿using System.IO;
 using CalamityMod.NPCs;
 using CalamityMod.NPCs.Perforator;
-using CalamityMod.Projectiles.Boss;
-using CalamityMod.World;
 using FargowiltasCrossmod.Core;
 using FargowiltasCrossmod.Core.Calamity;
 using FargowiltasCrossmod.Core.Calamity.Globals;
 using FargowiltasCrossmod.Core.Common;
 using FargowiltasSouls;
-using FargowiltasSouls.Content.Projectiles.Masomode;
-using FargowiltasSouls.Core.Globals;
 using FargowiltasSouls.Core.NPCMatching;
 using FargowiltasSouls.Core.Systems;
 using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.IO;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -41,7 +33,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
         {
             if (!WorldSavingSystem.EternityMode) return;
             entity.lifeMax = 5000;
-            entity.damage = 60;
+            entity.damage = 40;
             entity.Opacity = 1f;
             entity.CalamityDLC().ImmuneToAllDebuffs = true;
         }
@@ -60,17 +52,6 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
         public override void OnKill(NPC npc)
         {
             if (!WorldSavingSystem.EternityMode) return;
-
-            if (DLCUtils.HostCheck && npc.HasPlayerTarget)
-            {
-                float shotSpeed = Main.rand.NextFloat(7f, 16f);
-                Vector2 shotDir = -Vector2.UnitY.RotatedByRandom(MathHelper.Pi / 3.2f);
-                Vector2 vel = shotDir * shotSpeed;
-                if (vel.Y < -6)
-                    vel.Y *= 0.6f;
-                int p = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, vel, ModContent.ProjectileType<IchorShotFast>(), FargoSoulsUtil.ScaledProjectileDamage(npc.defDamage), 0, ai1: Main.player[npc.target].Center.Y);
-            }
-                
         }
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -82,7 +63,27 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
             
             if (Collision.SolidCollision(npc.position, npc.width, npc.height))
             {
-                npc.StrikeInstantKill();
+                SoundEngine.PlaySound(npc.DeathSound, npc.Center);
+                if (DLCUtils.HostCheck && npc.HasPlayerTarget)
+                {
+                    float shotSpeed = Main.rand.NextFloat(7f, 16f);
+                    Vector2 shotDir = -Vector2.UnitY.RotatedByRandom(MathHelper.Pi / 3.2f);
+                    Vector2 vel = shotDir * shotSpeed;
+                    if (vel.Y < -6)
+                        vel.Y *= 0.6f;
+                    int p = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, vel, ModContent.ProjectileType<IchorShotFast>(), FargoSoulsUtil.ScaledProjectileDamage(npc.defDamage), 0, ai1: Main.player[npc.target].Center.Y);
+                }
+
+                for (int k = 0; k < 10; k++)
+                {
+                    Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood, npc.direction, -1f, 0, default, 1f);
+                }
+                if (!Main.dedServ)
+                {
+                    Gore.NewGore(npc.GetSource_Death(), npc.position, npc.velocity, ModCompatibility.Calamity.Mod.Find<ModGore>("MediumPerf").Type, npc.scale);
+                    Gore.NewGore(npc.GetSource_Death(), npc.position, npc.velocity, ModCompatibility.Calamity.Mod.Find<ModGore>("MediumPerf2").Type, npc.scale);
+                }
+                npc.active = false;
             }
             if (npc.type == ModContent.NPCType<PerforatorHeadMedium>())
             {

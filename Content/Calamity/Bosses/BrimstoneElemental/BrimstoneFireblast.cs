@@ -77,7 +77,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.BrimstoneElemental
                 {
                     for (int i = 0; i < numDarts; i++)
                     {
-                        Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, new Vector2(0, 4).RotatedBy(MathHelper.TwoPi / numDarts * i), ModContent.ProjectileType<BrimstoneBarrage>(), Projectile.damage, Projectile.knockBack);
+                        Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, new Vector2(0, 4).RotatedBy(MathHelper.TwoPi / numDarts * i), ModContent.ProjectileType<BrimstoneBarrage>(), Projectile.damage, Projectile.knockBack, ai0: 1);
                     }
                 }
                 SoundEngine.PlaySound(new SoundStyle("CalamityMod/Sounds/Custom/SCalSounds/BrimstoneFireblastImpact"));
