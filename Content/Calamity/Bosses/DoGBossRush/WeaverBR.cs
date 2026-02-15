@@ -24,6 +24,9 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ProvidenceBossRush
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     public class WeaverBR : GlobalNPC
     {
+        //disable loading of this class since it is no longer needed, someone else can delete it if they want too
+        public override bool IsLoadingEnabled(Mod mod) => false;
+
         public override bool InstancePerEntity => true;
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
         {

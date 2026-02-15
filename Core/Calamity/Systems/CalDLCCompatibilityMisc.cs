@@ -7,6 +7,7 @@ using CalamityMod;
 using CalamityMod.CalPlayer;
 using CalamityMod.Enums;
 using CalamityMod.Events;
+using CalamityMod.Items.SummonItems;
 using CalamityMod.Items.Tools;
 using CalamityMod.Items.Weapons.DraedonsArsenal;
 using CalamityMod.Items.Weapons.Melee;
@@ -252,8 +253,18 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
                     CalamityUtils.BossAwakenMessage(provi);
                 }, usesSpecialSound: true, permittedNPCs: [NPCType<ProvSpawnDefense>(), NPCType<ProvSpawnHealer>(), NPCType<ProvSpawnOffense>(),
                     NPCType<ProfanedGuardianCommander>(), NPCType<ProfanedGuardianDefender>(), NPCType<ProfanedGuardianHealer>()]),
-                
-
+                new Boss(NPCType<CeaselessVoid>(), spawnContext: type => {
+                    SoundEngine.PlaySound(MarkofProvidence.CVSound, Main.player[ClosestPlayerToWorldCenter].Center);
+                    NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, type);
+                }, usesSpecialSound: true, permittedNPCs: NPCType<DarkEnergy>()),
+                new Boss(NPCType<StormWeaverHead>(), spawnContext : type => {
+                    SoundEngine.PlaySound(MarkofProvidence.StormSound, Main.player[ClosestPlayerToWorldCenter].Center);
+                    NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, type);
+                }, usesSpecialSound: true, permittedNPCs: [NPCType<StormWeaverBody>(), NPCType<StormWeaverTail>()]),
+                new Boss(NPCType<Signus>(), spawnContext: type => {
+                    SoundEngine.PlaySound(MarkofProvidence.SignutSound, Main.player[ClosestPlayerToWorldCenter].Center);
+                    NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, type);
+                }, usesSpecialSound: true, permittedNPCs: [NPCType<CosmicLantern>(), NPCType<CosmicMine>()]),
                 new Boss(NPCType<Polterghast>(), permittedNPCs: [NPCType<PhantomFuckYou>(), NPCType<PolterghastHook>(), NPCType<PolterPhantom>()]),
                 new Boss(NPCType<OldDuke>(), spawnContext: type => {
                     int od = NPC.NewNPC(new EntitySource_WorldEvent(), (int)(Main.player[ClosestPlayerToWorldCenter].Center.X + Main.rand.Next(-100, 101)), (int)Main.player[ClosestPlayerToWorldCenter].Center.Y - 300, type, 1);
@@ -263,8 +274,9 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
                 new Boss(NPCType<DevourerofGodsHead>(), spawnContext: type => {
                     SoundEngine.PlaySound(DevourerofGodsHead.SpawnSound, Main.player[ClosestPlayerToWorldCenter].Center);
                     NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, type);
-                }, usesSpecialSound: true, permittedNPCs: [NPCType<DevourerofGodsBody>(), NPCType<DevourerofGodsTail>(), 
-                NPCType<Signus>(), NPCType<CeaselessVoid>(), NPCType<StormWeaverHead>(), NPCType<StormWeaverBody>(), NPCType<StormWeaverTail>()]),
+                }, usesSpecialSound: true, permittedNPCs: [NPCType<DevourerofGodsBody>(), NPCType<DevourerofGodsTail>()
+                //NPCType<Signus>(), NPCType<CeaselessVoid>(), NPCType<StormWeaverHead>(), NPCType<StormWeaverBody>(), NPCType<StormWeaverTail>()
+                ]),
                 new Boss(NPCType<CosmosChampion>(), spawnContext: type => {
                     int erd = NPC.NewNPC(new EntitySource_WorldEvent(), (int)(Main.player[ClosestPlayerToWorldCenter].Center.X), (int)(Main.player[ClosestPlayerToWorldCenter].Center.Y - 400), type, 1);
                     Main.npc[erd].timeLeft *= 20;
