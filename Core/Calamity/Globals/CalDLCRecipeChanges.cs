@@ -608,14 +608,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<AnechoicPlating>(),
             ], ItemType<HydrothermalCrate>(), 3);
 
-            CreateCrateRecipes(
-            [
-                ItemType<Poseidon>(),
-                ItemType<ClamorRifle>(),
-                ItemType<ShellfishStaff>(),
-                ItemType<ClamCrusher>(),
-            ], ItemType<PrismCrate>(), 3, ItemType<MolluskHusk>());
-
             void CreateCrateRecipes(int[] results, int crate, int crateAmount, int extraItem = -1)
             {
                 foreach (int result in results)
