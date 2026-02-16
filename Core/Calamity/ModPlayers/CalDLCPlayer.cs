@@ -224,7 +224,7 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
 
             if (WorldSavingSystem.EternityMode)
             {
-                if (!CheckedSpongeTimes)
+                /*if (!CheckedSpongeTimes)
                 {
                     SpongeRechargeTime_Normal = TheSponge.TotalShieldRechargeTime;
                     SpongeRechargeDelay_Normal = TheSponge.ShieldRechargeDelay;
@@ -235,7 +235,7 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
                 if (TheSponge.TotalShieldRechargeTime < rt)
                 TheSponge.TotalShieldRechargeTime = rt;
                 if (TheSponge.ShieldRechargeDelay < rd)
-                    TheSponge.ShieldRechargeDelay = rd;
+                    TheSponge.ShieldRechargeDelay = rd;*/
             }
 
         }
