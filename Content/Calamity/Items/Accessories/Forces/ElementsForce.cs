@@ -1,26 +1,27 @@
-﻿using FargowiltasSouls.Content.Items.Accessories.Forces;
+﻿using CalamityMod;
+using CalamityMod.Items.Materials;
+using FargowiltasCrossmod.Assets.Particles;
+using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments;
+using FargowiltasCrossmod.Core;
+using FargowiltasCrossmod.Core.Calamity;
+using FargowiltasSouls;
+using FargowiltasSouls.Content.Items.Accessories.Forces;
+using FargowiltasSouls.Content.UI.Elements;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
+using FargowiltasSouls.Core.Toggler;
+using FargowiltasSouls.Core.Toggler.Content;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Terraria.ID;
 using Terraria;
-using FargowiltasSouls.Core.AccessoryEffectSystem;
-using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments;
-using Terraria.ModLoader;
-using FargowiltasSouls.Core.Toggler.Content;
-using FargowiltasCrossmod.Core;
-using FargowiltasCrossmod.Core.Calamity;
-using CalamityMod.Items.Materials;
-using FargowiltasSouls.Core.Toggler;
-using FargowiltasCrossmod.Assets.Particles;
 using Terraria.Audio;
-using Microsoft.Xna.Framework;
-using CalamityMod;
-using FargowiltasSouls;
-using FargowiltasSouls.Content.UI.Elements;
-using Microsoft.Xna.Framework.Graphics;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
 {
@@ -31,6 +32,13 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
         public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Forces/" + Name;
         public override List<AccessoryEffect> ActiveSkillTooltips =>
             [AccessoryEffectLoader.GetEffect<ElementsForceEffect>()];
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+            Main.RegisterItemAnimation(Type, new DrawAnimationVertical(8, 24));
+            ItemID.Sets.AnimatesAsSoul[Type] = true;
+
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
