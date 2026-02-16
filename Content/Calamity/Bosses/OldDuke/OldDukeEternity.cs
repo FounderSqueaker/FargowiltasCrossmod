@@ -5,6 +5,7 @@ using FargowiltasCrossmod.Assets.Particles;
 using FargowiltasCrossmod.Core;
 using FargowiltasCrossmod.Core.Calamity;
 using FargowiltasCrossmod.Core.Calamity.Globals;
+using FargowiltasSouls;
 using FargowiltasSouls.Core.Systems;
 using Luminance.Assets;
 using Luminance.Common.Utilities;
@@ -218,6 +219,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.OldDuke
             base.SetDefaults();
             NPC.DR_NERD(0.0f, null, null, null);
         }
+
+        public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if (ProjectileID.Sets.CultistIsResistantTo[projectile.type])
+                modifiers.FinalDamage *= 0.75f;
+        } 
 
         public override void SendExtraAI(BitWriter bitWriter, BinaryWriter binaryWriter)
         {

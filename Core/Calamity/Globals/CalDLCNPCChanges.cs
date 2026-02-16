@@ -315,7 +315,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 if (npc.type == ModContent.NPCType<CosmosChampion>())
                 {
                     npc.lifeMax = (int)(npc.lifeMax * 1.6f);
-                    npc.damage = (int)(npc.damage * 1.4f);
+                    npc.damage = (int)(npc.damage * 1.1f);
                 }
                 else
                 {
@@ -377,12 +377,13 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == ModContent.NPCType<Yharon>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.55f);
+                npc.damage = (int)(npc.damage * 1.15f);
             }
             //abom
             if (npc.type == ModContent.NPCType<AbomBoss>())
             {
-                npc.lifeMax = (int)(npc.lifeMax * 2.7f);
-                npc.damage = (int)(npc.damage * 1.25f);
+                npc.lifeMax = (int)(npc.lifeMax * 2.25f);
+                npc.damage = (int)(npc.damage * 1.1f);
 
                 calNPC.VulnerableToCold = false;
                 calNPC.VulnerableToElectricity = false;
@@ -400,6 +401,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 if (CalDLCWorldSavingSystem.E_EternityRev)
                     npc.lifeMax = (int)(npc.lifeMax * 1.2f);
             }
+            //scal
             if (npc.type == ModContent.NPCType<SupremeCalamitas>() || npc.type == ModContent.NPCType<BrimstoneHeart>() ||
                 npc.type == ModContent.NPCType<SoulSeekerSupreme>() || npc.type == ModContent.NPCType<SupremeCataclysm>() || npc.type == ModContent.NPCType<SupremeCatastrophe>())
             {
@@ -408,8 +410,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             //mutant
             if (npc.type == ModContent.NPCType<MutantBoss>())
             {
-                npc.lifeMax = (int)(npc.lifeMax * 1.5f);
-                npc.damage = (int)(npc.damage * 1.5f);
+                npc.lifeMax = (int)(npc.lifeMax * 1.4f);
+                npc.damage = (int)(npc.damage * 1.4f);
 
                 calNPC.VulnerableToCold = false;
                 calNPC.VulnerableToElectricity = false;

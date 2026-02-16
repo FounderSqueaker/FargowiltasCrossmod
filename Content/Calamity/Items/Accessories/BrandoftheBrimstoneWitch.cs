@@ -160,5 +160,6 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories
     public class CalamityEffect : BotBWEffect
     {
         public override int ToggleItemType => ModContent.ItemType<CalamityMod.Items.Accessories.Calamity>();
+        public override bool MutantsPresenceAffects => true;
     }
 }
