@@ -392,9 +392,9 @@ ElementsForce: {
 	Tooltip:
 		'''
 		[c/E03131:Magma Mode:]
-		[i:FargowiltasCrossmod/ReaverEnchant] Increased damage reduction by 30% and defense by 30
 		[i:FargowiltasCrossmod/HydrothermicEnchant] Attacking builds up heat, stop attacking at full heat or get hit to vent it
 		[i:FargowiltasCrossmod/HydrothermicEnchant] Venting heat grants Reaver Rage and summons powerful chaos flares for up to 3 seconds
+		[i:FargowiltasCrossmod/ReaverEnchant] Increased defense by 30, stored heat increases damage reduction by up to 30%
 		[c/45A8EF:Blizzard Mode:]
 		[i:FargowiltasCrossmod/ReaverEnchant] Increased flight time and speed, life regen, hook velocity and reduced dash cooldown
 		[i:FargowiltasCrossmod/AerospecEnchant] Grants up to +50% damage the longer you've stayed in the air

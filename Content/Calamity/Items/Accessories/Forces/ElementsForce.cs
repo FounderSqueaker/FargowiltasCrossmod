@@ -83,7 +83,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
             var addon = player.CalamityAddon();
             if (addon.ReaverToggle) // blizzard mode
             {
-                player.lifeRegen += 15;
+                player.lifeRegen += 12;
                 player.moveSpeed += 0.3f;
                 if (player.miscCounter % 3 == 2 && player.dashDelay > 0)
                     player.dashDelay--;
@@ -91,9 +91,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
             }
             else // magma mode
             {
-                player.Calamity().reaverSpeed = true;
-                player.endurance += 0.3f;
-                player.statDefense += 30;
+                //player.endurance += 0.3f;
+                player.statDefense += 20;
             }
         }
     }

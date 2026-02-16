@@ -98,11 +98,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
                     () => Main.LocalPlayer.CalamityAddon().HydrothermicHeat / MaxHeat, true, 60 * 10, activeFunction: player.HasEffect<HydrothermicEffect>);
 
             float heatLevel = dlc.HydrothermicHeat / MaxHeat;
-            if (player.HasEffectEnchant<HydrothermicEffect>())
-            {
-                player.endurance += (force ? 0.45f : 0.3f) * heatLevel;
-            }
-                
+            player.endurance += ((force && player.HasEffectEnchant<HydrothermicEffect>()) ? 0.45f : 0.3f) * heatLevel;
+
             if (dlc.HydrothermicOverheat)
             {
                 player.Calamity().ProvidenceBurnEffectDrawer.ParticleSpawnRate = 1;
