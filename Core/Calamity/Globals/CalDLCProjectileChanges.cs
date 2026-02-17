@@ -10,6 +10,7 @@ using CalamityMod.Projectiles.Melee;
 using CalamityMod.Projectiles.Ranged;
 using CalamityMod.Projectiles.Summon;
 using CalamityMod.Projectiles.Typeless;
+using CalamityMod.Systems.Collections;
 using CalamityMod.World;
 using FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind;
 using FargowiltasCrossmod.Core.Calamity.Systems;
@@ -89,6 +90,19 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 }
             }
         
+            //disable huntress on grape beer affected projectiles
+            //thank you calamity mod for having no bool for affected beer projs
+            if (source is EntitySource_ItemUse_WithAmmo { Item: Item item })
+            {
+                if (source is EntitySource_Parent { Entity: Player player })
+                {
+                    if (player.Calamity().grapeBeer && (item.useAmmo == AmmoID.Bullet || item.useAmmo == AmmoID.Arrow || item.useAmmo == AmmoID.Dart || item.useAmmo == AmmoID.Rocket)
+                        && player.heldProj != projectile.whoAmI && projectile.aiStyle != ProjAIStyleID.HeldProjectile && projectile.damage > 0 && !CalamityProjectileSets.DoesNotGetHomingWithGrapeBeer[projectile.type])
+                    {
+                        projectile.FargoSouls().HuntressProj = -1;
+                    }
+                }
+            }
         }
         public bool Ricoshot = false;
         [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
