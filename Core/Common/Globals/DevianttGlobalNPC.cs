@@ -14,6 +14,7 @@ using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas;
 using static Terraria.ModLoader.ModContent;
 using Terraria.Localization;
+using Fargowiltas.Content.Items.Summons.Abom;
 
 namespace FargowiltasCrossmod.Core.Common.Globals
 {
@@ -158,7 +159,6 @@ namespace FargowiltasCrossmod.Core.Common.Globals
                 .Add(new Item(ItemType<SuspiciousLookingLure>()) { shopCustomPrice = Item.buyPrice(copper: 100000) }, new Condition("Mods.Fargowiltas.Conditions.BloodFishDown", () => FargoWorldDownedBools["eyeFish"] || FargoWorldDownedBools["zombieMerman"]))
                 .Add(new Item(ItemType<BloodUrchin>()) { shopCustomPrice = Item.buyPrice(copper: 100000) }, new Condition("Mods.Fargowiltas.Conditions.BloodEelDown", () => Main.hardMode && FargoWorldDownedBools["bloodEel"]))
                 .Add(new Item(ItemType<HemoclawCrab>()) { shopCustomPrice = Item.buyPrice(copper: 100000) }, new Condition("Mods.Fargowiltas.Conditions.BloodGoblinDown", () => Main.hardMode && FargoWorldDownedBools["goblinShark"]))
-                .Add(new Item(ItemType<BloodSushiPlatter>()) { shopCustomPrice = Item.buyPrice(copper: 200000) }, new Condition("Mods.Fargowiltas.Conditions.BloodNautDown", () => Main.hardMode && FargoWorldDownedBools["dreadnautilus"]))
                 .Add(new Item(ItemType<ShadowflameIcon>()) { shopCustomPrice = Item.buyPrice(copper: 100000) }, new Condition("Mods.Fargowiltas.Conditions.SummonerDown", () => Main.hardMode && NPC.downedGoblins && FargoWorldDownedBools["goblinSummoner"]))
                 .Add(new Item(ItemType<PirateFlag>()) { shopCustomPrice = Item.buyPrice(copper: 150000) }, new Condition("Mods.Fargowiltas.Conditions.PirateDown", () => Main.hardMode && NPC.downedPirates && FargoWorldDownedBools["pirateCaptain"]))
                 .Add(new Item(ItemType<Pincushion>()) { shopCustomPrice = Item.buyPrice(copper: 150000) }, new Condition("Mods.Fargowiltas.Conditions.NailheadDown", () => NPC.downedPlantBoss && FargoWorldDownedBools["nailhead"]))
