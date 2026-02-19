@@ -778,7 +778,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                         recipe.AddIngredient<BloodyWormScarf>();
                     if (recipe.RemoveIngredient(ItemID.BrainOfConfusion))
                         recipe.AddIngredient<TheAmalgam>();
-                    if (recipe.RemoveIngredient(ItemID.AnkhShield))
+                    //if (recipe.RemoveIngredient(ItemID.AnkhShield))
                         recipe.AddIngredient<AsgardianAegis>();
                     if (recipe.RemoveIngredient(ItemID.CharmofMyths) && recipe.RemoveIngredient(ItemID.StarVeil) && recipe.RemoveIngredient(ItemID.FrozenShield))
                         recipe.AddIngredient<RampartofDeities>();
