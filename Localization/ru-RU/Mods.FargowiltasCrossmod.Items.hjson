@@ -1,4 +1,4 @@
-﻿AddedEffects: {
+AddedEffects: {
 	AngelTreads: Эффекты ангельских ботфортов
 	AeolusBoots: Эффекты ботинок Эола
 	NoStack: ", не увеличивается с улучшениями"
@@ -274,6 +274,7 @@ AerospecEnchant: {
 		'''
 	CritUp: +{0}% крит.
 	CritReset: -{0}% крит.
+	WizardEffect: Бонус к шансу крит. удара и призывательному урону удвоен
 }
 
 MarniteEnchant: {
@@ -284,6 +285,7 @@ MarniteEnchant: {
 		Пока вы не атакуете или используете инструменты, вы выпускаете лазеры в ближайших врагов
 		[i:CalamityMod/MarniteRepulsionShield] Врагов позади вас бьёт лучами жёсткого света с огромным отбрасыванием
 		'''
+	WizardEffect: Урон и дальность лазеров увеличены, бонусы к размещению удвоены
 }
 
 DesertProwlerEnchant: {
@@ -296,6 +298,7 @@ DesertProwlerEnchant: {
 		И заряжаемый прыжок, и рывок отталкивают врагов
 		Приземление сразу после рывка отталкивает врагов и наносит им урон
 		'''
+	WizardEffect: Более сильные прыжки, отбрасывание и урон увеличены
 }
 
 WulfrumEnchant: {
@@ -308,6 +311,7 @@ WulfrumEnchant: {
 		Зелёный цвет означает слабость, красный — устойчивость
 		Просканированные враги также получают на 15 ед. больше урона от дебаффов
 		'''
+	WizardEffect: Доп. урон от дебаффов увеличен до 50 единиц
 }
 
 GaleForce: {
@@ -335,6 +339,7 @@ SnowRuffianEnchant: {
 		Нажмите ВВЕРХ в медленном падении, чтобы перенаправить движение вверх
 		Нажмите ВНИЗ в медленном падении, чтобы сильнее ускоряться
 		'''
+	WizardEffect: Даёт немного полёта
 }
 
 DaedalusEnchant: {
@@ -345,11 +350,17 @@ DaedalusEnchant: {
 		Если вы находитесь в воздухе больше секунды, ваши атаки сопровождаются мощными стрелами с неба
 		Получение урона или приземление убирают этот бонус и срезают половину времени полёта
 		'''
+	WizardEffect: Урон, кол-во и скорость стрел увеличены
 }
 
 PlagueReaperEnchant: {
 	// DisplayName: Plague Reaper Enchantment
 	// Tooltip: All debuffs spread between enemies
+	/* WizardEffect:
+		'''
+		Debuffs spread from farther 
+		Enemies spread debuffs for a longer amount of time
+		''' */
 }
 
 PlaguebringerEnchant: {
@@ -361,11 +372,17 @@ PlaguebringerEnchant: {
 		At maximum size, the cloud expands rapidly and stops following you,
 		lingering in place for a while.
 		''' */
+	// WizardEffect: Plague cloud deals more damage and charges from longer away
 }
 
 ReaverEnchant: {
 	DisplayName: Зачарование расхитителя
 	Tooltip: ""
+	WizardEffect: 
+	'''
+	Защита и сопротивление урону увеличены до 20 и 24%, регенерация здоровья ускорена,
+	скорость передвижения, урон шипов и длительность баффа увеличены
+	'''
 }
 
 HydrothermicEnchant: {
@@ -377,6 +394,7 @@ HydrothermicEnchant: {
 		и заставляя вас выпускать вспышки хаоса в сторону курсора до 3 секунд
 		Получение урона так же выпускает ваше тепло, независимо от его уровня
 		'''
+	WizardEffect: Перегрев длится дольше, сопротивление урону увеличено до 30%, урон вспышек увеличен
 }
 
 ElementsForce: {
@@ -397,6 +415,7 @@ ElementsForce: {
 UmbraphileEnchant: {
 	DisplayName: Зачарование охотника на тень
 	Tooltip: ""
+	WizardEffect: Летучие мыши наносят больше урона и похищают больше здоровья
 }
 
 TitanHeartEnchant: {
@@ -407,6 +426,7 @@ TitanHeartEnchant: {
 		Пока адреналин частично заряжен, вы получаете до +15% к сопротивлению урону
 		Увеличивает ваши скорость передвижения и ускорение на 5%
 		'''
+	WizardEffect: Сопротивлению урону удвоено, скорость заряда на земле увеличена до 100%
 }
 
 StatigelEnchant: {
@@ -417,6 +437,7 @@ StatigelEnchant: {
 		Значительно уменьшает ускорение и замедление
 		Чем быстрее вы двигаетесь, тем больше урона наносите, до +35%
 		'''
+	WizardEffect: Максимальная скорость увеличена, бонус к урону удвоен
 }
 
 SulphurEnchant: {
@@ -426,6 +447,7 @@ SulphurEnchant: {
 		Даёт сернистый прыжок, который оставляет за собой сернистый пузырь
 		Если атаковать пузырь, то он начнёт выпускать газ, наносящий урон врагам
 		'''
+	WizardEffect: Прыжки создают 3 пузыря, которые наносят больше урона
 }
 
 VictideEnchant: {
@@ -436,6 +458,11 @@ VictideEnchant: {
 		Защита увеличена на 4 пока иглы в вашем теле
 		Иглы заряжаются, пока вы атакуете, и вылетают наружу, когда вы перестаёте
 		'''
+	WizardEffect:
+	'''
+	Иглы медленно самонаводятся, наносят больше урона и накладывают дебафф «Кислотный яд»
+	Защита увеличена до 10
+	'''
 }
 
 Lore: {
@@ -452,11 +479,13 @@ FathomSwarmerEnchant: {
 		Summons an Anglerfish familiar that follows your mouse
 		The anglerfish's light slows down enemies and their projectiles
 		''' */
+	// WizardEffect: Larger Light, Faster Fish
 }
 
 AstralEnchant: {
 	// DisplayName: Astral Enchantment
 	// Tooltip: You are followed by a trail of damaging astral stars
+	// WizardEffect: Longer trail, more damage
 }
 
 BrimflameEnchant: {
@@ -470,6 +499,7 @@ BrimflameEnchant: {
 		''' */
 	// DefenseDown: -{0} defense
 	// DefenseUp: +{0} defense
+	// WizardEffect: Consumes only half of your defense, but still retains effect of all of your defense
 }
 
 MolluskEnchant: {
@@ -480,6 +510,7 @@ MolluskEnchant: {
 		Hitting an enemy with the slam deals massive damage and gives you immunity frames
 		Only goes on cooldown on enemy hits
 		''' */
+	// WizardEffect: More damage, More immunity frames
 }
 
 # This is used to detect and remove lines, not displayed. Must match Cal's localization.
@@ -494,6 +525,7 @@ EmpyreanEnchant: {
 		и создают самонаводящиеся возвышенные звёзды при попадании
 		У этого эффекта есть перезарядка от 12 до 4 секунд, зависящая от вашего уровня заряда ярости
 		'''
+	WizardEffect: Увеличивает урон, исцеление и заряд ярости
 }
 
 Archmage: {

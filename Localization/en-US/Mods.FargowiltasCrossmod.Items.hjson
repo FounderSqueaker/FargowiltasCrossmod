@@ -273,6 +273,7 @@ AerospecEnchant: {
 		'''
 	CritUp: +{0}% crit
 	CritReset: -{0}% crit
+	WizardEffect: Crit and damage bonus doubled
 }
 
 MarniteEnchant: {
@@ -283,6 +284,7 @@ MarniteEnchant: {
 		Lasers strike nearby enemies while not attacking, or while using tools
 		[i:CalamityMod/MarniteRepulsionShield] Enemies behind you are struck by high-knockback hardlight quills
 		'''
+	WizardEffect: Increased damage and range of lasers, placement bonuses doubled
 }
 
 DesertProwlerEnchant: {
@@ -295,6 +297,7 @@ DesertProwlerEnchant: {
 		Both the charged jump and dive push nearby enemies away
 		Hitting the ground shortly after a dive pushes away and damages enemies
 		'''
+	WizardEffect: Stronger jumps, Stronger knockback and damage
 }
 
 WulfrumEnchant: {
@@ -307,6 +310,7 @@ WulfrumEnchant: {
 		Green means weakness, red means resistance
 		Scanned enemies also take an extra 15 damage per second when afflicted with any debuff
 		'''
+	WizardEffect: Extra damage per second when debuffed increased to 50
 }
 
 GaleForce: {
@@ -334,6 +338,7 @@ SnowRuffianEnchant: {
 		Press UP while slow falling to direct your momentum upward
 		Press DOWN while slow falling to accelerate faster
 		'''
+	WizardEffect: Increased wing strength
 }
 
 DaedalusEnchant: {
@@ -344,11 +349,17 @@ DaedalusEnchant: {
 		After a second in the air, attacks are accompanied by powerful arrows from the sky
 		Getting hit or landing removes this bonus and cuts your wing time in half 
 		'''
+	WizardEffect: Increased arrow damage, amount and speed
 }
 
 PlagueReaperEnchant: {
 	DisplayName: Plague Reaper Enchantment
 	Tooltip: All debuffs spread between enemies
+	WizardEffect:
+		'''
+		Debuffs spread from farther 
+		Enemies spread debuffs for a longer amount of time
+		'''
 }
 
 PlaguebringerEnchant: {
@@ -360,11 +371,13 @@ PlaguebringerEnchant: {
 		At maximum size, the cloud expands rapidly and stops following you,
 		lingering in place for a while.
 		'''
+	WizardEffect: Plague cloud deals more damage and charges from longer away
 }
 
 ReaverEnchant: {
 	DisplayName: Reaver Enchantment
 	Tooltip: ""
+	WizardEffect: Defense and damage reduction increased to 20 and 24%, increased life regen and movement speed, increased thorn damage and buff duration
 }
 
 HydrothermicEnchant: {
@@ -375,6 +388,7 @@ HydrothermicEnchant: {
 		At full heat, stop attacking to vent it, increasing damage reduction by up to 20% and firing chaos flares towards your cursor for up to 3 seconds
 		Getting hit also vents heat, regardless of heat level
 		'''
+	WizardEffect: Overheat lasts for longer, damage reduction increased to 30%, flare damage increased
 }
 
 ElementsForce: {
@@ -395,6 +409,7 @@ ElementsForce: {
 UmbraphileEnchant: {
 	DisplayName: Umbraphile Enchantment
 	Tooltip: ""
+	WizardEffect: Bats deal more damage and heal for more
 }
 
 TitanHeartEnchant: {
@@ -405,6 +420,7 @@ TitanHeartEnchant: {
 		While adrenaline is partially charged, receive up to 15% damage reduction
 		Increases your max movement speed and acceleration by 5%
 		'''
+	WizardEffect: Doubled damage reduction, increased grounded charge rate to 100% total
 }
 
 StatigelEnchant: {
@@ -415,6 +431,7 @@ StatigelEnchant: {
 		Massively decreases your acceleration and deceleration
 		Gain up to 25% increased damage, depending on how fast you're moving
 		'''
+	WizardEffect: Higher maximum speed, damage bonus doubled
 }
 
 SulphurEnchant: {
@@ -424,6 +441,7 @@ SulphurEnchant: {
 		Grants a sulphur jump that spawns a sulphur bubble on use
 		The bubble releases damaging gas when hit by you
 		'''
+	WizardEffect: Jumps create 3 bubbles
 }
 
 VictideEnchant: {
@@ -434,6 +452,7 @@ VictideEnchant: {
 		You gain 4 defense while the spikes are attached to you
 		Attacking charges the spikes, which launch outward when you stop attacking
 		'''
+	WizardEffect: Spikes have a slight homing effect, deal more damage, and inflict Venom, defense increased to 10
 }
 
 Lore: {
@@ -450,11 +469,13 @@ FathomSwarmerEnchant: {
 		Summons an Anglerfish familiar that follows your mouse
 		The anglerfish's light slows down enemies and their projectiles
 		'''
+	WizardEffect: Larger Light, Faster Fish
 }
 
 AstralEnchant: {
 	DisplayName: Astral Enchantment
 	Tooltip: You are followed by a trail of damaging astral stars
+	WizardEffect: Longer trail, more damage
 }
 
 BrimflameEnchant: {
@@ -468,6 +489,7 @@ BrimflameEnchant: {
 		'''
 	DefenseDown: -{0} defense
 	DefenseUp: +{0} defense
+	WizardEffect: Consumes only half of your defense, but still retains effect of all of your defense
 }
 
 MolluskEnchant: {
@@ -478,6 +500,7 @@ MolluskEnchant: {
 		Hitting an enemy with the slam deals massive damage and gives you immunity frames
 		Only goes on cooldown on enemy hits
 		'''
+	WizardEffect: More damage, More immunity frames
 }
 
 # This is used to detect and remove lines, not displayed. Must match Cal's localization.
@@ -491,6 +514,7 @@ EmpyreanEnchant: {
 		Empowered hits deal double damage, heal 20 HP, fills up rage, and create homing empyrean stars on collision
 		This effect has a 12 to 4 second cooldown, becoming shorter the more rage you have
 		'''
+	WizardEffect: Increases damage, healing, and rage generation
 }
 
 Archmage: {
