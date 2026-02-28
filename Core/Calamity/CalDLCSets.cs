@@ -1,7 +1,6 @@
 ﻿using CalamityMod.Buffs.Alcohol;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Buffs.StatDebuffs;
-using CalamityMod.Items;
 using CalamityMod.Items.SummonItems.Invasion;
 using CalamityMod.Items.SummonItems;
 using CalamityMod.Items.Placeables.Furniture;
@@ -10,12 +9,9 @@ using CalamityMod.Items.Weapons.DraedonsArsenal;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
-using CalamityMod.Items.Weapons.Typeless;
 using CalamityMod.NPCs.AcidRain;
 using CalamityMod.Projectiles.Magic;
-using CalamityMod.Projectiles.Melee;
 using CalamityMod.Projectiles.Summon;
-using Fargowiltas;
 using Fargowiltas.Content.Items.Vanity;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls.Content.Items.Ammos;
@@ -25,8 +21,6 @@ using FargowiltasSouls.Content.Bosses.DeviBoss;
 using FargowiltasSouls.Content.Bosses.BanishedBaron;
 using FargowiltasSouls.Content.Bosses.Lifelight;
 using FargowiltasSouls.Content.Bosses.Champions.Cosmos;
-using CalamityMod.Items.Tools;
-using CalamityMod.Items.Weapons.Typeless;
 using CalamityMod.Items.Placeables;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -44,6 +38,7 @@ using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.DukeFishron;
 using FargowiltasSouls.Content.Projectiles.Eternity;
 using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.MoonLord;
 using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.LunaticCultist;
+using Fargowiltas.Common.Systems.Collections;
 
 namespace FargowiltasCrossmod.Core.Calamity
 {
@@ -96,10 +91,10 @@ namespace FargowiltasCrossmod.Core.Calamity
         public override void PostSetupContent()
         {
             #region Items
-            FargoSets.Items.BuffStation[ItemType<ResilientCandle>()] = true;
-            FargoSets.Items.BuffStation[ItemType<SpitefulCandle>()] = true;
-            FargoSets.Items.BuffStation[ItemType<VigorousCandle>()] = true;
-            FargoSets.Items.BuffStation[ItemType<WeightlessCandle>()] = true;
+            FargoItemSets.BuffStation[ItemType<ResilientCandle>()] = true;
+            FargoItemSets.BuffStation[ItemType<SpitefulCandle>()] = true;
+            FargoItemSets.BuffStation[ItemType<VigorousCandle>()] = true;
+            FargoItemSets.BuffStation[ItemType<WeightlessCandle>()] = true;
 
             SetFactory itemFactory = ItemID.Sets.Factory;
             Items.RockItem = itemFactory.CreateBoolSet(false,
