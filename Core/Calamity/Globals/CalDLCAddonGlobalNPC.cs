@@ -56,7 +56,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
         //Hardmode enchant. not in release.
         public override bool PreAI(NPC npc)
         {
-            if (PBGDebuffTag > 0 && FargowiltasCrossmod.EnchantLoadingEnabled)
+            /*if (PBGDebuffTag > 0 && FargowiltasCrossmod.EnchantLoadingEnabled)
             {
                 int distance = 300;
                 if (taggedByPlayer >= 0 && Main.player[taggedByPlayer] != null && Main.player[taggedByPlayer].active && !Main.player[taggedByPlayer].dead)
@@ -79,7 +79,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                         }
                     }
                 }
-            }
+            }*/
             if (npc.type == NPCID.KingSlime && BossRushEvent.BossRushActive && npc.GetLifePercent() <= 0.5f)
             {
                 if (BossRushDialogueSystem.Phase < CalamityMod.Enums.BossRushDialoguePhase.TierOneComplete)
