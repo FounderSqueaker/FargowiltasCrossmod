@@ -69,7 +69,10 @@ namespace FargowiltasCrossmod.Core.Calamity
         }
         public class Buffs
         {
-            public static bool[] DoTDebuff; //excludes debuffs that are from projectiles attached to npcs
+            /// <summary>
+            /// Excludes debuffs that are from projectiles attached to npcs
+            /// </summary>
+            public static bool[] DoTDebuff;
         }
         public class Projectiles
         {
@@ -237,8 +240,8 @@ namespace FargowiltasCrossmod.Core.Calamity
                 BuffID.Frostburn2,
             #endregion
             #region Calamity
-                BuffType<AbsorberAffliction>(),
-                BuffType<AlcoholPoisoning>(),
+                BuffType<AbsorberAffliction>(), // NPC only
+                BuffType<AlcoholPoisoning>(), // Player only
                 BuffType<AstralInfectionDebuff>(),
                 BuffType<AuricRebuke>(),
                 BuffType<BanishingFire>(),
@@ -246,7 +249,7 @@ namespace FargowiltasCrossmod.Core.Calamity
                 BuffType<BrimstoneFlames>(),
                 BuffType<BurningBlood>(),
                 BuffType<CrushDepth>(),
-                BuffType<Daybroken>(),
+                BuffType<Daybroken>(), // Player only
                 BuffType<DemonicFlames>(),
                 BuffType<Dragonfire>(),
                 BuffType<ElementalMix>(),
@@ -254,18 +257,18 @@ namespace FargowiltasCrossmod.Core.Calamity
                 BuffType<HadopelagicPressure>(),
                 BuffType<HeavyBleeding>(),
                 BuffType<HolyFlames>(),
-                BuffType<HolyInferno>(),
+                BuffType<HolyInferno>(), // Player only
                 BuffType<Irradiated>(),
                 BuffType<Laceration>(),
-                BuffType<ManaBurn>(),
+                BuffType<ManaBurn>(), // Player only
                 BuffType<MiracleBlight>(),
                 BuffType<Nightwither>(),
                 BuffType<Plague>(),
                 BuffType<RiptideDebuff>(),
-                BuffType<SagePoison>(),
-                BuffType<SearingLava>(),
-                BuffType<Shadowflame>(),
-                BuffType<Shred>(),
+                BuffType<SagePoison>(), // NPC only
+                BuffType<SearingLava>(), // Player only
+                BuffType<Shadowflame>(), // Player only
+                BuffType<Shred>(), // NPC only
                 BuffType<StaticDischarge>(),
                 BuffType<SulphuricPoisoning>(),
                 BuffType<TrueVulnerabilityHex>(),
@@ -273,7 +276,7 @@ namespace FargowiltasCrossmod.Core.Calamity
                 BuffType<Vaporfied>(),
                 BuffType<Voidfrost>(),
                 BuffType<VulnerabilityHex>(),
-                BuffType<WeakBrimstoneFlames>(),
+                BuffType<WeakBrimstoneFlames>(), // Player only
             #endregion
             #region Souls
                 BuffType<AnticoagulationBuff>(),
