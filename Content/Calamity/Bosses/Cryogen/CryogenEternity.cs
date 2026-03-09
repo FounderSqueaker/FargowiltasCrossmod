@@ -41,7 +41,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
         public override int NPCOverrideID => ModContent.NPCType<CalamityMod.NPCs.Cryogen.Cryogen>();
         public override void SetDefaults()
         {
-            NPC.damage = 77;
+            //NPC.damage = 77;
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

@@ -7,6 +7,7 @@ using CalamityMod.Items.SummonItems;
 using CalamityMod.Items.TreasureBags.MiscGrabBags;
 using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Items.Weapons.Summon;
+using CalamityMod.Systems.Collections;
 using CalamityMod.Tiles.Abyss;
 using CalamityMod.Tiles.Astral;
 using CalamityMod.Tiles.Crags;
@@ -22,16 +23,19 @@ using Fargowiltas.Content.Items.Tiles;
 using FargowiltasCrossmod.Content.Calamity.Buffs;
 using FargowiltasSouls;
 using FargowiltasSouls.Content.Items;
-using FargowiltasSouls.Content.Items.Accessories;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
 using FargowiltasSouls.Content.Items.Accessories.Eternity;
 using FargowiltasSouls.Content.Items.Accessories.Forces;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls.Content.Items.Misc;
+using FargowiltasSouls.Content.Items.Weapons.BossDrops;
+using FargowiltasSouls.Content.UI.Elements;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.ModPlayers;
 using FargowiltasSouls.Core.Systems;
 using Luminance.Core.Hooking;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Linq;
 using System.Reflection;
 using Terraria;
@@ -69,6 +73,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             HookHelper.ModifyMethodWithDetour(TungstenNeverAffectsProjMethod, TungstenNeverAffectsProj_Detour);
 
             HookHelper.ModifyMethodWithDetour(OriDotModifierMethod, OriDotModifier_Detour);
+            HookHelper.ModifyMethodWithDetour(CalcAdamantiteAttackSpeedMethod, CalcAdamantiteAttackSpeed_Detour);
 
             HookHelper.ModifyMethodWithDetour(StarterBag_ModifyItemLoot_Method, StarterBag_ModifyItemLoot_Detour);
             HookHelper.ModifyMethodWithDetour(FargosSouls_DropDevianttsGift_Method, FargosSouls_DropDevianttsGift_Detour);
@@ -95,12 +100,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
         internal static float TungstenIncreaseWeaponSize_Detour(Orig_TungstenIncreaseWeaponSize orig, FargoSoulsPlayer modPlayer)
         {
             float value = orig(modPlayer);
-            if (modPlayer.Player.HeldItem == null)
+            /*if (modPlayer.Player.HeldItem == null)
                 return value;
-            if (CalDLCSets.Items.TungstenExclude[modPlayer.Player.HeldItem.type])
-                return 1f;
             //if (modPlayer.Player.HeldItem.DamageType.CountsAsClass(DamageClass.Melee))
-            //    value -= (value - 1f) * 0.5f;
+            //    value -= (value - 1f) * 0.5f;*/
             return value;
         }
         private static readonly MethodInfo TungstenNeverAffectsProjMethod = typeof(TungstenEffect).GetMethod("TungstenNeverAffectsProj", LumUtils.UniversalBindingFlags);
@@ -119,6 +122,38 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
         {
             float value = orig(npc, modPlayer);
             return value;
+        }
+        private static readonly MethodInfo CalcAdamantiteAttackSpeedMethod = typeof(AdamantiteEffect).GetMethod("CalcAdamantiteAttackSpeed", LumUtils.UniversalBindingFlags);
+        public delegate void Orig_CalcAdamantiteAttackSpeed(Player player, Item item);
+        internal static void CalcAdamantiteAttackSpeed_Detour(Orig_CalcAdamantiteAttackSpeed orig, Player player, Item item)
+        {
+            //since this is just the normal method copy pasted, needs to be updated every time adamantite is changed
+            if (!player.HasEffectEnchant<AdamantiteEffect>())
+                return;
+            FargoSoulsPlayer modPlayer = player.FargoSouls();
+
+            if (!player.Calamity().grapeBeer || CalamityProjectileSets.DoesNotGetHomingWithGrapeBeer[item.shoot] || !(item.useAmmo == AmmoID.Bullet || item.useAmmo == AmmoID.Arrow || item.useAmmo == AmmoID.Dart || item.useAmmo == AmmoID.Rocket))
+            {
+                orig(player, item);
+                return;
+            }
+
+            if (!(item.DamageType != DamageClass.Default && item.pick == 0 && item.axe == 0 && item.hammer == 0 && item.type != ModContent.ItemType<PrismaRegalia>()))
+                return;
+            if (item.shoot <= ProjectileID.None)
+                return;
+            if (!modPlayer.HeldItemAdamantiteValid)
+                return;
+            float maxSpeed = player.ForceEffect<AdamantiteEffect>() ? 0.5f : 0.3f;
+            maxSpeed /= 2;
+
+            float ratio = Math.Max((float)modPlayer.AdamantiteSpread / AdamantiteEffect.SpreadCap, 0);
+            modPlayer.AttackSpeed += maxSpeed * ratio;
+
+            if (player.whoAmI == Main.myPlayer)
+                CooldownBarManager.Activate("AdamantiteEnchantCharge", ModContent.Request<Texture2D>("FargowiltasSouls/Content/Items/Accessories/Enchantments/AdamantiteEnchant").Value, new(221, 85, 125),
+                () => (float)Main.LocalPlayer.FargoSouls().AdamantiteSpread / AdamantiteEffect.SpreadCap, activeFunction: player.HasEffectEnchant<AdamantiteEffect>, displayAtFull: true);
+
         }
 
         private static readonly MethodInfo StarterBag_ModifyItemLoot_Method = typeof(StarterBag).GetMethod("ModifyItemLoot", LumUtils.UniversalBindingFlags);

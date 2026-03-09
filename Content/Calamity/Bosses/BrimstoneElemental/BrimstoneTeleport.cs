@@ -82,7 +82,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.BrimstoneElemental
                     {
                         float rot = MathF.Tau * i / projs;
                         Vector2 vel = rot.ToRotationVector2() * 3;
-                        Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center, vel, ModContent.ProjectileType<BrimstoneBarrage>(), FargoSoulsUtil.ScaledProjectileDamage(owner.defDamage), 0);
+                        Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center, vel, ModContent.ProjectileType<BrimstoneBarrage>(), FargoSoulsUtil.ScaledProjectileDamage(owner.defDamage), 0, ai0: 1);
                     }
                 }
             }

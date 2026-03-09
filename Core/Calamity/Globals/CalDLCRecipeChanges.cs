@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using CalamityMod;
-using CalamityMod.Items;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Accessories.Vanity;
 using CalamityMod.Items.Accessories.Wings;
-using CalamityMod.Items.Fishing.AstralCatches;
 using CalamityMod.Items.Fishing.BrimstoneCragCatches;
 using CalamityMod.Items.Fishing.FishingRods;
 using CalamityMod.Items.Fishing.SulphurCatches;
@@ -17,15 +15,15 @@ using CalamityMod.Items.Placeables;
 using CalamityMod.Items.Placeables.Banners;
 using CalamityMod.Items.Placeables.Furniture;
 using CalamityMod.Items.Placeables.Furniture.BossRelics;
+using CalamityMod.Items.Placeables.Furniture.Monoliths;
 using CalamityMod.Items.Placeables.Furniture.Trophies;
 using CalamityMod.Items.Placeables.Plates;
-using CalamityMod.Items.Potions;
 using CalamityMod.Items.Potions.Food;
 using CalamityMod.Items.SummonItems;
 using CalamityMod.Items.Tools;
 using CalamityMod.Items.Tools.ClimateChange;
+using CalamityMod.Items.Tools.SpawnBlocker;
 using CalamityMod.Items.TreasureBags;
-using CalamityMod.Items.Weapons.DraedonsArsenal;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
@@ -38,10 +36,7 @@ using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Utilities;
 using FargowiltasCrossmod.Content.Calamity.Items.Accessories;
 using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments;
-using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces;
 using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Souls;
-using FargowiltasCrossmod.Core;
-using FargowiltasCrossmod.Core.Calamity;
 using FargowiltasSouls.Content.Items.Accessories.Forces;
 using FargowiltasSouls.Content.Items.Accessories;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
@@ -234,7 +229,27 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<InfestedClawmerang>(),
                 ItemType<Mycoroot>()
             ]);
+            CreateCalBagRecipes(ItemType<HiveMindBag>(),
+            [
+                ItemType<PerfectDark>(),
+                ItemType<Shadethrower>(),
+                ItemType<ShaderainStaff>(),
+                ItemType<DankStaff>(),
+                ItemType<RotBall>(),
+                ItemType<FilthyGlove>()
+            ]);
             CreateCalBagRecipes(ItemType<HiveMindTrophy>(), [ItemType<RottingEyeball>()]);
+            CreateCalBagRecipes(ItemType<PerforatorBag>(),
+            [
+                ItemType<Aorta>(),
+                ItemType<SausageMaker>(),
+                ItemType<VeinBurster>(),
+                ItemType<Eviscerator>(),
+                ItemType<BloodBath>(),
+                ItemType<FleshOfInfidelity>(),
+                ItemType<ToothBall>(),
+                ItemType<BloodstainedGlove>()
+            ]);
             CreateCalBagRecipes(ItemType<PerforatorTrophy>(), [ItemType<BloodyVein>()]);
             CreateCalBagRecipes(ItemID.QueenBeeTrophy, [ItemType<TheBee>()]);
             CreateCalBagRecipes(ItemType<SlimeGodBag>(),
@@ -279,11 +294,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             CreateCalBagRecipes(ItemType<BrimstoneElementalBag>(),
             [
                 ItemType<Brimlance>(),
+                ItemType<Hellborn>(),
                 ItemType<SeethingDischarge>(),
-                ItemType<DormantBrimseeker>(),
-                ItemType<RoseStone>()
+                ItemType<DormantBrimseeker>()
             ]);
-            CreateCalBagRecipes(ItemType<BrimstoneElementalTrophy>(), [ItemType<Hellborn>()]);
             CreateCalBagRecipes(ItemType<CalamitasCloneBag>(),
             [
                 ItemType<Oblivion>(),
@@ -292,9 +306,9 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<LashesofChaos>(),
                 ItemType<EntropysVigil>(),
                 ItemType<CrushsawCrasher>(),
-                ItemType<ChaosStone>()
+                ItemType<ChaosStone>(),
+                ItemType<Regenerator>()
             ]);
-            CreateCalBagRecipes(ItemType<CalamitasCloneTrophy>(), [ItemType<Regenerator>()]);
             CreateCalBagRecipes(ItemID.PlanteraBossBag, [ItemType<BloomStone>()]);
             CreateCalBagRecipes(ItemID.PlanteraTrophy, [ItemType<BlossomFlux>()]);
             CreateCalBagRecipes(ItemType<LeviathanBag>(),
@@ -308,8 +322,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<LeviathanTeeth>(),
                 ItemType<PearlofEnthrallment>()
             ]);
-            CreateCalBagRecipes(ItemType<LeviathanTrophy>(), [ItemType<TheCommunity>()]);
-            CreateCalBagRecipes(ItemType<AnahitaTrophy>(), [ItemType<TheCommunity>()]);
+            CreateCalBagRecipes(ItemType<LeviathanTrophy>(), [ItemType<TheCommunity>(), ItemType<DeepSeaAnchor>()]);
+            CreateCalBagRecipes(ItemType<AnahitaTrophy>(), [ItemType<TheCommunity>(), ItemType<DeepSeaAnchor>()]);
             CreateCalBagRecipes(ItemType<AstrumAureusBag>(),
             [
 
@@ -349,7 +363,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<Hematemesis>(),
                 ItemType<SpikecragStaff>(),
                 ItemType<CraniumSmasher>(),
-                ItemType<BloodPact>(),
                 ItemType<FleshTotem>()
             ]);
             CreateCalBagRecipes(ItemType<RavagerTrophy>(),
@@ -397,6 +410,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             [
                 ItemType<TheStorm>(),
                 ItemType<SkytideDragoon>(),
+                ItemType<Volterion>(),
                 ItemType<LittleLight>()
             ]);
             CreateCalBagRecipes(ItemType<WeaverTrophy>(), [ItemType<Volterion>()]);
@@ -430,7 +444,11 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<ToxicantTwister>(),
                 ItemType<MutatedTruffle>()
             ]);
-            CreateCalBagRecipes(ItemType<OldDukeTrophy>(), [ItemType<TheOldReaper>()]);
+            CreateCalBagRecipes(ItemType<OldDukeTrophy>(), 
+            [
+                ItemType<TheOldReaper>(), 
+                ItemType<EldenDiorama>()
+            ]);
             CreateCalBagRecipes(ItemType<DevourerofGodsBag>(),
             [
                 ItemType<MawOfInfinity>(),
@@ -525,6 +543,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             AddBannerToItemRecipe(ItemID.DemonBanner, ItemType<BladecrestOathsword>());
             AddBannerToItemRecipe(ItemID.GoblinSorcererBanner, ItemType<PlasmaRod>());
             AddBannerToItemRecipe(ItemID.AntlionBanner, ItemType<AntlionSkewer>());
+            AddBannerToItemRecipe(ItemID.SharkBanner, ItemType<SharkyPlush>());
             AddBannerToItemRecipe(ItemType<BoxJellyfishBanner>(),
                 ItemType<AbyssShocker>(), 1, 1, ItemID.Bone);
             AddBannerToItemRecipe(ItemType<NuclearToadBanner>(),
@@ -575,6 +594,25 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             }
             #endregion
             #region Crate Recipes
+            CreateCrateRecipes([ItemType<Kylie>()], ItemID.WoodenCrate, 5);
+            CreateCrateRecipes([ItemType<Kylie>()], ItemID.WoodenCrateHard, 5);
+            CreateCrateRecipes([ItemType<EnchantedKnifeStaff>()], ItemID.GoldenCrate, 5);
+            CreateCrateRecipes([ItemType<EnchantedKnifeStaff>()], ItemID.GoldenCrateHard, 5);
+
+            CreateCrateRecipes([ItemType<TheComb>()], ItemID.OasisCrate, 5);
+            CreateCrateRecipes([ItemType<TheComb>()], ItemID.OasisCrateHard, 5);
+
+            CreateCrateRecipes(
+            [
+                ItemType<BrokenWaterFilter>(),
+                ItemType<EffigyOfDecay>(),
+                ItemType<RustyBeaconPrototype>(),
+                ItemType<ScionsCurio>(),
+            ], ItemType<SulphurousCrate>(), 3);
+
+            CreateCrateRecipes([ItemType<SlagfireDouser>()], ItemType<SlagCrate>(), 3);
+            CreateCrateRecipes([ItemType<SlagfireDouser>()], ItemType<BrimstoneCrate>(), 3);
+
             CreateCrateRecipes(
             [
                 ItemType<BallOFugu>(),
@@ -582,6 +620,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 ItemType<BlackAnurian>(),
                 ItemType<HerringStaff>(),
                 ItemType<Lionfish>(),
+            ], ItemType<HydrothermalCrate>(), 5);
+
+            CreateCrateRecipes(
+            [
                 ItemType<StrangeOrb>(),
                 ItemType<TorrentialTear>(),
                 ItemType<DepthCharm>(),
@@ -751,7 +793,9 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 {
                     if (recipe.RemoveIngredient(ItemID.WormScarf))
                         recipe.AddIngredient<BloodyWormScarf>();
-                    if (recipe.RemoveIngredient(ItemID.AnkhShield))
+                    //if (recipe.RemoveIngredient(ItemID.BrainOfConfusion))
+                    //    recipe.AddIngredient<TheAmalgam>();
+                    //if (recipe.RemoveIngredient(ItemID.AnkhShield))
                         recipe.AddIngredient<AsgardianAegis>();
                     recipe.AddIngredient<AbomEnergy>(10);
                 }

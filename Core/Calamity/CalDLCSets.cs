@@ -61,7 +61,6 @@ namespace FargowiltasCrossmod.Core.Calamity
             public static bool[] CalBossSummon;
 
             public static bool[] AdamantiteExclude;
-            public static bool[] TungstenExclude;
             public static bool[] MarniteExclude;
 
             /// <summary>
@@ -77,7 +76,10 @@ namespace FargowiltasCrossmod.Core.Calamity
         }
         public class Buffs
         {
-            public static bool[] DoTDebuff; //excludes debuffs that are from projectiles attached to npcs
+            /// <summary>
+            /// Excludes debuffs that are from projectiles attached to npcs
+            /// </summary>
+            public static bool[] DoTDebuff;
         }
         public class Projectiles
         {
@@ -124,6 +126,7 @@ namespace FargowiltasCrossmod.Core.Calamity
                 ItemType<CharredIdol>(),
                 ItemType<EyeofDesolation>(),
                 ItemType<AstralChunk>(),
+                ItemType<NaiadsWarhorn>(),
                 ItemType<Abombination>(),
                 ItemType<DeathWhistle>(),
                 ItemType<Starcore>(),
@@ -151,17 +154,13 @@ namespace FargowiltasCrossmod.Core.Calamity
                 ItemType<ClockworkBow>(),
                 ItemType<NebulousCataclysm>(),
                 ItemType<Eternity>(), //fargo reference
-                ItemType<CalamityMod.Items.Weapons.Magic.Vehemence>(),
+                ItemType<Vehemence>(),
                 ItemType<Phaseslayer>(),
                 ItemType<FracturedArk>(),
                 ItemType<TrueArkoftheAncients>(),
                 ItemType<ArkoftheElements>(),
                 ItemType<ArkoftheCosmos>(),
                 ItemType<Animosity>()
-            );
-            Items.TungstenExclude = itemFactory.CreateBoolSet(false,
-                ItemType<OldLordClaymore>(),
-                ItemType<BladecrestOathsword>()
             );
             Items.MarniteExclude = itemFactory.CreateBoolSet(false,  // set of boss viable tools
               //ItemID.RodofDiscord, // this is intentional
@@ -246,46 +245,60 @@ namespace FargowiltasCrossmod.Core.Calamity
             #region Buffs
             SetFactory buffFactory = BuffID.Sets.Factory;
             Buffs.DoTDebuff = buffFactory.CreateBoolSet(false,
-                BuffID.Bleeding,
+            #region Vanilla
                 BuffID.Poisoned,
                 BuffID.OnFire,
-                BuffID.Venom,
+                BuffID.Bleeding,
                 BuffID.CursedInferno,
                 BuffID.Frostburn,
-                BuffID.Electrified,
                 BuffID.Burning,
+                BuffID.Venom,
+                BuffID.Electrified,
                 BuffID.ShadowFlame,
                 BuffID.Daybreak,
                 BuffID.OnFire3,
                 BuffID.Frostburn2,
-                BuffType<Nightwither>(),
-                BuffType<BanishingFire>(),
-                BuffType<BrimstoneFlames>(),
-                BuffType<WeakBrimstoneFlames>(),
-                BuffType<GodSlayerInferno>(),
-                BuffType<HolyFlames>(),
-                BuffType<Dragonfire>(),
-                BuffType<VulnerabilityHex>(),
-                BuffType<AbsorberAffliction>(),
+            #endregion
+            #region Calamity
+                BuffType<AbsorberAffliction>(), // NPC only
+                BuffType<AlcoholPoisoning>(), // Player only
                 BuffType<AstralInfectionDebuff>(),
-                BuffType<Plague>(),
-                BuffType<SulphuricPoisoning>(),
-                BuffType<SagePoison>(),
-                BuffType<CrushDepth>(),
-                BuffType<RiptideDebuff>(),
+                BuffType<AuricRebuke>(),
+                BuffType<BanishingFire>(),
                 BuffType<BrainRot>(),
+                BuffType<BrimstoneFlames>(),
                 BuffType<BurningBlood>(),
-                BuffType<HolyInferno>(),
-                BuffType<Irradiated>(),
-                BuffType<MiracleBlight>(),
-                BuffType<AlcoholPoisoning>(),
-                BuffType<ManaBurn>(),
-                BuffType<SearingLava>(),
+                BuffType<CrushDepth>(),
+                BuffType<Daybroken>(), // Player only
+                BuffType<DemonicFlames>(),
+                BuffType<Dragonfire>(),
                 BuffType<ElementalMix>(),
-                BuffType<Shred>(),
+                BuffType<GodSlayerInferno>(),
+                BuffType<HadopelagicPressure>(),
+                BuffType<HeavyBleeding>(),
+                BuffType<HolyFlames>(),
+                BuffType<HolyInferno>(), // Player only
+                BuffType<Irradiated>(),
+                BuffType<Laceration>(),
+                BuffType<ManaBurn>(), // Player only
+                BuffType<MiracleBlight>(),
+                BuffType<Nightwither>(),
+                BuffType<Plague>(),
+                BuffType<RiptideDebuff>(),
+                BuffType<SagePoison>(), // NPC only
+                BuffType<SearingLava>(), // Player only
+                BuffType<Shadowflame>(), // Player only
+                BuffType<Shred>(), // NPC only
+                BuffType<StaticDischarge>(),
+                BuffType<SulphuricPoisoning>(),
+                BuffType<TrueVulnerabilityHex>(),
+                BuffType<VermillionFlux>(),
                 BuffType<Vaporfied>(),
-                BuffType<Shadowflame>(),
-
+                BuffType<Voidfrost>(),
+                BuffType<VulnerabilityHex>(),
+                BuffType<WeakBrimstoneFlames>(), // Player only
+            #endregion
+            #region Souls
                 BuffType<AnticoagulationBuff>(),
                 BuffType<CurseoftheMoonBuff>(),
                 BuffType<FlamesoftheUniverseBuff>(),
@@ -295,15 +308,28 @@ namespace FargowiltasCrossmod.Core.Calamity
                 BuffType<ShadowflameBuff>(),
                 BuffType<TwinsInstallBuff>(),
                 BuffType<LeadPoisonBuff>(),
+                BuffType<LeadPoisonSpreadBuff>(),
+                BuffType<NeurotoxinBuff>(),
                 BuffType<OriPoisonBuff>(),
-                BuffType<SolarFlareBuff>()
+                BuffType<ShadowflameBuff>(),
+                BuffType<SolarFlareBuff>(),
+                BuffType<SoulBurnBuff>(),
+                BuffType<TwinsInstallBuff>()
+            #endregion
                 );
             #endregion
 
             #region Projectiles
             SetFactory projectileFactory = ProjectileID.Sets.Factory;
             //empty because cal fixed the projs here
-            Projectiles.TungstenExclude = projectileFactory.CreateBoolSet(false
+            Projectiles.TungstenExclude = projectileFactory.CreateBoolSet(false,
+                ProjectileType<BladecrestOathswordThrownBlade>(), 
+                ProjectileType<ForbiddenOathbladeThrownBlade>(),
+                ProjectileType<ExaltedOathbladeThrownBlade>(),
+                ProjectileType<DevilsDevastationThrownBlade>(),
+                ProjectileType<DepthCrusherProjectile>(),
+                ProjectileType<AbyssBladeProjectile>(),
+                ProjectileType<NeptunesBountyProjectile>()
                 );
 
             Projectiles.MultipartShredder = projectileFactory.CreateBoolSet(false,

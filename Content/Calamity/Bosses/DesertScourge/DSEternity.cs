@@ -382,7 +382,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
             }
             if (ai[3] == -2) //telegraph spit followup
             {
-                
+
                 SoundEngine.PlaySound(CalamityMod.NPCs.DesertScourge.DesertScourgeHead.RoarSound with { Volume = 0.5f, Pitch = 0.2f });
             }
             if (ai[3] % 70 == 0 && ai[3] < 0)
@@ -1023,7 +1023,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
         public override void ModifyHitByItem(Player player, Item item, ref NPC.HitModifiers modifiers)
         {
             NullCoiledDamage(modifiers);
-
+            modifiers.FinalDamage *= 0.7f;
         }
         public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers)
         {

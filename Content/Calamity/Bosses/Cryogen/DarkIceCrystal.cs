@@ -45,6 +45,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
         {
             base.OnKill(timeLeft);
         }
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            target.AddBuff(BuffID.Frostburn, 120);
+        }
         public override void OnSpawn(IEntitySource source)
         {
             base.OnSpawn(source);

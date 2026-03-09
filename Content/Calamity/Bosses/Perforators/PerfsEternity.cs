@@ -160,13 +160,14 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
         public override void SetDefaults()
         {
             if (!WorldSavingSystem.EternityMode) return;
-            NPC.lifeMax = (int)(NPC.lifeMax * 1.4f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 1.5f);
+
             NPC.noGravity = true;
             if (BossRushEvent.BossRushActive)
             {
                 NPC.lifeMax = 5000000;
             }
-            NPC.damage = 43;
+            NPC.damage = 40;
             NPC.Opacity = 0;
             NPC.dontTakeDamage = true;
 

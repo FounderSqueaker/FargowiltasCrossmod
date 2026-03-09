@@ -141,7 +141,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             }
             NPCID.Sets.SpecificDebuffImmunity[NPCType<MutantBoss>()][BuffType<Enraged>()] = true;
             NPCID.Sets.SpecificDebuffImmunity[NPCType<MutantBoss>()][BuffType<BanishingFire>()] = true;
-            NPCID.Sets.SpecificDebuffImmunity[NPCID.QueenBee][BuffType<Vaporfied>()] = true;
+            //NPCID.Sets.SpecificDebuffImmunity[NPCID.QueenBee][BuffType<Vaporfied>()] = true;
         }
         [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
         public override void SetDefaults(NPC npc)
@@ -186,8 +186,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     case NPCID.KingSlime:
                         break;
                     case NPCID.EyeofCthulhu:
-                        if (npc.damage < 26)
-                            npc.damage = 26;
+                        if (npc.damage < 20)
+                            npc.damage = 20;
                         break;
                     case NPCID.BrainofCthulhu:
                         //npc.lifeMax = (int)(npc.lifeMax * 0.65f);
@@ -208,7 +208,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                         if (CalDLCWorldSavingSystem.E_EternityRev)
                         {
                             npc.lifeMax = 900;
-                            npc.damage = 36;
                         }
                         break;
                     case NPCID.DungeonGuardian:
@@ -227,26 +226,16 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     case NPCID.Spazmatism:
                     case NPCID.Retinazer:
                         npc.lifeMax = (int)(npc.lifeMax * 0.925f);
-                        //npc.damage = 80;
+                        npc.damage = 60;
                         break;
                     case NPCID.SkeletronPrime:
-                        //npc.lifeMax = (int)(npc.lifeMax * 0.925f);
-                        npc.damage = 80;
-                        npc.damage /= 2;
-                        break;
-                    case NPCID.PrimeCannon:
-                    case NPCID.PrimeLaser:
-                    case NPCID.PrimeSaw:
-                    case NPCID.PrimeVice:
-                        npc.damage /= 2;
+                        npc.lifeMax = (int)(npc.lifeMax * 0.925f);
                         break;
                     case NPCID.TheDestroyer:
-                        npc.damage = 80;
-                        //npc.lifeMax = (int)(npc.lifeMax * 0.925f);
+                        npc.lifeMax = (int)(npc.lifeMax * 0.925f);
                         break;
                     case NPCID.Plantera:
-                        if (CalDLCWorldSavingSystem.E_EternityRev)
-                            npc.lifeMax = (int)(npc.lifeMax * 0.4f);
+                        npc.lifeMax = (int)(npc.lifeMax * 0.6f);
                         break;
                     case NPCID.Golem:
                         if (CalDLCWorldSavingSystem.E_EternityRev)
@@ -307,7 +296,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == NPCType<CursedCoffin>() || npc.type == NPCType<CursedSpirit>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.2f);
-                npc.damage = 38;
                 calNPC.VulnerableToCold = true;
                 calNPC.VulnerableToSickness = false;
             }
@@ -326,7 +314,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == NPCType<BanishedBaron>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.3f);
-                npc.damage = 77;
                 calNPC.VulnerableToElectricity = true;
                 calNPC.VulnerableToWater = false;
                 calNPC.VulnerableToCold = false;
@@ -336,7 +323,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == NPCType<Lifelight>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.3f);
-                npc.damage = 85;
                 calNPC.VulnerableToCold = false;
                 calNPC.VulnerableToElectricity = false;
                 calNPC.VulnerableToHeat = false;
@@ -1265,8 +1251,23 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             NPCID.GolemFistRight, NPCID.GolemHead, NPCID.Golem, NPCID.GolemHeadFree,
             NPCID.CultistBoss, NPCID.MoonLordCore, NPCID.MoonLordFreeEye, NPCID.MoonLordHand, NPCID.MoonLordHead
         ];
+        [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
+        private static void MakeNPCImmuneToCalamityStuns(NPC npc)
+        {
+            // Detour this if you really need it disabled for some reason
+            if ((WorldSavingSystem.EternityMode
+                && (npc.ModNPC == null || npc.ModNPC.Mod == ModCompatibility.SoulsMod.Mod))
+                || (npc.TryGetGlobalNPC(out CalDLCEmodeBehaviorManager calDLCEmode) && calDLCEmode.DLCBehaviour != null))
+            {
+                npc.Calamity().debuffResistanceTimer = 2;
+            }
+        }
+
         public override bool PreAI(NPC npc)
         {
+            if (ModCompatibility.SoulsMod.Loaded && ModCompatibility.Calamity.Loaded)
+                MakeNPCImmuneToCalamityStuns(npc);
+
             #region Summon Drops and Presence Debuffs
 
             if (npc.type == NPCType<DesertScourgeHead>())

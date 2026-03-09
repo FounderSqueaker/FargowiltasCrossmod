@@ -195,8 +195,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.AquaticScourge
             entity.defense = 20;
             entity.Calamity().DR = 0;
             entity.buffImmune[BuffID.Darkness] = true;
-
-            entity.damage = 110;
+            entity.damage = 50;
             if (BossRushEvent.BossRushActive) entity.damage = 300;
         }
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)

@@ -32,7 +32,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
 
             Projectile.light = 0.5f;
             Projectile.penetrate = -1;
-
+            Projectile.coldDamage = true;
             Projectile.FargoSouls().DeletionImmuneRank = 2;
         }
         public override bool PreDraw(ref Color lightColor)
@@ -94,7 +94,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            base.OnHitPlayer(target, info);
+            target.AddBuff(BuffID.Frostburn, 120);
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {

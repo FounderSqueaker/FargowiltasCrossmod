@@ -51,7 +51,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                 }
             }
             NPC.lifeMax = (int)(NPC.lifeMax * healthMult);
-            NPC.damage = 43;
+            NPC.damage = 40;
         }
         public override void OnSpawn(IEntitySource source)
         {

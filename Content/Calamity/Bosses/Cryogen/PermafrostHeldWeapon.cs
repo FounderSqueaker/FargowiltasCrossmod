@@ -44,7 +44,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            base.OnHitPlayer(target, info);
+            target.AddBuff(BuffID.Frostburn, 120);
         }
         ref float Weapon => ref Projectile.ai[0];
         ref float TimeLeft => ref Projectile.localAI[2];

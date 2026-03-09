@@ -213,7 +213,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
                     {
                         Vector2 dir = baseVel.RotatedBy(spreadRot * k);
                         float aim = (Projectile.Center + dir * 80).DirectionTo(aimPos).ToRotation();
-                        Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center, dir * velocity, type, (int)Math.Round(Projectile.damage * 0.75), 0f, Projectile.owner, 0f, Projectile.ai[1], ai2: aim);
+                        Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center, dir * velocity, type, (int)Math.Round(Projectile.damage * 0.75), 0f, Projectile.owner, 1, Projectile.ai[1], ai2: aim);
                     }
                 }
                 for (int i = 0; i < 18; i++)

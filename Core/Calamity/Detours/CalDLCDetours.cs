@@ -23,15 +23,13 @@ using Terraria.Localization;
 using CalamityMod.Skies;
 using Terraria.Graphics.Effects;
 using FargowiltasSouls.Content.UI;
-using FargowiltasSouls.Common.Utilities;
 using CalamityMod.Items.LoreItems;
 using FargowiltasCrossmod.Core.Calamity.Globals;
 using Terraria.GameContent;
 using CalamityMod.Items.Accessories;
 using Fargowiltas.Content.NPCs;
-using rail;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using FargowiltasSouls.Content.UI.Elements;
 
 namespace FargowiltasCrossmod.Core.Calamity.Detours
 {
@@ -57,12 +55,14 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             HookHelper.ModifyMethodWithDetour(CanToggleEternity_Method, CanToggleEternity_Detour);
 
             HookHelper.ModifyMethodWithDetour(SoulTogglerDraw_Method, SoulTogglerDraw_Detour);
+            HookHelper.ModifyMethodWithDetour(UIOncomingMutantUpdate_Method, UIOncomingMutantUpdate_Detour);
+            HookHelper.ModifyMethodWithDetour(UIOncomingMutantDrawSelf_Method, UIOncomingMutantDrawSelf_Detour);
 
             HookHelper.ModifyMethodWithDetour(SoulTogglerOnActivate_Method, SoulTogglerOnActivate_Detour);
 
             HookHelper.ModifyMethodWithDetour(DetermineDrawEligibility_Method, DetermineDrawEligibility_Detour);
 
-            HookHelper.ModifyMethodWithDetour(GetBestClassDamage_Method, GetBestClassDamage_Detour);
+            //HookHelper.ModifyMethodWithDetour(GetBestClassDamage_Method, GetBestClassDamage_Detour);
 
             HookHelper.ModifyMethodWithDetour(FargoSoulsUtil_HighestDamageTypeScaling_Method, HighestDamageTypeScaling_Detour);
         }
@@ -207,6 +207,20 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
         {
             return;
         }
+        //make the button do nothing
+        private static readonly MethodInfo UIOncomingMutantUpdate_Method = typeof(UIOncomingMutant).GetMethod("Update", LumUtils.UniversalBindingFlags);
+        public delegate void Orig_UIOncomingMutantUpdate(UIOncomingMutant self, GameTime gameTime);
+        internal static void UIOncomingMutantUpdate_Detour(Orig_UIOncomingMutantUpdate orig, UIOncomingMutant self, GameTime gameTime)
+        {
+            return;
+        }
+        //prevent all the drawing of said button
+        private static readonly MethodInfo UIOncomingMutantDrawSelf_Method = typeof(UIOncomingMutant).GetMethod("DrawSelf", LumUtils.UniversalBindingFlags);
+        public delegate void Orig_UIOncomingMutantDrawSelf(UIOncomingMutant self, SpriteBatch spriteBatch);
+        internal static void UIOncomingMutantDrawSelf_Detour(Orig_UIOncomingMutantDrawSelf orig, UIOncomingMutant self, SpriteBatch spriteBatch)
+        {
+            return;
+        }
         private static readonly MethodInfo SoulTogglerOnActivate_Method = typeof(OncomingMutantManager).GetMethod("OnActivate", LumUtils.UniversalBindingFlags);
         public delegate void Orig_SoulTogglerOnActivate(OncomingMutantManager self);
         internal static void SoulTogglerOnActivate_Detour(Orig_SoulTogglerOnActivate orig, OncomingMutantManager self)
@@ -225,7 +239,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             return false;
         }
 
-        private static readonly MethodInfo GetBestClassDamage_Method = typeof(CalamityUtils).GetMethod("GetBestClassDamage", LumUtils.UniversalBindingFlags);
+        /*private static readonly MethodInfo GetBestClassDamage_Method = typeof(CalamityUtils).GetMethod("GetBestClassDamage", LumUtils.UniversalBindingFlags);
         public delegate StatModifier Orig_GetBestClassDamage(Player player);
         internal static StatModifier GetBestClassDamage_Detour(Orig_GetBestClassDamage orig, Player player)
         {
@@ -246,7 +260,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             ];
             ret += bestClass.Max() - 1f;
             return ret;
-        }
+        }*/
         private static readonly MethodInfo FargoSoulsUtil_HighestDamageTypeScaling_Method = typeof(FargoSoulsUtil).GetMethod("HighestDamageTypeScaling", LumUtils.UniversalBindingFlags);
         public delegate int Orig_FargoSoulsUtil_HighestDamageTypeScaling(Player player, int dmg);
         internal static int HighestDamageTypeScaling_Detour(Orig_FargoSoulsUtil_HighestDamageTypeScaling orig, Player player, int dmg)

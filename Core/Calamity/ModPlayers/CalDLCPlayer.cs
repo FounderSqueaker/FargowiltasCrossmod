@@ -222,7 +222,7 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
 
             if (WorldSavingSystem.EternityMode)
             {
-                if (!CheckedSpongeTimes)
+                /*if (!CheckedSpongeTimes)
                 {
                     SpongeRechargeTime_Normal = TheSponge.TotalShieldRechargeTime;
                     SpongeRechargeDelay_Normal = TheSponge.ShieldRechargeDelay;
@@ -233,7 +233,7 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
                 if (TheSponge.TotalShieldRechargeTime < rt)
                 TheSponge.TotalShieldRechargeTime = rt;
                 if (TheSponge.ShieldRechargeDelay < rd)
-                    TheSponge.ShieldRechargeDelay = rd;
+                    TheSponge.ShieldRechargeDelay = rd;*/
             }
 
         }
@@ -274,7 +274,6 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
         }
         public override void PostUpdateMiscEffects()
         {
-            
             FargoSoulsPlayer soulsPlayer = Player.FargoSouls();
             CalamityPlayer calPlayer = Player.Calamity();
             if (CalamitousPresence && !soulsPlayer.MutantPresence)
@@ -383,6 +382,18 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
                                 break;
                         }
                     }
+                }
+            }
+
+            //tick down hallow enchant faster if bloom stone's potion regen buff is active
+            if (soulsPlayer.HallowHealTime > 0 && calPlayer.bloomStone && calPlayer.bloomStoneBuffedHealRateTimer > 0)
+            {
+                soulsPlayer.HallowHealTime -= 1;
+
+                if (soulsPlayer.HallowHealTime % 60 == 1) //just in case it accidentally skipped an interval for it
+                {
+                    int amount = (int)Math.Round(soulsPlayer.HallowHealTotal / 10f);
+                    Player.Heal(amount);
                 }
             }
             base.PostUpdateMiscEffects();

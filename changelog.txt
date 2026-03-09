@@ -1,21 +1,64 @@
-Patch 1.2.0.23
-- Added popup notification warning that FTW is unsupported when entering world on FTW
-- Added popup notifications warning that Calamity Overhaul and Infernum are incompatible when entering a world with respective mod
-- Removed Abandoned Remote
-- Fixed Acidwood Sword and Driftwood Sword not receiving a reworked broadsword swing animation
-- Fixed various Mutant projectiles drawing incorrectly
+Patch 1.2.0.24
+- Added popup notifications warning that Calamity Overhaul and Infernum are incompatible when entering world with respective mod
+- Fargo difficulty UI no longer draws in DLC (redundant with the Calamity difficulty UI)
 
-- Recipe changes:
-- - All recipes that previously required multiple consumable rogue weapons now only use 1 copy of each weapon due to them becoming non-consumable.
-- - Added Banner Recipe for Antlion Skewer.
-- -  Desert Prowler Enchantment now uses Antlion Skewer and Nasty Cholla instead of Storm Spear and Stormjaw Staff.
-- - Sulphurous Enchantment now uses Any Sulphurous Sea Fruit instead of Rusty Beacon Prototype.
-- - Titan Heart Enchantment now uses Monolith Hammer and Any Astral Fruit instead of Stress Pills and Ursa Sergeant.
-- - Daedalus Enchantment now uses Darkecho Greatbow instead of 20 Frozen Candles.
-- - Outlaw's Essence now uses Spore Knife instead of Feather Knife, and no longer uses Sludge Spotch.
+Boss changes:
+- Fixed Desert Scourge's pierce resistance not applying correctly to broadswords
+- Desert Scourge no longer reduces the damage of all piercing projectiles by an additional 50% on top of regular pierce resistance
+- Fixed only one of the Desert Nuisances having reduced health, but Nuisance health is now reduced by 50% instead of 66%
+- Desert Nuisance now inherits Desert Scourge's pierce resistance
+- Reduced Eye of Cthulhu's damage from 26 to 20
+- Reduced Crabulon's damage from 55 to 40
+- Implemented Crabulon's new sound effects into Eternity Mode AI
+- Reduced The Perforator's damage from 60 to 40, but increased it's health from 8050 to 8625
+- Fixed the medium Perforator worm activating on-kill effects from accessories when hitting the ground
+- Reduced Hive Mind and Hive Blob's damage from 60 to 40
+- Skeletron's arms no longer deal increased damage
+- Reduced The Slime God Core's damage from 62 to 40
+- Deviantt, Banished Baron and Lifelight no longer have increased damage
+- Reduced Cryogen and Permafrost's base damage from 77 to 69. Most of Permafrost's projectiles now deal 20% less damage, but inflict Frostburn for 2 seconds
+- Reduced Permafrost's health from 32500 to 30000
+- Reduced The Twins damage from 80 to 60
+- Increased Skeletron Prime's head damage from 40 to 45, and arms no longer deal reduced damage
+- Reduced The Destroyer's head and projectile damage from 80 to 66
+- Reduced Aquatic Scourge's damage from 110 to 50
+- Reduced Brimstone Elemental's damage from 65 to 56. Fixed several projectiles inflicting Vulnerability Hex instead of Brimstone Flames, and fixed an issue that caused Brimlings to deal significantly more damage than intended
+- Increased Plantera's Health from (0.375x -> 0.6x) 
+- The Old Duke now takes 25% reduced damage from homing projectiles
+- Reduced Lunatic Cultist's health from 57600 to 43200
+- Increased Moon Lord's hand  eye health from 32400 to 48600, head eye health from 18000 to 27000, and core health from 44000 to 66000
+- Reduced Eridanus's damage from 210 to 165
+- Increased Yharon's damage from 210 to 241
+- Decreased Abominationn's health from 3672000 to 3060000, and damage from 300 to 264
+- Decreased Mutant's health from 14550000 to 13580000, and damage from 732 to 683
+- Mutant's Presence now disables the effects of Calamity (the accessory)
 
-- Removed the following balance changes to items:
-- - Soma Prime: Increased damage by 20%
-- - Svantechnical: Increased damage by 10%
-- - Rainbow Party Cannon: Decreased damage by 30%
-- - Universe Splitter: Decreased damage by 50%.
+- DoG no longer spawns the sentinels during his phase of Boss Rush, and fixed DoG not working correctly in Boss Rush
+- Readded each of the sentinels to boss rush
+
+Recipe changes:
+- Added crate recipes for Kylie, Enchanted Knife Staff, The Comb, Slagfire Douser, Broken Water Filter, Effigy of Decay, Rusty Beacon Prototype, and Scion's Curio
+- Removed crate recipes using Sulphurous Crates for Ball O' Fugu, Archerfish. Black Anurian, Herring Staff, Lionfish, Strange Orb, Torrential Tear, Depth Charm, Iron Boots, and Anechoic Plating, as Sulphurous Crates can no longer drop these items. Hydrothermal Crate recipes for these items still exist
+- Removed crate recipes using Hydrothermal Crate for Skyfin Bombers, Nuclear Fuel Rod, Sulphurous Grabber, Flak Toxicannon, Spent Fuel Container, Slithering Eels, and Belching Saxophone, as Hydrothermal Crates can no longer drop these items
+- Removed crate recipes using Astral Crate for Stellar Knife, Astralachnea Staff, Titan Arm, Hive Pod, Astral Scythe, Stellar Cannon, and Starbuster Core, as Astral Crates can no longer drop these items
+- Removed crate recipes using Prism Crate for Poseidon, Clamor Rifle, Shellfish Staff, and Clam Crusher, as Prism Crates can no longer drop these items
+- Added a trophy recipe for Elden Diorama
+
+Reaver Enchantment:
+- Plated Mode: Reduced defense boost from 15/30 to 10/20, it no longer grants any damage reduction or spawns a thorn spike on hit
+- Swift Mode: Reduced life regeneration boost from 4/7.5 HP/s to 3/6 HP/s, but increased hook pull speed from 10% to 50%
+
+Force of the Elements:
+- Damage reduction in Magma Mode now increases linearly based on the amount of Heat currently held up to +30%, rather than being granted passively
+- Fixed Magma Mode granting speed increases from Blizzard Mode
+
+The Sponge: No longer has nerfed recharge time or delay
+
+- Fixed several Tungsten Enchantment interactions with Calamity weapons:
+- Fixed projectile hitboxes not being adjusted: Comet Quasher, Stellar Striker, Majestic Guard, Grand Guardian, Grand Dad, Earth
+Old Lord Claymore, Forbidden/Exalted Oathblade (right click), Devil's Devastation (right click)
+Broken Biome Blade (Pure Clarity), Biome Blade (Pure Clarity)
+- Fixed thrown weapons from Bladecrest Oathsword, Forbidden Oathblade, Exalted Oathblade, Devil's Devastation, Depth Crusher, Abyss Blade, and Neptune's Bounty being affected
+- Fixed Death's Ascension left click being offset from the player's hand
+
+- Fixed Bloom Stone and Hallow Enchantment making potions give 0 health while both are equipped. They now stack their multipliers additively

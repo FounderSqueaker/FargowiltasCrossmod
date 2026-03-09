@@ -45,6 +45,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
         {
             base.OnSpawn(source);
         }
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            target.AddBuff(BuffID.Frostburn, 120);
+        }
         public override bool PreDraw(ref Color lightColor)
         {
             Asset<Texture2D> t = TextureAssets.Projectile[Type];

@@ -1,4 +1,5 @@
 ﻿using CalamityMod.Items.Materials;
+using CalamityMod.Items.SummonItems;
 using CalamityMod.NPCs.Leviathan;
 using Fargowiltas.Content.Items.Summons;
 using FargowiltasCrossmod.Core;
@@ -16,6 +17,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Summons
         public override string NPCName => Language.GetTextValue("Mods.CalamityMod.BossChecklistIntegration.Leviathan.EntryName");
         public override void AddRecipes()
         {
+            Recipe.Create(Type).AddIngredient<NaiadsWarhorn>().AddTile(TileID.WorkBenches).Register();
             Recipe.Create(Type).AddIngredient(ItemID.WhitePearl).AddIngredient<PerennialBar>(5).AddTile(TileID.WorkBenches).Register();
         }
     }
