@@ -433,7 +433,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             #region BRBalance
             if (BossRushEvent.BossRushActive)
             {
-                
+
                 if (npc.damage < 200 && npc.damage != 0 && npc.type != ModContent.NPCType<MutantBoss>())
                 {
                     npc.damage = 200;
@@ -1263,8 +1263,23 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             NPCID.GolemFistRight, NPCID.GolemHead, NPCID.Golem, NPCID.GolemHeadFree,
             NPCID.CultistBoss, NPCID.MoonLordCore, NPCID.MoonLordFreeEye, NPCID.MoonLordHand, NPCID.MoonLordHead
         ];
+        [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
+        private static void MakeNPCImmuneToCalamityStuns(NPC npc)
+        {
+            // Detour this if you really need it disabled for some reason
+            if ((WorldSavingSystem.EternityMode
+                && (npc.ModNPC == null || npc.ModNPC.Mod == ModCompatibility.SoulsMod.Mod))
+                || (npc.TryGetGlobalNPC(out CalDLCEmodeBehaviorManager calDLCEmode) && calDLCEmode.DLCBehaviour != null))
+            {
+                npc.Calamity().debuffResistanceTimer = 2;
+            }
+        }
+
         public override bool PreAI(NPC npc)
         {
+            if (ModCompatibility.SoulsMod.Loaded && ModCompatibility.Calamity.Loaded)
+                MakeNPCImmuneToCalamityStuns(npc);
+
             #region Summon Drops and Presence Debuffs
             if (npc.type == NPCID.KingSlime)
             {
@@ -1469,7 +1484,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     if (Main.expertMode && Main.LocalPlayer.active && !Main.LocalPlayer.dead && !Main.LocalPlayer.ghost)
                         Main.LocalPlayer.AddBuff(ModContent.BuffType<MutantPresenceBuff>(), 2);
                 }
-                
+
                 if (npc.type == ModContent.Find<ModNPC>(ModCompatibility.WrathoftheGods.Name, "MarsBody").Type)
                 {
                     Main.LocalPlayer.AddBuff(ModContent.BuffType<CalamitousPresenceBuff>(), 2);
