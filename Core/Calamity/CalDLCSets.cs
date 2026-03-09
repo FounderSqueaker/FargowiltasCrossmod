@@ -116,6 +116,7 @@ namespace FargowiltasCrossmod.Core.Calamity
                 ItemType<CharredIdol>(),
                 ItemType<EyeofDesolation>(),
                 ItemType<AstralChunk>(),
+                ItemType<NaiadsWarhorn>(),
                 ItemType<Abombination>(),
                 ItemType<DeathWhistle>(),
                 ItemType<Starcore>(),
