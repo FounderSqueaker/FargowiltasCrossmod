@@ -386,11 +386,11 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
             }
 
             //tick down hallow enchant faster if bloom stone's potion regen buff is active
-            if (soulsPlayer.HallowHealTime > 0 && calPlayer.bloomStone && calPlayer.bloomStoneBuffedHealRateTimer > 0)
+            if (Player.GetCooldown<HallowEffect>() > 0 && calPlayer.bloomStone && calPlayer.bloomStoneBuffedHealRateTimer > 0)
             {
-                soulsPlayer.HallowHealTime -= 1;
+                Player.IncrementCooldownTowards<HallowEffect>(-1, 0);
 
-                if (soulsPlayer.HallowHealTime % 60 == 1) //just in case it accidentally skipped an interval for it
+                if (Player.GetCooldown<HallowEffect>() % 60 == 1) //just in case it accidentally skipped an interval for it
                 {
                     int amount = (int)Math.Round(soulsPlayer.HallowHealTotal / 10f);
                     Player.Heal(amount);

@@ -39,6 +39,7 @@ using FargowiltasSouls.Content.Projectiles.Eternity;
 using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.MoonLord;
 using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.LunaticCultist;
 using Fargowiltas.Common.Systems.Collections;
+using CalamityMod.Projectiles.Melee;
 
 namespace FargowiltasCrossmod.Core.Calamity
 {

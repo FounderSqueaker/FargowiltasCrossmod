@@ -27,7 +27,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
                 float addedmult = (fargoPlayer.ForceEffect<HallowEnchant>() ? 1.7f : 1.4f) + 0.5f;
                 fargoPlayer.HallowHealTotal = player.GetHealLife(item) * addedmult;
-                fargoPlayer.HallowHealTime = 600;
+                player.SetCooldown<HallowEffect>(600);
 
                 player.AccessoryEffects().ActiveEffects[hallowIndex] = calPlayer.bloomStone = true;
             }

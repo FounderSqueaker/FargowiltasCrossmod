@@ -27,7 +27,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.BrimstoneElemental
     {
         public const bool Enabled = true;
         public override bool IsLoadingEnabled(Mod mod) => BrimstoneEternity.Enabled;
-        public override int NPCOverrideID => ModContent.NPCType<CalamityMod.NPCs.BrimstoneElemental.Brimling>();
+        public override int NPCOverrideID => ModContent.NPCType<Brimling>();
         public override void SetDefaults()
         {
             NPC.damage = 40;
