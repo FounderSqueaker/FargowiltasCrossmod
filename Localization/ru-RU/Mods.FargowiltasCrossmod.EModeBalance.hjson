@@ -4,12 +4,12 @@ DamageDownGeneric: Урон уменьшен на {0}%
 PickPowerDownGeneric: Сила добычи уменьшена на {0}%
 ProfanedCrystal: Значительно уменьшает урон с любым призванным существом
 MythrilEnch: Менее эффективно на оружиях плута
-OrichalcumEnch: Эффективность уменьшена
+OrichalcumEnch: Увеличение постепенного урона дебаффов уменьшено до x1,5
 FlightMastery: Полёт ослаблен при битвах с боссами не из мода «Fargo's Souls»
 EarthForce: Увеличение постепенного урона уменьшено до 100%
 LifeForce: Полёт ослаблен и время полёта уменьшено при битвах с боссами не из мода «Fargo's Souls»
 OnionPackUpgrade: Слот совмещён с [i:FargowiltasSouls/MutantsPact]Договором Мутанта
-PactOnionUpgrade: Слот совмещён с [i:CalamityMod/CelestialOnion]Неземной луковицей и даёт полноценный слот для аксессуара
+PactOnionUpgrade: Слот совмещён с [i:CalamityMod/CelestialOnion]Небесной луковицей и даёт полноценный слот для аксессуара
 Laudanum: Положительные эффекты дебаффов ослаблены вдвое
 TheSponge: Скорость восстановления и время перезарядки увеличены на 25%
 ExoBox: Скорость уменьшена на 40%
